@@ -1,16 +1,24 @@
 package Controlador;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import Leitor.*;
 import Modelo.*;
 
 public class Main{
 	public static void main(String[] args) throws Exception{
-		int opcao;
+		int opcao = -1;
 		Scanner scan = new Scanner(System.in);
 		do{
 			escreveMenu();
-			opcao = scan.nextInt();
+			try{
+				opcao = scan.nextInt();
+			} catch (InputMismatchException e){
+				System.out.println("\nOpcão invalida!\n");
+				scan.next();
+				continue;
+			}
+
 			try {
 				escolherMenu(opcao,args);				
 			} catch (Exception e) {

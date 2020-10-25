@@ -95,29 +95,21 @@ public class Relatorio{
                 ArrayList<Atividade> listaAtividades =  disciplinas.get(i).obterAtividades();
                 numAtividadesTotal += listaAtividades.size();
 
-                for(Atividade ativ : listaAtividades){
-                    if(ativ.obterSincrona()){
-                        numAtividadesSincronas++;
-                    }
-                    
-                    numAvaliacoesTotal += ativ.obterAvaliacoes().size();
-                    for(Avaliacao aval : ativ.obterAvaliacoes()){
-                        notaTotal += aval.obterNota();
-                    }
 
-                }
             }
             estatistica[count][2] = String.valueOf(periodos.size());
             if(disciplinas.size()!=0)
                 estatistica[count][3] = Double.toString(numAtividadesTotal/disciplinas.size());
             else 
                 estatistica[count][3] = "0.0";
-            if(numAtividadesTotal!=0)
-                estatistica[count][4] = Integer.toString(Math.round(((float)numAtividadesSincronas/(float)numAtividadesTotal)*100));
+            if(numAtividadesTotal!=0){
+                int sincronas = Math.round(((float)disciplina.obterSincronas()/(float)disciplina.obterAtividades().size())*100);
+                estatistica[count][4] = Integer.toString(sincronas);
+            }   
             else
                 estatistica[count][4] = "0";
             if(numAvaliacoesTotal!=0)
-                estatistica[count][5] = Double.toString(notaTotal/numAvaliacoesTotal);
+                estatistica[count][5] = Double.toString(disciplina.obterMedia());
             else
                 estatistica[count][5] = "0.0";
             count++;

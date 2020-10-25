@@ -11,7 +11,12 @@ public class Main{
 		do{
 			escreveMenu();
 			opcao = scan.nextInt();
-			escolherMenu(opcao,args);
+			try {
+				escolherMenu(opcao,args);				
+			} catch (Exception e) {
+				System.out.println(e.getMessage()+"\n");
+			}
+
 		}while(opcao != 0);
 		  scan.close();
  
@@ -133,6 +138,8 @@ public class Main{
 			opcao = scan.next();
 			if(opcao.toLowerCase().equals("s")){
 				Periodo periodo = lPeriodo.ler();
+				if(lPeriodo.busca(periodo.obterCodigo()) != null)
+					throw new IllegalArgumentException("Cadastro repetido: "+periodo+".");
 				lPeriodo.anexaHash(periodo);
 				System.out.println();
 			}

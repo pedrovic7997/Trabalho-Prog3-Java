@@ -225,14 +225,14 @@ public class Relatorio{
                                             "/"+disciplina.obterPeriodo().obterSemestre();
             estatistica[count][1] = String.valueOf(disciplina.obterAtividades().size());
             if(disciplina.obterAtividades().size() != 0){
-                int sincronas = Math.round(((float)disciplina.obterSincrona/(float)disciplina.obterAtividades().size())*100);
+                int sincronas = Math.round(((float)disciplina.obterSincronas()/(float)disciplina.obterAtividades().size())*100);
                 estatistica[count][2] = Integer.toString(sincronas);
             }
             else {
                 estatistica[count][2] = "0";
             }
             estatistica[count][3] = String.valueOf(disciplina.obterCargaHoraria());
-            estatistica[count][4] = String.valueOf(disciplina.obterAvaliativa());
+            estatistica[count][4] = String.valueOf(disciplina.obterAvalitiva());
             count++;
         }
         Arrays.sort(estatistica, new Comparator<String[]>(){

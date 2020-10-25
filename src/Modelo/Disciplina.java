@@ -48,4 +48,31 @@ public class Disciplina implements Serializable{
         " - Professor: "+ professor.obterNome();
     }
 
+    public int obterSincronas(){
+        int qtdSinc = 0;
+        for(Atividade a : obterAtividades()){
+            if(a.obterSincrona()){
+                qtdSinc++;
+            }
+        }
+        return qtdSinc;
+    }
+
+    public int obterAvalitiva(){
+        int qtdAvaliativas = 0;
+        for(Atividade a : obterAtividades()){
+            if(a.ehAvaliativa()) {
+                qtdAvaliativas++;
+            }
+        }
+        return qtdAvaliativas;
+    }
+
+    public int obterCargaHoraria(){
+        int cargaHoraria = 0;
+        for(Atividade a : obterAtividades()){
+            cargaHoraria += a.obterCargaHoraria();
+        }
+        return cargaHoraria;
+    }
 }

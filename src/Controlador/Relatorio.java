@@ -221,28 +221,18 @@ public class Relatorio{
         String[][] estatistica = new String[disciplinas.size()][5];
         int count=0;
         for (Disciplina disciplina : disciplinas) {
-            int cargaHoraria = 0;
-            int qtdSinc = 0;
-            int qtdAvaliativas = 0;
-            for(Atividade a : disciplina.obterAtividades()){
-                if(a.ehAvaliativa()) {
-                    qtdAvaliativas++;
-                }
-                cargaHoraria += a.obterCargaHoraria();
-                if(a.obterSincrona()){
-                    qtdSinc++;
-                }
-                
-                
-            }
             estatistica[count][0] = disciplina.obterCodigo()+"-"+disciplina.obterPeriodo().obterAno()+
                                             "/"+disciplina.obterPeriodo().obterSemestre();
             estatistica[count][1] = String.valueOf(disciplina.obterAtividades().size());
-            if(disciplina.obterAtividades().size() != 0)
-                estatistica[count][2] = Integer.toString(Math.round(((float)qtdSinc/(float)disciplina.obterAtividades().size())*100));
-            else estatistica[count][2] = "0";
-            estatistica[count][3] = String.valueOf(cargaHoraria);
-            estatistica[count][4] = String.valueOf(qtdAvaliativas);
+            if(disciplina.obterAtividades().size() != 0){
+                int sincronas = Math.round(((float)disciplina.obterSincrona/(float)disciplina.obterAtividades().size())*100);
+                estatistica[count][2] = Integer.toString(sincronas);
+            }
+            else {
+                estatistica[count][2] = "0";
+            }
+            estatistica[count][3] = String.valueOf(disciplina.obterCargaHoraria());
+            estatistica[count][4] = String.valueOf(disciplina.obterAvaliativa());
             count++;
         }
         Arrays.sort(estatistica, new Comparator<String[]>(){

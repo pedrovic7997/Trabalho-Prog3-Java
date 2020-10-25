@@ -83,19 +83,19 @@ public class Relatorio{
 
             for(int i=0; i<disciplinas.size(); i++){
 
+                Disciplina disciplina = disciplinas.get(i);
+                numAtividadesSincronas += disciplina.obterSincronas();
+                numAtividadesTotal += disciplina.obterAtividades().size();
+                notaTotal += disciplina.obterMedia();
+
                 for(int j=0; j<periodos.size() && !possui; j++){
-                    if(disciplinas.get(i).obterPeriodo() == periodos.get(j)){
+                    if(disciplina.obterPeriodo() == periodos.get(j)){
                         possui = true;
                     }
                 }
                 if(!possui){
-                    periodos.add(disciplinas.get(i).obterPeriodo());
+                    periodos.add(disciplina.obterPeriodo());
                 }
-
-                ArrayList<Atividade> listaAtividades =  disciplinas.get(i).obterAtividades();
-                numAtividadesTotal += listaAtividades.size();
-
-
             }
             estatistica[count][2] = String.valueOf(periodos.size());
             if(disciplinas.size()!=0)
@@ -103,13 +103,13 @@ public class Relatorio{
             else 
                 estatistica[count][3] = "0.0";
             if(numAtividadesTotal!=0){
-                int sincronas = Math.round(((float)disciplina.obterSincronas()/(float)disciplina.obterAtividades().size())*100);
+                int sincronas = Math.round(((float)numAtividadesSincronas/(float)numAtividadesTotal)*100);
                 estatistica[count][4] = Integer.toString(sincronas);
             }   
             else
                 estatistica[count][4] = "0";
             if(numAvaliacoesTotal!=0)
-                estatistica[count][5] = Double.toString(disciplina.obterMedia());
+                estatistica[count][5] = Double.toString(notaTotal/numAvaliacoesTotal);
             else
                 estatistica[count][5] = "0.0";
             count++;

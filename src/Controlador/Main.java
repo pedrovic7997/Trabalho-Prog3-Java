@@ -26,9 +26,9 @@ public class Main{
 			}
 
 		}while(opcao != 0);
-		  scan.close();
+		scan.close();
  
-		}
+	}
 
 	public static void escreveMenu(){
 		System.out.println("Escolha uma opção:");
@@ -73,10 +73,10 @@ public class Main{
 		}
 	}
 
-	public static void menuRelatorios(){
+	public static void menuRelatorios() {
 
 		Scanner scan = new Scanner(System.in);
-		int opcao;
+		int opcao = -1;
 		do{
 			System.out.println("\nEscolha uma opção:");
 			System.out.println("1-Visão geral do período acadêmico;");
@@ -84,13 +84,24 @@ public class Main{
 			System.out.println("3-Estatísticas dos estudantes;");
 			System.out.println("4-Estatísticas das disciplinas de um docente;");
 			System.out.println("0-Voltar ao menu principal:");
-			opcao = scan.nextInt();
-			escolherMenuRelatorio(opcao);
+			try{
+				opcao = scan.nextInt();
+			} catch (InputMismatchException e){
+				System.out.println("\nOpcão invalida! Voltando ao menu...\n");
+				// opcao = 0;
+				scan.next();
+				continue;
+			}
+			try{
+				escolherMenuRelatorio(opcao);
+			} catch (Exception e) {
+				System.out.println(e.getMessage()+"\n");
+			}
 			System.out.println("");
 		}while(opcao != 0);
 	}
 
-	public static void escolherMenuRelatorio(int opcao){
+	public static void escolherMenuRelatorio(int opcao) throws Exception {
 		Relatorio relatorio = new Relatorio();
 		switch(opcao){
 			case 1: relatorio.panoramaPeriodo();

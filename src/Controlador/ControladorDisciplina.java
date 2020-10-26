@@ -1,6 +1,7 @@
-public class ControladorDisciplina extends Controlador{
+package Controlador;
 
-    
+public class ControladorDisciplina implements IControlador{
+
     public void menu(){
 		LeitorDisciplina lDisciplina = LeitorDisciplina.obterInstancia();
 		Scanner scan = new Scanner(System.in);

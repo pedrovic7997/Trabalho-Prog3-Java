@@ -22,7 +22,7 @@ import Leitor.LeitorDocente;
 import Leitor.LeitorEstudante;
 import Leitor.LeitorAvaliacao;
 
-public class Relatorio implements Controlador{
+public class Relatorio implements IControlador{
 
     public void menu() {
 

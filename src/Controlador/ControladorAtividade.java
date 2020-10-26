@@ -81,10 +81,10 @@ public class ControladorAtividade implements IControlador{
 					leitor.mensagem("\nEstudantes matriculados nessa disciplina:");
 					cDisciplinaEstudante.lista(disciplina);
 					leitor.mensagem("\nDigite a matricula do estudante que deseja adcionar a avaliacao: ");
-					Estudante estudante = cDisciplina.busca(disciplina,scan.nextInt());
+					int matricula = scan.nextInt();
+					Estudante estudante = cDisciplina.busca(disciplina, matricula);
 					if(estudante == null){
-						throw new NoSuchElementException("Referencia invalida: "+codigo+".");
-						break;
+						throw new NoSuchElementException("Referencia invalida: "+matricula+".");
 					}
 					Avaliacao avaliacao = leitor.ler(estudante);
 					atividade.anexaAvaliacao(avaliacao);

@@ -5,7 +5,7 @@ import java.util.Scanner;
 import Leitor.*;
 import Modelo.*;
 
-public class Main extends Controlador{
+public class Main implements IControlador{
 	public static void main(String[] args) throws Exception{
 		int opcao = -1;
 		Scanner scan = new Scanner(System.in);
@@ -46,7 +46,7 @@ public class Main extends Controlador{
 	}
 	
 	public static void escolherMenu(int opcao, String[] args) throws Exception{
-		Controlador controlador;
+		IControlador controlador;
 		switch(opcao){
 			case 0: System.out.println("\nSaindo do programa...");
 				break;

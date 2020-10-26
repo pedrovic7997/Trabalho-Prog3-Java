@@ -1,4 +1,6 @@
-public class ControladorPeriodo extends Controlador{
+package Controlador;
+
+public class ControladorPeriodo implements IControlador{
     public void menuPeriodo(){
 		String opcao = "s";
 		Scanner scan = new Scanner(System.in);

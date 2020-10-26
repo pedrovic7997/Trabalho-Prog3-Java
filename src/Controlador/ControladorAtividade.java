@@ -1,4 +1,6 @@
-public class ControladorAtividade extends Controlador{
+package Controlador;
+
+public class ControladorAtividade implements IControlador{
     public void menu(){
 		String opcao = "s";
 		LeitorAtividade lAtividade = LeitorAtividade.obterInstancia();

@@ -28,9 +28,7 @@ public class ControladorDisciplina implements IControlador{
 		LeitorDocente lDocente= LeitorDocente.obterInstancia();
 		LeitorPeriodo lPeriodo = LeitorPeriodo.obterInstancia();
 		while(opcao.toLowerCase().equals("s")){
-			System.out.println("------------------------");
-			System.out.println("Disciplinas cadastradas:");
-			lDisciplina.listar();	
+			listar();	
 			System.out.println("\nDeseja cadastrar nova disciplina? (Digite 's' caso queira ou qualquer tecla caso não"+
 			" queira)");
 			opcao = scan.next();
@@ -94,5 +92,10 @@ public class ControladorDisciplina implements IControlador{
 				}
 			}
 		}
+	}
+
+	public void listar(){
+		LeitorDisciplina lDisciplina = LeitorDisciplina.obterInstancia();
+		lDisciplina.listar();
 	}
 }

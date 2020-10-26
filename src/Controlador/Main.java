@@ -67,7 +67,7 @@ public class Main{
 				break;
 			case 5:
 				controlador = new ControladorDisciplina();
-				controlador.menu("EstudanteDisciplina");
+				controlador.menu("Disciplina");
 				break;
 			case 6:
 				controlador = new ControladorAtividade();

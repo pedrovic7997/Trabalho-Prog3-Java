@@ -49,6 +49,8 @@ public class LeitorDisciplina implements Serializable{
     }
 
     public void listar(){
+        System.out.println("------------------------");
+		System.out.println("Disciplinas cadastradas:");
         for (String i : mapa.keySet()){
             System.out.println(mapa.get(i));
         }

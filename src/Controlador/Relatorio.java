@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ import Leitor.LeitorAvaliacao;
 
 public class Relatorio implements IControlador{
 
-    public void menu() {
+    public void menu(String func) {
 
 		Scanner scan = new Scanner(System.in);
 		int opcao = -1;
@@ -129,7 +130,7 @@ public class Relatorio implements IControlador{
                 Disciplina disciplina = disciplinas.get(i);
                 numAtividadesSincronas += disciplina.obterSincronas();
                 numAtividadesTotal += disciplina.obterAtividades().size();
-                notaTotal += disciplina.obterMedia();
+                notaTotal += disciplina.obterNotaTotal();
                 numAtividadesTotal += disciplina.obterAtividadesTotal();
 
                 for(int j=0; j<periodos.size() && !possui; j++){

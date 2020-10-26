@@ -1,7 +1,25 @@
 package Controlador;
 
+import java.util.Scanner;
+
+import Leitor.LeitorDisciplina;
+import Leitor.LeitorAtividade;
+import Leitor.LeitorAvaliacao;
+import Leitor.LeitorDisciplinaEstudante;
+import Modelo.Atividade;
+import Modelo.Avaliacao;
+import Modelo.Disciplina;
+import Modelo.Estudante;
+
 public class ControladorAtividade implements IControlador{
-    public void menu(){
+	
+	public void menu(String func){
+		if(func.equals("Atividade"))
+			menuAtvidade();
+		else menuAvaliacao();
+	}
+	
+	public void menuAtvidade(){
 		String opcao = "s";
 		LeitorAtividade lAtividade = LeitorAtividade.obterInstancia();
 		LeitorDisciplina lDisciplina = LeitorDisciplina.obterInstancia();

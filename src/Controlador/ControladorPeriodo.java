@@ -1,7 +1,13 @@
 package Controlador;
 
+import java.util.Scanner;
+
+import Leitor.LeitorPeriodo;
+import Modelo.Periodo;
+
 public class ControladorPeriodo implements IControlador{
-    public void menuPeriodo(){
+	
+    public void menu(String func){
 		String opcao = "s";
 		Scanner scan = new Scanner(System.in);
 		LeitorPeriodo lPeriodo = LeitorPeriodo.obterInstancia();

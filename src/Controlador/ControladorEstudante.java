@@ -1,7 +1,14 @@
 package Controlador;
 
+import java.util.Scanner;
+
+import Leitor.LeitorEstudante;
+import Modelo.Estudante;
+
+
 public class ControladorEstudante implements IControlador{
-    public void menu(){
+	
+    public void menu(String func){
 		String opcao = "s";
 		LeitorEstudante lEstudante = LeitorEstudante.obterInstancia();
 		Scanner scan = new Scanner(System.in);

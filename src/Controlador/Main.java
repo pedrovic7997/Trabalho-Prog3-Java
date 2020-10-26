@@ -5,12 +5,12 @@ import java.util.Scanner;
 import Leitor.*;
 import Modelo.*;
 
-public class Main implements IControlador{
+public class Main{
 	public static void main(String[] args) throws Exception{
 		int opcao = -1;
 		Scanner scan = new Scanner(System.in);
 		do{
-			escreveMenu();
+			menu();
 			try{
 				opcao = scan.nextInt();
 			} catch (InputMismatchException e){
@@ -30,7 +30,7 @@ public class Main implements IControlador{
  
 	}
 
-	public static void escreveMenu(){
+	public static void menu(){
 		System.out.println("Escolha uma opção:");
 		System.out.println("1-Cadastro de períodos;");
 		System.out.println("2-Cadastro de docentes;");
@@ -51,35 +51,35 @@ public class Main implements IControlador{
 			case 0: System.out.println("\nSaindo do programa...");
 				break;
 			case 1: controlador = new ControladorPeriodo();
-				controlador.menu();
+				controlador.menu("");
 				break;
 			case 2:
 				controlador = new ControladorDocente();
-				controlador.menu();
+				controlador.menu("");
 				break;
 			case 3:
 				controlador = new ControladorDisciplina();
-				controlador.menu();
+				controlador.menu("");
 				break;
 			case 4:
 				controlador = new ControladorEstudante();
-				controlador.menu();
+				controlador.menu("");
 				break;
 			case 5:
 				controlador = new ControladorDisciplina();
-				controlador.menuEstudanteDisciplina();
+				controlador.menu("EstudanteDisciplina");
 				break;
 			case 6:
 				controlador = new ControladorAtividade();
-				controlador.menu();
+				controlador.menu("");
 				break;
 			case 7:
 				controlador = new ControladorAtividade();
-				controlador.menuAvaliacao();
+				controlador.menu("Avaliacao");
 				break;
 			case 8:
 				controlador = new Relatorio();
-				controlador.menu();
+				controlador.menu("");
 				break;
 			case 9: salvaDados(args);
 				break;

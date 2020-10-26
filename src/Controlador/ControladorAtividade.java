@@ -29,10 +29,10 @@ public class ControladorAtividade implements IControlador{
 			opcao = "s";
 			cDisciplina.listar();
 			leitor.mensagem("\nDigite o código da disciplina a qual deseja ver as ativades: ");
-			Disciplina disciplina = cDisciplina.busca(scan.next());
-			if(disciplina==null){
-				System.out.println("Dado não encontrado. Retornando ao menu. ");
-				break;
+			String codigo = scan.next();
+			Disciplina disciplina = cDisciplina.busca(codigo);
+			if (disciplina==null) {
+				throw new NoSuchElementException("Referência inválida: "+codigo);
 			}
 			while(opcao.toLowerCase().equals("s")){
 				leitor.mensagem("\nAtividades cadastradas:");

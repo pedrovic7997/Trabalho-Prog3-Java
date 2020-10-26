@@ -53,32 +53,32 @@ public class Main extends Controlador{
 			case 1: controlador = new ControladorPeriodo();
 				controlador.menu();
 				break;
-			case 2: menuDocentes();
+			case 2:
 				controlador = new ControladorDocente();
 				controlador.menu();
 				break;
-			case 3: menuDisciplina();
+			case 3:
 				controlador = new ControladorDisciplina();
 				controlador.menu();
 				break;
-			case 4: menuEstudante();
-				controlador = new ControladorPeriodo();
+			case 4:
+				controlador = new ControladorEstudante();
 				controlador.menu();
 				break;
-			case 5: menuEstudanteDisciplina();
-				controlador = new ControladorPeriodo();
+			case 5:
+				controlador = new ControladorDisciplina();
+				controlador.menuEstudanteDisciplina();
+				break;
+			case 6:
+				controlador = new ControladorAtividade();
 				controlador.menu();
 				break;
-			case 6: menuAtividadeDiscplina();
-				controlador = new ControladorPeriodo();
-				controlador.menu();
+			case 7:
+				controlador = new ControladorAtividade();
+				controlador.menuAvaliacao();
 				break;
-			case 7: menuAvaliacao();
-				controlador = new ControladorPeriodo();
-				controlador.menu();
-				break;
-			case 8: menuRelatorios();
-				controlador = new ControladorPeriodo();
+			case 8:
+				controlador = new Relatorio();
 				controlador.menu();
 				break;
 			case 9: salvaDados(args);
@@ -89,49 +89,7 @@ public class Main extends Controlador{
 		}
 	}
 
-	public static void menuRelatorios() {
 
-		Scanner scan = new Scanner(System.in);
-		int opcao = -1;
-		do{
-			System.out.println("\nEscolha uma opção:");
-			System.out.println("1-Visão geral do período acadêmico;");
-			System.out.println("2-Estatísticas dos docentes;");
-			System.out.println("3-Estatísticas dos estudantes;");
-			System.out.println("4-Estatísticas das disciplinas de um docente;");
-			System.out.println("0-Voltar ao menu principal:");
-			try{
-				opcao = scan.nextInt();
-			} catch (InputMismatchException e){
-				System.out.println("\nOpcão invalida! Voltando ao menu...\n");
-				// opcao = 0;
-				scan.next();
-				continue;
-			}
-			try{
-				escolherMenuRelatorio(opcao);
-			} catch (Exception e) {
-				System.out.println(e.getMessage()+"\n");
-			}
-			System.out.println("");
-		}while(opcao != 0);
-	}
-
-	public static void escolherMenuRelatorio(int opcao) throws Exception {
-		Relatorio relatorio = new Relatorio();
-		switch(opcao){
-			case 1: relatorio.panoramaPeriodo();
-				break;
-			case 2: relatorio.estatisticaDocentes();
-				break;
-			case 3: relatorio.estatisticaEstudantes();
-				break;
-			case 4: relatorio.estatisticaDisciplinasDocente();
-				break;
-			default :
-				System.out.println("\nVoltando ao menu...");
-		}
-	}
 
 	public static void salvaDados(String[] args) throws Exception{
 		Salvar salvar= new Salvar();

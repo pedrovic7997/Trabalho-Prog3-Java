@@ -22,7 +22,50 @@ import Leitor.LeitorDocente;
 import Leitor.LeitorEstudante;
 import Leitor.LeitorAvaliacao;
 
-public class Relatorio{
+public class Relatorio implements Controlador{
+
+    public void menu() {
+
+		Scanner scan = new Scanner(System.in);
+		int opcao = -1;
+		do{
+			System.out.println("\nEscolha uma opção:");
+			System.out.println("1-Visão geral do período acadêmico;");
+			System.out.println("2-Estatísticas dos docentes;");
+			System.out.println("3-Estatísticas dos estudantes;");
+			System.out.println("4-Estatísticas das disciplinas de um docente;");
+			System.out.println("0-Voltar ao menu principal:");
+			try{
+				opcao = scan.nextInt();
+			} catch (InputMismatchException e){
+				System.out.println("\nOpcão invalida! Voltando ao menu...\n");
+				// opcao = 0;
+				scan.next();
+				continue;
+			}
+			try{
+				escolherMenu(opcao);
+			} catch (Exception e) {
+				System.out.println(e.getMessage()+"\n");
+			}
+			System.out.println("");
+		}while(opcao != 0);
+    }
+    
+    public void escolherMenu(int opcao) throws Exception {
+		switch(opcao){
+			case 1: panoramaPeriodo();
+				break;
+			case 2: estatisticaDocentes();
+				break;
+			case 3: estatisticaEstudantes();
+				break;
+			case 4: estatisticaDisciplinasDocente();
+				break;
+			default :
+				System.out.println("\nVoltando ao menu...");
+		}
+	}
 
     public void panoramaPeriodo(){
         LeitorPeriodo lPeriodo = LeitorPeriodo.obterInstancia();

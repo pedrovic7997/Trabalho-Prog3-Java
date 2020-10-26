@@ -1,6 +1,8 @@
+package Leitor;
+
 public abstract class ILeitor {
 
-    public void escreve(String mensagem){
+    public void mensagem(String mensagem){
         System.out.println(mensagem);
     }
     

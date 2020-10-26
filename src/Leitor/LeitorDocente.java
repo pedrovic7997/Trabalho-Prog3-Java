@@ -56,6 +56,8 @@ public class LeitorDocente extends ILeitor implements Serializable{
     }
 
     public void listar(){
+        System.out.println("------------------------");
+        System.out.println("Docentes cadastrados:");
         for (String i : mapa.keySet()){
             System.out.println(mapa.get(i));
         }

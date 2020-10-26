@@ -34,6 +34,13 @@ public abstract class Atividade implements Serializable{
         return 2;
     }
 
+    public double calculaNota(){
+        double notaTotal;
+        for(Avaliacao aval : avaliacoes){
+            notaTotal += aval.obterNota();
+        }
+    }
+
     public abstract boolean ehAvaliativa();
     @Override
     public String toString() {

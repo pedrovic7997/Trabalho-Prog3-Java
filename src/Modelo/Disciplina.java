@@ -42,17 +42,21 @@ public class Disciplina implements Serializable{
         return atividades;
     }
 
-    public double obterMedia(){
+    public double obterNotaTotal(){
         double notaTotal = 0;
         int qtdAvaliacao = 0;
         for(Atividade ativ : atividades){
-            for(Avaliacao aval : ativ.obterAvaliacoes()){
-                notaTotal += aval.obterNota();
-                qtdAvaliacao++;
-            }
-
+            notaTotal += ativ.calculaNota();
         }
-        return notaTotal/qtdAvaliacao;
+        return notaTotal;
+    }
+
+    public int obterAtividadesTotal(){
+        int qtdAvaliacao = 0;
+        for(Atividade ativ : atividades){
+            qtdAvaliacao += ativ.obterAvaliacoes().size();
+        }
+        return qtdAvaliacao;
     }
 
     @Override

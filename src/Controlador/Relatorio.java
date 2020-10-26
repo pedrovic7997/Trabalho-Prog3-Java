@@ -87,6 +87,7 @@ public class Relatorio{
                 numAtividadesSincronas += disciplina.obterSincronas();
                 numAtividadesTotal += disciplina.obterAtividades().size();
                 notaTotal += disciplina.obterMedia();
+                numAtividadesTotal += disciplina.obterAtividadesTotal();
 
                 for(int j=0; j<periodos.size() && !possui; j++){
                     if(disciplina.obterPeriodo() == periodos.get(j)){

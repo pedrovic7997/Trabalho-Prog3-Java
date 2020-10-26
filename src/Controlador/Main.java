@@ -226,6 +226,8 @@ public class Main{
 			opcao = scan.next();  
 			if(opcao.toLowerCase().equals("s")){
 				Docente docente = lDocente.ler();
+				if(lDocente.busca(docente.obterLogin()) != null)
+					throw new IllegalArgumentException("Cadastro repetido: "+docente.obterLogin()+".");
 				lDocente.anexaHash(docente);
 			}
 		}

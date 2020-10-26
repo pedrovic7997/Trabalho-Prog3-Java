@@ -9,7 +9,7 @@ import Modelo.Disciplina;
 import Modelo.Periodo;
 import Modelo.Docente;
 
-public class LeitorDisciplina implements Serializable{
+public class LeitorDisciplina extends ILeitor implements Serializable{
     private HashMap<String, Disciplina> mapa = new HashMap<>();
     private static LeitorDisciplina leitor;
 

@@ -7,7 +7,7 @@ import java.util.HashMap;
 import Modelo.Disciplina;
 import Modelo.Estudante;
 
-public class LeitorDisciplinaEstudante implements Serializable{
+public class LeitorDisciplinaEstudante extends ILeitor implements Serializable{
 
     HashMap<String,ArrayList<Estudante>> mapDisciplina;
     HashMap<Integer,ArrayList<Disciplina>> mapEstudante;

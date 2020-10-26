@@ -13,7 +13,7 @@ import Modelo.Aula;
 import Modelo.Prova;
 import Modelo.Material;
 
-public class LeitorAtividade implements Serializable{
+public class LeitorAtividade extends ILeitor implements Serializable{
     private static LeitorAtividade leitor;
 
     private LeitorAtividade(){}

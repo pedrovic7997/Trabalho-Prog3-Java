@@ -1,5 +1,6 @@
 public abstract class ILeitor {
-    public escreve(String mensagem){
+
+    public void escreve(String mensagem){
         System.out.println(mensagem);
     }
     

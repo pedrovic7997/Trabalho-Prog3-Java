@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import Modelo.Periodo;
 
-public class LeitorPeriodo implements Serializable{
+public class LeitorPeriodo extends ILeitor implements Serializable{
     private HashMap<String, Periodo> mapa = new HashMap<>();
     private static LeitorPeriodo leitor;
 

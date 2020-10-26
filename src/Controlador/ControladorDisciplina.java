@@ -1,6 +1,7 @@
 package Controlador;
 
 import java.util.Scanner;
+import java.util.NoSuchElementException;
 
 import Leitor.LeitorDisciplina;
 import Leitor.LeitorEstudante;
@@ -13,15 +14,15 @@ import Modelo.Periodo;
 import Modelo.Docente;
 
 
-public class ControladorDisciplina implements IControlador{
+public class ControladorDisciplina implements IControlador {
 
-	public void menu(String func){
+	public void menu(String func) throws Exception {
 		if(func.equals("Disciplina"))
 			menuDisciplina();
 		else menuEstudanteDisciplina();
 	}
 
-    public void menuDisciplina(){
+    public void menuDisciplina() throws Exception{
 		LeitorDisciplina lDisciplina = LeitorDisciplina.obterInstancia();
 		Scanner scan = new Scanner(System.in);
 		String opcao = "s";
@@ -38,16 +39,14 @@ public class ControladorDisciplina implements IControlador{
 				System.out.println("\nInforme o login do docente para a disciplina: ");
 				Docente docente = lDocente.busca(scan.next());
 				if(docente==null){
-					System.out.println("Dado não encontrado. Retornando ao menu. ");
-					break;
+					throw new NoSuchElementException("Referência inválida: "+docente.obterLogin());
 				}
 				System.out.println("\nPeriodos cadastrados:");
 				lPeriodo.listar();
 				System.out.println("\nInforme o periodo da disciplina: ");
 				Periodo periodo = lPeriodo.busca(scan.next());
 				if(periodo==null){
-					System.out.println("Dado não encontrado. Retornando ao menu. ");
-					break;
+					throw new NoSuchElementException("Referência inválida: "+periodo.obterCodigo());
 				}
 				Disciplina disciplina = lDisciplina.ler(periodo,docente);
 				lDisciplina.anexaHash(disciplina);

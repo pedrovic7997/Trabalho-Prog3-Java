@@ -65,18 +65,18 @@ public class LeitorAtividade extends ILeitor implements Serializable{
         Calendar data = Calendar.getInstance();
         System.out.println("Informe o nome da aula: ");
         nome=scan.nextLine();
-        System.out.println("Informe o ano, mês, dia, hora e minutos da aula respectivamente"+
-        "(Separados por espaço): ");
         int dia[] = new int[5];
         String rotulosData[]= {"ano","mês","dia","hora","minutos"};
-        boolean correto = false;
+        boolean correto;
         for(int idx = 0; idx<5; idx++){
+            correto=false;
             while(!correto)
             try {
+                System.out.println("Informe o "+rotulosData[idx]+" da entrega do trabalho: ");
                 dia[idx] = scan.nextInt();
                 correto = true;  
             } catch (Exception e) {
-                System.out.println("\nDado invalido: "+ dia[idx]+".\n");
+                System.out.println("\nDado invalido: "+ scan.next()+".\n");
                 System.out.println("Digite o "+ rotulosData[idx]+" novamente.\n");
                 correto = false;
             }
@@ -92,17 +92,19 @@ public class LeitorAtividade extends ILeitor implements Serializable{
         Calendar data = Calendar.getInstance();
         System.out.println("Informe o nome do trabalho: ");
         nome=scan.nextLine();
-        System.out.println("Informe o ano, mês e dia da entrega do trabalho " 
-        + "respectivamente(Separados por espaço): ");
+        
+        int dia[] = new int[3];
         String rotulosData[]= {"ano","mês","dia"};
         boolean correto = false;
         for(int idx = 0; idx<3; idx++){
+            correto=false;
             while(!correto)
             try {
+                System.out.println("Informe o "+rotulosData[idx]+" da entrega do trabalho: ");
                 dia[idx] = scan.nextInt();
                 correto = true;  
             } catch (Exception e) {
-                System.out.println("\nDado invalido: "+ dia[idx]+".\n");
+                System.out.println("\nDado invalido: "+ scan.next()+".\n");
                 System.out.println("Digite o "+ rotulosData[idx]+" novamente.\n");
                 correto = false;
             }
@@ -131,18 +133,18 @@ public class LeitorAtividade extends ILeitor implements Serializable{
         Calendar data = Calendar.getInstance();
         System.out.println("Informe o nome da prova: ");
         nome=scan.nextLine();
-        System.out.println("Informe o ano, mês, dia, hora e minutos da aula respectivamente"+
-        "(Separados por espaço): ");
         int dia[] = new int[5];
         String rotulosData[]= {"ano","mês","dia","hora","minutos"};
         boolean correto = false;
         for(int idx = 0; idx<5; idx++){
+            correto=false;
             while(!correto)
             try {
+                System.out.println("Informe o "+rotulosData[idx]+" da entrega do trabalho: ");
                 dia[idx] = scan.nextInt();
                 correto = true;  
             } catch (Exception e) {
-                System.out.println("\nDado invalido: "+ dia[idx]+".\n");
+                System.out.println("\nDado invalido: "+ scan.next()+".\n");
                 System.out.println("Digite o "+ rotulosData[idx]+" novamente.\n");
                 correto = false;
             }

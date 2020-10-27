@@ -59,7 +59,7 @@ public class Main{
 				break;
 			case 3:
 				controlador = new ControladorDisciplina();
-				controlador.menu("");
+				controlador.menu("Disciplina");
 				break;
 			case 4:
 				controlador = new ControladorEstudante();
@@ -67,15 +67,15 @@ public class Main{
 				break;
 			case 5:
 				controlador = new ControladorDisciplina();
-				controlador.menu("Disciplina");
+				controlador.menu("");
 				break;
 			case 6:
 				controlador = new ControladorAtividade();
-				controlador.menu("");
+				controlador.menu("Atividade");
 				break;
 			case 7:
 				controlador = new ControladorAtividade();
-				controlador.menu("Avaliacao");
+				controlador.menu("");
 				break;
 			case 8:
 				controlador = new Relatorio();

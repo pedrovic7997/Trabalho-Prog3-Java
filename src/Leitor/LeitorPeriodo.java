@@ -1,6 +1,8 @@
 package Leitor;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.io.Serializable;
 import java.util.HashMap;
 
@@ -31,10 +33,37 @@ public class LeitorPeriodo extends ILeitor implements Serializable{
     public Periodo ler(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informe o ano do periodo: ");
-        int ano = scanner.nextInt();
+        int ano = 0;
+        boolean correto = false;
+        while(!correto)
+            try {
+                ano = scanner.nextInt();
+                correto = true;  
+            } catch (Exception e) {
+                System.out.println("\nDado invalido: "+ scanner.next()+".\n");
+                System.out.println("Digite o ano novamente.\n");
+                correto = false;
+            }
         System.out.println("Informe o semestre do periodo: ");
-        char semestre = scanner.next().charAt(0);
-        Periodo periodo = new Periodo(ano, semestre);
+        correto = false;
+        String semestre = "";
+        while(!correto)
+            try {
+                semestre = scanner.next();
+                Pattern pattern = Pattern.compile("[1-3E]");
+                Matcher matcher = pattern.matcher(semestre);
+                correto = true;
+                if(!matcher.matches())
+                    throw new Exception();
+            } catch (Exception e) {
+                System.out.println("\nDado invalido: "+ semestre +".\n");
+                System.out.println("Digite o semestre novamente.\n");
+                correto = false;
+            }
+        
+        Periodo periodo = new Periodo(ano, semestre.charAt(0));
+        if(busca(periodo.obterCodigo()!= null))
+            throw new Exception();
         return periodo;
     }
 

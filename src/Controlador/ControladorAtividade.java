@@ -14,7 +14,7 @@ import Modelo.Estudante;
 
 public class ControladorAtividade implements IControlador{
 	
-	public void menu(String func){
+	public void menu(String func) throws Exception {
 		if(func.equals("Atividade"))
 			menuAtvidade();
 		else menuAvaliacao();
@@ -48,7 +48,7 @@ public class ControladorAtividade implements IControlador{
 		}
     }
 
-    public void menuAvaliacao(){
+    public void menuAvaliacao() throws Exception{
 		String opcao = "s";
 		LeitorAvaliacao leitor = LeitorAvaliacao.obterInstancia();
 		LeitorAtividade lAtividade = LeitorAtividade.obterInstancia();
@@ -86,10 +86,22 @@ public class ControladorAtividade implements IControlador{
 					if(estudante == null){
 						throw new NoSuchElementException("Referencia invalida: "+matricula+".");
 					}
+					codigo++;
 					Avaliacao avaliacao = leitor.ler(estudante);
+					if(verificaCadastroAvaliacao(atividade,estudante))
+						throw new Exception("Avaliação repetida: estudante "+estudante.obterMatricula()+ 
+								"para atividade" +codigo +"de "+disciplina.obterCodigo()+"-"+
+								disciplina.obterPeriodo().obterCodigo()+".");
 					atividade.anexaAvaliacao(avaliacao);
 				}
 			}
 		}
+	}
+
+	private boolean verificaCadastroAvaliacao(Atividade atividade,Estudante estudante){
+		for(Avaliacao avaliacao : atividade.obterAvaliacoes())
+			if(avaliacao.obterAluno() == estudante)
+				return true;
+		return false;
 	}
 }

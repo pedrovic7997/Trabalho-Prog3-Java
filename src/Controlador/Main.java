@@ -6,7 +6,7 @@ import Leitor.*;
 import Modelo.*;
 
 public class Main{
-	public static void main(String[] args) throws Exception{
+	public static void main(String[] args){
 		int opcao = -1;
 		Scanner scan = new Scanner(System.in);
 		do{

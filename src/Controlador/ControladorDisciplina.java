@@ -2,6 +2,7 @@ package Controlador;
 
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import Leitor.LeitorDisciplina;
@@ -57,7 +58,7 @@ public class ControladorDisciplina implements IControlador {
 		}
     }
 
-    public void menuEstudanteDisciplina(){
+    public void menuEstudanteDisciplina() throws Exception{
 		String opcao = "s";
 		LeitorDisciplina lDisciplina = LeitorDisciplina.obterInstancia();
 		LeitorEstudante lEstudante = LeitorEstudante.obterInstancia();
@@ -89,6 +90,10 @@ public class ControladorDisciplina implements IControlador {
 					if(estudante==null){
 						throw new NoSuchElementException("Referência inválida: "+estudante.obterMatricula()+".");
 					}
+					if(verificaMatriculaEstudante(disciplina, estudante.obterMatricula()))
+						throw new Exception("Matrícula repetida: "+estudante.obterMatricula()+
+									" em "+disciplina.obterCodigo()+"-"+disciplina.obterPeriodo().obterCodigo()+
+									".");
 					lDisciplinaEstudante.adiciona(disciplina, estudante);
 				}
 			}
@@ -118,6 +123,11 @@ public class ControladorDisciplina implements IControlador {
 	public ArrayList<Disciplina> busca(Docente docente){
 		LeitorDisciplina leitor= LeitorDisciplina.obterInstancia();
 		return leitor.busca(docente);
+	}
+
+	public boolean verificaMatriculaEstudante(Disciplina disciplina,int matricula){
+		return busca(disciplina,matricula) != null;
+
 	}
 
 }

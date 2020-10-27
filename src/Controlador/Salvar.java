@@ -31,16 +31,17 @@ public class Salvar {
 
     public void salvaDados(String caminho) throws Exception{
 
-        File file = new File(caminho);
-        file.delete();
-        FileOutputStream arq = new FileOutputStream(caminho);
-        
-        ObjectOutputStream saida = new ObjectOutputStream(arq);
-        salvaEstudantes(saida);
-        salvaDocente(saida);
-        salvaDisciplinaEstudante(saida);
-        salvaPeriodo(saida);
-        salvaDisciplina(saida);
-        saida.close();
+        try {
+            FileOutputStream arq = new FileOutputStream(caminho);
+            ObjectOutputStream saida = new ObjectOutputStream(arq);
+            salvaEstudantes(saida);
+            salvaDocente(saida);
+            salvaDisciplinaEstudante(saida);
+            salvaPeriodo(saida);
+            salvaDisciplina(saida);
+            saida.close();
+        } finally {
+            throw new FileNotFoundException("Erro de I/O.");
+        }
     }
 }

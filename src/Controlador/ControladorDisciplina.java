@@ -1,6 +1,7 @@
 package Controlador;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 import Leitor.LeitorDisciplina;
@@ -93,7 +94,28 @@ public class ControladorDisciplina implements IControlador {
 	}
 
 	public void listar(){
-		LeitorDisciplina lDisciplina = LeitorDisciplina.obterInstancia();
-		lDisciplina.listar();
+		LeitorDisciplina leitor = LeitorDisciplina.obterInstancia();
+		leitor.listar();
 	}
+
+	public void listar(Disciplina disciplina){
+		LeitorDisciplinaEstudante leitor = LeitorDisciplinaEstudante.obterInstancia();
+		leitor.lista(disciplina);
+	}
+
+	public Disciplina busca(String codigo){
+		LeitorDisciplina leitor= LeitorDisciplina.obterInstancia();
+		return leitor.busca(codigo);
+	}
+
+	public Estudante busca(Disciplina disciplina, int matricula){
+		LeitorDisciplinaEstudante leitor = LeitorDisciplinaEstudante.obterInstancia();
+		return leitor.busca(disciplina,matricula);
+	}
+	
+	public ArrayList<Disciplina> busca(Docente docente){
+		LeitorDisciplina leitor= LeitorDisciplina.obterInstancia();
+		return leitor.busca(docente);
+	}
+
 }

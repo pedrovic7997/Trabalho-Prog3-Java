@@ -79,7 +79,7 @@ public class ControladorAtividade implements IControlador{
 				opcao = scan.next();
 				if(opcao.toLowerCase().equals("s")){
 					leitor.mensagem("\nEstudantes matriculados nessa disciplina:");
-					cDisciplinaEstudante.lista(disciplina);
+					cDisciplina.listar(disciplina);
 					leitor.mensagem("\nDigite a matricula do estudante que deseja adcionar a avaliacao: ");
 					int matricula = scan.nextInt();
 					Estudante estudante = cDisciplina.busca(disciplina, matricula);

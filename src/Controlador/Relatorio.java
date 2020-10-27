@@ -8,14 +8,7 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.Set;
 
-import Modelo.Atividade;
-import Modelo.Avaliacao;
-import Modelo.Disciplina;
-import Modelo.Docente;
-import Modelo.Estudante;
-import Modelo.Periodo;
-import Modelo.Prova;
-import Modelo.Trabalho;
+import Modelo.*;
 import Leitor.LeitorPeriodo;
 import Leitor.LeitorDisciplina;
 import Leitor.LeitorDisciplinaEstudante;
@@ -199,9 +192,10 @@ public class Relatorio implements IControlador{
             estatistica[count][0] = matricula;
             for(int i=0; i<disciplinas.size(); i++){
 
-                for(int j=0; j<periodos.size() && !possui; j++){
-                    if(disciplinas.get(i).obterPeriodo() == periodos.get(j)){
+                for(Periodo periodo : periodos){
+                    if(disciplinas.get(i).obterPeriodo() == periodo){
                         possui = true;
+                        break;
                     }
                 }
                 if(!possui){
@@ -247,14 +241,12 @@ public class Relatorio implements IControlador{
 
     public void estatisticaDisciplinasDocente(){
         Scanner scan = new Scanner(System.in);
-        LeitorDocente lDocente = LeitorDocente.obterInstancia();
-        LeitorDisciplina lDisciplina = LeitorDisciplina.obterInstancia();
-        System.out.println("------------------------");
-        System.out.println("Docentes cadastrados:");
-        lDocente.listar();
+        ControladorDocente cDocente = new ControladorDocente();
+		ControladorDisciplina cDisciplina = new ControladorDisciplina();
+        cDocente.listar();
         System.out.println("\nEntre com o docente desejado: ");
-        Docente docente = lDocente.busca(scan.nextLine());
-        ArrayList<Disciplina> disciplinas =lDisciplina.busca(docente);
+        Docente docente = cDocente.busca(scan.nextLine());
+        ArrayList<Disciplina> disciplinas = cDisciplina.busca(docente);
         String[][] estatistica = new String[disciplinas.size()][5];
         int count=0;
         for (Disciplina disciplina : disciplinas) {
@@ -276,8 +268,8 @@ public class Relatorio implements IControlador{
             @Override
             public int compare(String[] disc, String[] disc2){
                 Periodo periodo1, periodo2;
-                periodo1 = lDisciplina.busca(disc[0]).obterPeriodo();
-                periodo2 = lDisciplina.busca(disc2[0]).obterPeriodo();
+                periodo1 = cDisciplina.busca(disc[0]).obterPeriodo();
+                periodo2 = cDisciplina.busca(disc2[0]).obterPeriodo();
                 if( periodo1.obterCodigo().compareTo(periodo2.obterCodigo()) == 0){
                     return disc[0].toLowerCase().compareTo(disc2[0].toLowerCase());
                 }
@@ -286,7 +278,7 @@ public class Relatorio implements IControlador{
         });
         for(int x = 0; x < count; x++){
             int assinc =  100-Integer.valueOf(estatistica[x][2]);
-            Disciplina d =lDisciplina.busca(estatistica[x][0]);
+            Disciplina d =cDisciplina.busca(estatistica[x][0]);
             System.out.println("Periodo: "+ d.obterPeriodo().obterCodigo() + " - Codigo: " + 
                                 d.obterCodigo() + " - Nome: "+d.obterNome() + " Atividades: " + 
                                 estatistica[x][1]+" - Sincronas " + estatistica[x][2]+ "% x "+ assinc

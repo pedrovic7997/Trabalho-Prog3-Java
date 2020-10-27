@@ -286,12 +286,7 @@ public class Relatorio implements IControlador{
                                 +"% - Quantidade de atividades avaliativas: "+ estatistica[x][4] +
                                 "\nAtividades avaliativas:");
             ArrayList lista = (ArrayList)d.obterAtividades().clone();
-            lista.sort(new Comparator<Atividade>(){
-                @Override
-                public int compare(Atividade a1, Atividade a2){
-                    return a1.obterData().compareTo(a2.obterData());
-                }
-            });
+            lista.sort();
             for(Atividade a : d.obterAtividades()){
                 if(a instanceof Trabalho || a instanceof Prova){
                     System.out.println(a);

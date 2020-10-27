@@ -28,4 +28,8 @@ public class Trabalho extends Atividade{
         return "Trabalho: " + this.obterNome() + " - Assincrona - " +
                 data.get(Calendar.DAY_OF_MONTH) + "/" + data.get(Calendar.MONTH) + "/" + data.get(Calendar.YEAR);
     }
+    @Override
+    public int compareTo(Atividade a2){
+        return this.data.compareTo(a2.data);
+    }
 }

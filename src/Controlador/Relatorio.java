@@ -286,7 +286,7 @@ public class Relatorio implements IControlador{
                                 +"% - Quantidade de atividades avaliativas: "+ estatistica[x][4] +
                                 "\nAtividades avaliativas:");
             ArrayList lista = (ArrayList)d.obterAtividades().clone();
-            lista.sort();
+            Collections.sort(lista);
             for(Atividade a : d.obterAtividades()){
                 if(a instanceof Trabalho || a instanceof Prova){
                     System.out.println(a);

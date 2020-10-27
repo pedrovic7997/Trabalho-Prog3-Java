@@ -50,7 +50,7 @@ public class LeitorPeriodo extends ILeitor implements Serializable{
         while(!correto)
             try {
                 semestre = scanner.next();
-                Pattern pattern = Pattern.compile("[1-3E]");
+                Pattern pattern = Pattern.compile("[0-9A-Za-z]");
                 Matcher matcher = pattern.matcher(semestre);
                 correto = true;
                 if(!matcher.matches())

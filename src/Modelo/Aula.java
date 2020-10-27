@@ -3,7 +3,6 @@ package Modelo;
 import java.util.Calendar;
 
 public class Aula extends Atividade{
-    Calendar data;
 
     public Aula (String nome,Boolean sincrona, Calendar data){
         super(nome, sincrona);

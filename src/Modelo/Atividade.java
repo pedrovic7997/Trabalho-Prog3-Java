@@ -2,11 +2,13 @@ package Modelo;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public abstract class Atividade implements Serializable{
     private String nome;
     private Boolean sincrona;
     private ArrayList<Avaliacao> avaliacoes;
+    protected Calendar data;
 
     public Atividade(String nome, Boolean sincrona) {
         this.nome = nome;
@@ -40,6 +42,10 @@ public abstract class Atividade implements Serializable{
             notaTotal += aval.obterNota();
         }
         return notaTotal;
+    }
+
+    public Calendar obterData(){
+        return data;
     }
 
     public abstract boolean ehAvaliativa();

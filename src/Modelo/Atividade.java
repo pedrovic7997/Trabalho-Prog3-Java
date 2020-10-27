@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public abstract class Atividade implements Cloneable, Serializable {
+public abstract class Atividade implements Cloneable, Serializable, Comparable {
     private String nome;
     private Boolean sincrona;
     private ArrayList<Avaliacao> avaliacoes;
@@ -49,6 +49,7 @@ public abstract class Atividade implements Cloneable, Serializable {
     }
 
     public abstract boolean ehAvaliativa();
+    
     @Override
     public String toString() {
         if (sincrona) return "Nome: " + nome + " - Sincrona";

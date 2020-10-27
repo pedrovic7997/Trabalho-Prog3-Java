@@ -19,4 +19,9 @@ public class Aula extends Atividade{
                 data.get(Calendar.DAY_OF_MONTH) + "/" + data.get(Calendar.MONTH) + "/" + data.get(Calendar.YEAR) +
                 " - " + data.get(Calendar.HOUR_OF_DAY) + ":" + data.get(Calendar.MINUTE);
     }
+
+    @Override
+    public int compareTo(Atividade a2){
+        return this.data.compareTo(a2.data);
+    }
 }

@@ -32,7 +32,7 @@ public class ControladorAtividade implements IControlador{
 			String codigo = scan.next();
 			Disciplina disciplina = cDisciplina.busca(codigo);
 			if (disciplina==null) {
-				throw new NoSuchElementException("Referência inválida: "+codigo);
+				throw new NoSuchElementException("Referência inválida: "+codigo+".");
 			}
 			while(opcao.toLowerCase().equals("s")){
 				leitor.mensagem("\nAtividades cadastradas:");

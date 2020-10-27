@@ -39,14 +39,14 @@ public class ControladorDisciplina implements IControlador {
 				System.out.println("\nInforme o login do docente para a disciplina: ");
 				Docente docente = lDocente.busca(scan.next());
 				if(docente==null){
-					throw new NoSuchElementException("Referência inválida: "+docente.obterLogin());
+					throw new NoSuchElementException("Referência inválida: "+docente.obterLogin()+".");
 				}
 				System.out.println("\nPeriodos cadastrados:");
 				lPeriodo.listar();
 				System.out.println("\nInforme o periodo da disciplina: ");
 				Periodo periodo = lPeriodo.busca(scan.next());
 				if(periodo==null){
-					throw new NoSuchElementException("Referência inválida: "+periodo.obterCodigo());
+					throw new NoSuchElementException("Referência inválida: "+periodo.obterCodigo()+".");
 				}
 				Disciplina disciplina = lDisciplina.ler(periodo,docente);
 				lDisciplina.anexaHash(disciplina);
@@ -66,10 +66,10 @@ public class ControladorDisciplina implements IControlador {
 			System.out.println("Disciplinas cadastradas:");
 			lDisciplina.listar();
 			System.out.println("\nDigite o código da disciplina a qual deseja ver os estudantes cadastrados: ");
-			Disciplina disciplina = lDisciplina.busca(scan.next());
+			String codigo = scan.next();
+			Disciplina disciplina = lDisciplina.busca(codigo);
 			if(disciplina==null){
-				System.out.println("Dado não encontrado. Retornando ao menu.\n");
-				break;
+				throw new NoSuchElementException("Referência inválida: "+codigo+".");
 			}
 			while(opcao.equalsIgnoreCase("s")){
 				System.out.println("\nEstudantes matriculados nessa disciplina:");
@@ -84,8 +84,7 @@ public class ControladorDisciplina implements IControlador {
 					System.out.println("\nDigite a matricula do estudante que deseja adcionar a disciplina: ");
 					Estudante estudante = lEstudante.busca(scan.nextInt());
 					if(estudante==null){
-						System.out.println("Dado não encontrado. Retornando ao menu.");
-						break;
+						throw new NoSuchElementException("Referência inválida: "+estudante.obterMatricula()+".");
 					}
 					lDisciplinaEstudante.adiciona(disciplina, estudante);
 				}

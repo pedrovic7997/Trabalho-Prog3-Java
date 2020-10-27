@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-public abstract class Atividade implements Serializable{
+public abstract class Atividade implements Cloneable, Serializable {
     private String nome;
     private Boolean sincrona;
     private ArrayList<Avaliacao> avaliacoes;

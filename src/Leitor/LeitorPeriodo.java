@@ -62,8 +62,6 @@ public class LeitorPeriodo extends ILeitor implements Serializable{
             }
         
         Periodo periodo = new Periodo(ano, semestre.charAt(0));
-        if(busca(periodo.obterCodigo()!= null))
-            throw new Exception();
         return periodo;
     }
 

@@ -50,6 +50,8 @@ public class ControladorDisciplina implements IControlador {
 					throw new NoSuchElementException("Referência inválida: "+periodo.obterCodigo()+".");
 				}
 				Disciplina disciplina = lDisciplina.ler(periodo,docente);
+				if(lDisciplina.busca(disciplina.obterCodigo()) != null)
+					throw new IllegalArgumentException("Cadastro repetido: "+disciplina.obterCodigo()+".");
 				lDisciplina.anexaHash(disciplina);
 			}
 		}

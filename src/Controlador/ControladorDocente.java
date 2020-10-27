@@ -12,8 +12,6 @@ public class ControladorDocente implements IControlador{
 		String opcao = "s";
 		Scanner scan = new Scanner(System.in);
 		while(opcao.toLowerCase().equals("s")){
-			leitor.mensagem("------------------------");
-			leitor.mensagem("Docentes cadastrados:");
 			leitor.listar();
 			leitor.mensagem("\nDeseja cadastrar novo docente? (Digite 's' caso queira ou qualquer tecla caso não" 
 						+" queira)");

@@ -66,8 +66,6 @@ public class ControladorDisciplina implements IControlador {
 		Scanner scan = new Scanner(System.in);
 		while(!opcao.toLowerCase().equals("m")){
 			opcao = "s";
-			System.out.println("------------------------");
-			System.out.println("Disciplinas cadastradas:");
 			lDisciplina.listar();
 			System.out.println("\nDigite o código da disciplina a qual deseja ver os estudantes cadastrados: ");
 			String codigo = scan.next();

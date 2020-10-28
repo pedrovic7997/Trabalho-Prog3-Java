@@ -29,7 +29,7 @@ public class Salvar {
         saida.writeObject(LeitorPeriodo.obterInstancia());
     }
 
-    public void salvaDados(String caminho) throws Exception{
+    public void salvaDados(String caminho) {
 
         try {
             FileOutputStream arq = new FileOutputStream(caminho);
@@ -40,8 +40,8 @@ public class Salvar {
             salvaPeriodo(saida);
             salvaDisciplina(saida);
             saida.close();
-        } finally {
-            throw new FileNotFoundException("Erro de I/O.");
+        } catch (Exception e) {
+            System.out.println("Erro de I/O.");
         }
     }
 }

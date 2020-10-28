@@ -37,7 +37,7 @@ public class Carregar{
         LeitorPeriodo.setInstancia(leitor);
     }
 
-    public void carregaDados(String caminho) throws FileNotFoundException{
+    public void carregaDados(String caminho) {
         
         try {
             FileInputStream arq = new FileInputStream(caminho);
@@ -48,8 +48,8 @@ public class Carregar{
             carregaPeriodo(entrada);
             carregaDisciplina(entrada);
             entrada.close();
-        } finally {
-            throw new FileNotFoundException("Erro de I/O.");
+        } catch (Exception e) {
+            System.out.println("Erro de I/O.");
         }
         
     }

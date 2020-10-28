@@ -18,8 +18,6 @@ public class ControladorDocente implements IControlador{
 			opcao = scan.next();  
 			if(opcao.toLowerCase().equals("s")){
 				Docente docente = leitor.ler();
-				if(leitor.busca(docente.obterLogin()) != null)
-					throw new IllegalArgumentException("Cadastro repetido: "+docente.obterLogin()+".");
 				leitor.anexaHash(docente);
 			}
 		}

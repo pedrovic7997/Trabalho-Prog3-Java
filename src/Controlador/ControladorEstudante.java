@@ -21,8 +21,6 @@ public class ControladorEstudante implements IControlador{
 			opcao = scan.next();
 			if(opcao.toLowerCase().equals("s")){
 				Estudante estudante = lEstudante.ler();
-				if(lEstudante.busca(estudante.obterMatricula()) != null)
-					throw new IllegalArgumentException("Cadastro repetido: "+estudante.obterMatricula()+".");
 				lEstudante.anexaHash(estudante);
 			}
 		}

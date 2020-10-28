@@ -24,7 +24,7 @@ public class ControladorDisciplina implements IControlador {
 		else menuEstudanteDisciplina();
 	}
 
-    public void menuDisciplina() throws Exception{
+    public void menuDisciplina() throws RuntimeException{
 		LeitorDisciplina lDisciplina = LeitorDisciplina.obterInstancia();
 		Scanner scan = new Scanner(System.in);
 		String opcao = "s";
@@ -36,19 +36,20 @@ public class ControladorDisciplina implements IControlador {
 			" queira)");
 			opcao = scan.next();
 			if(opcao.toLowerCase().equals("s")){
-				System.out.println("Docentes cadastrados:");
 				lDocente.listar();
 				System.out.println("\nInforme o login do docente para a disciplina: ");
-				Docente docente = lDocente.busca(scan.next());
+				String login = scan.next();
+				Docente docente = lDocente.busca(login);
 				if(docente==null){
-					throw new NoSuchElementException("Referência inválida: "+docente.obterLogin()+".");
+					throw new NoSuchElementException("Referência inválida: "+login+".");
 				}
 				System.out.println("\nPeriodos cadastrados:");
 				lPeriodo.listar();
 				System.out.println("\nInforme o periodo da disciplina: ");
-				Periodo periodo = lPeriodo.busca(scan.next());
+				String codigo = scan.next();
+				Periodo periodo = lPeriodo.busca(codigo);
 				if(periodo==null){
-					throw new NoSuchElementException("Referência inválida: "+periodo.obterCodigo()+".");
+					throw new NoSuchElementException("Referência inválida: "+codigo+".");
 				}
 				Disciplina disciplina = lDisciplina.ler(periodo,docente);
 				if(lDisciplina.busca(disciplina.obterCodigo()) != null)
@@ -84,9 +85,10 @@ public class ControladorDisciplina implements IControlador {
 					System.out.println("\nEstudantes cadastrados:");
 					lEstudante.listar();
 					System.out.println("\nDigite a matricula do estudante que deseja adcionar a disciplina: ");
-					Estudante estudante = lEstudante.busca(scan.nextInt());
+					int matricula = scan.nextInt();
+					Estudante estudante = lEstudante.busca(matricula);
 					if(estudante==null){
-						throw new NoSuchElementException("Referência inválida: "+estudante.obterMatricula()+".");
+						throw new NoSuchElementException("Referência inválida: "+matricula+".");
 					}
 					if(verificaMatriculaEstudante(disciplina, estudante.obterMatricula()))
 						throw new Exception("Matrícula repetida: "+estudante.obterMatricula()+

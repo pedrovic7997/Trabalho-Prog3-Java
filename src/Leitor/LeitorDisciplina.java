@@ -36,7 +36,7 @@ public class LeitorDisciplina extends ILeitor implements Serializable{
         System.out.println("Informe o codigo da disciplina: ");
         String codigo = scanner.next();
         
-        if (busca(codigo) != null){
+        if (busca(codigo+"-"+periodo.obterCodigo()) != null){
             throw new RuntimeException("Cadastro repetido: "+codigo+".");
         }
         scanner.nextLine();

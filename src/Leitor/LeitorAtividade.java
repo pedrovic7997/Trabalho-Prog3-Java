@@ -72,7 +72,7 @@ public class LeitorAtividade extends ILeitor implements Serializable{
             correto=false;
             while(!correto)
             try {
-                System.out.println("Informe o "+rotulosData[idx]+" da entrega do trabalho: ");
+                System.out.println("Informe o "+rotulosData[idx]+" da aula: ");
                 dia[idx] = scan.nextInt();
                 correto = true;  
             } catch (Exception e) {
@@ -140,7 +140,7 @@ public class LeitorAtividade extends ILeitor implements Serializable{
             correto=false;
             while(!correto)
             try {
-                System.out.println("Informe o "+rotulosData[idx]+" da entrega do trabalho: ");
+                System.out.println("Informe o "+rotulosData[idx]+" da prova: ");
                 dia[idx] = scan.nextInt();
                 correto = true;  
             } catch (Exception e) {

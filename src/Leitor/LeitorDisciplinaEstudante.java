@@ -58,6 +58,8 @@ public class LeitorDisciplinaEstudante extends ILeitor implements Serializable{
     }
 
     public Estudante busca(Disciplina disciplina,int matricula){
+        if (!mapDisciplina.containsKey(disciplina.obterCodigo()))
+            return null;
         for(Estudante e : mapDisciplina.get(disciplina.obterCodigo())){
             if( e.obterMatricula()==matricula)
                 return e;

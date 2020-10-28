@@ -90,7 +90,7 @@ public class ControladorAtividade implements IControlador{
 					Avaliacao avaliacao = leitor.ler(estudante);
 					if(verificaCadastroAvaliacao(atividade,estudante))
 						throw new Exception("Avaliação repetida: estudante "+estudante.obterMatricula()+ 
-								"para atividade" +codigo +"de "+disciplina.obterCodigo()+"-"+
+								" para atividade " +codigo +" de "+disciplina.obterCodigo()+"-"+
 								disciplina.obterPeriodo().obterCodigo()+".");
 					atividade.anexaAvaliacao(avaliacao);
 				}

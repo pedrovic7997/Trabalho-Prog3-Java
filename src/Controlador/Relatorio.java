@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Set;
 
@@ -72,6 +73,9 @@ public class Relatorio implements IControlador{
         String codigo = scanner.nextLine();
 
         Periodo periodo = lPeriodo.busca(codigo);
+        if (periodo == null){
+            throw new NoSuchElementException("Referência inválida: "+codigo);
+        }
         LeitorDisciplina lDisciplina = LeitorDisciplina.obterInstancia();
         ArrayList<Disciplina> list = lDisciplina.busca(periodo);
         Collections.sort(list, new Comparator<Disciplina>(){
@@ -239,13 +243,17 @@ public class Relatorio implements IControlador{
         }
     }
 
-    public void estatisticaDisciplinasDocente(){
+    public void estatisticaDisciplinasDocente() throws Exception{
         Scanner scan = new Scanner(System.in);
         ControladorDocente cDocente = new ControladorDocente();
 		ControladorDisciplina cDisciplina = new ControladorDisciplina();
         cDocente.listar();
         System.out.println("\nEntre com o docente desejado: ");
-        Docente docente = cDocente.busca(scan.nextLine());
+        String codigo = scan.nextLine();
+        Docente docente = cDocente.busca(codigo);
+        if (docente == null){
+            throw new NoSuchElementException("Referência inválida: "+codigo);
+        }
         ArrayList<Disciplina> disciplinas = cDisciplina.busca(docente);
         String[][] estatistica = new String[disciplinas.size()][5];
         int count=0;
@@ -285,9 +293,9 @@ public class Relatorio implements IControlador{
                                 +"% Assincronas - Carga Horaria: "+ estatistica[x][3]
                                 +"% - Quantidade de atividades avaliativas: "+ estatistica[x][4] +
                                 "\nAtividades avaliativas:");
-            ArrayList lista = (ArrayList)d.obterAtividades().clone();
+            ArrayList<Atividade> lista = (ArrayList<Atividade>) d.obterAtividades().clone();
             Collections.sort(lista);
-            for(Atividade a : d.obterAtividades()){
+            for(Atividade a : lista){
                 if(a instanceof Trabalho || a instanceof Prova){
                     System.out.println(a);
                 }

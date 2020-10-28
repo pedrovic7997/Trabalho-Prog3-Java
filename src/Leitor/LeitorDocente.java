@@ -33,6 +33,8 @@ public class LeitorDocente extends ILeitor implements Serializable{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informe o login do docente: ");
         String login = scanner.nextLine();
+        if(leitor.busca(login) != null)
+			throw new IllegalArgumentException("Cadastro repetido: "+login+".");
         System.out.println("Informe o nome do docente: ");
         String nome = scanner.nextLine();
         System.out.println("Deseja acrescentar um site do docente? ('s' caso queira) ");

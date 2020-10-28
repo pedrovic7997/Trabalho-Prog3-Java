@@ -30,8 +30,4 @@ public class Estudo extends Atividade{
     public String toString(){
         return "Estudo: " + this.obterNome() + " - Assincrono - Materiais: " + listaMateriais();
     }
-    @Override
-    public int compareTo(Atividade a2){
-        return this.data.compareTo(a2.data);
-    }
 }

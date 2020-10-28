@@ -4,7 +4,6 @@ import java.util.Calendar;
 import java.util.ArrayList;
 
 public class Prova extends Atividade{
-    Calendar data;
     ArrayList<String> conteudo;
 
     public Prova(String nome, Boolean sincrona, Calendar data, ArrayList<String> conteudo){

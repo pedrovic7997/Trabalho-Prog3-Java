@@ -8,7 +8,7 @@ import java.util.Scanner;
 import Modelo.Avaliacao;
 import Modelo.Estudante;
 
-public class LeitorAvaliacao implements Serializable{
+public class LeitorAvaliacao extends ILeitor implements Serializable{
     private static LeitorAvaliacao leitor;
 
     private LeitorAvaliacao(){}

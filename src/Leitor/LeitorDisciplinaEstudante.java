@@ -7,7 +7,7 @@ import java.util.HashMap;
 import Modelo.Disciplina;
 import Modelo.Estudante;
 
-public class LeitorDisciplinaEstudante implements Serializable{
+public class LeitorDisciplinaEstudante extends ILeitor implements Serializable{
 
     HashMap<String,ArrayList<Estudante>> mapDisciplina;
     HashMap<Integer,ArrayList<Disciplina>> mapEstudante;
@@ -58,6 +58,8 @@ public class LeitorDisciplinaEstudante implements Serializable{
     }
 
     public Estudante busca(Disciplina disciplina,int matricula){
+        if (!mapDisciplina.containsKey(disciplina.obterCodigo()))
+            return null;
         for(Estudante e : mapDisciplina.get(disciplina.obterCodigo())){
             if( e.obterMatricula()==matricula)
                 return e;

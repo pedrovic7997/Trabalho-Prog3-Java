@@ -42,10 +42,54 @@ public class Disciplina implements Serializable{
         return atividades;
     }
 
+    public double obterNotaTotal(){
+        double notaTotal = 0;
+        int qtdAvaliacao = 0;
+        for(Atividade ativ : atividades){
+            notaTotal += ativ.calculaNota();
+        }
+        return notaTotal;
+    }
+
+    public int obterAtividadesTotal(){
+        int qtdAvaliacao = 0;
+        for(Atividade ativ : atividades){
+            qtdAvaliacao += ativ.obterAvaliacoes().size();
+        }
+        return qtdAvaliacao;
+    }
+
     @Override
     public String toString() {
         return "Codigo: "+ codigo+"-"+periodo.obterAno()+ "/" +periodo.obterSemestre() +" - Nome: "+ nome + 
         " - Professor: "+ professor.obterNome();
     }
 
+    public int obterSincronas(){
+        int qtdSinc = 0;
+        for(Atividade a : obterAtividades()){
+            if(a.obterSincrona()){
+                qtdSinc++;
+            }
+        }
+        return qtdSinc;
+    }
+
+    public int obterAvalitiva(){
+        int qtdAvaliativas = 0;
+        for(Atividade a : obterAtividades()){
+            if(a.ehAvaliativa()) {
+                qtdAvaliativas++;
+            }
+        }
+        return qtdAvaliativas;
+    }
+
+    public int obterCargaHoraria(){
+        int cargaHoraria = 0;
+        for(Atividade a : obterAtividades()){
+            cargaHoraria += a.obterCargaHoraria();
+        }
+        return cargaHoraria;
+    }
 }

@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 import Modelo.Docente;
 
-public class LeitorDocente implements Serializable{
+public class LeitorDocente extends ILeitor implements Serializable{
     private HashMap<String, Docente> mapa = new HashMap<>();
     private static LeitorDocente leitor;
 
@@ -33,6 +33,8 @@ public class LeitorDocente implements Serializable{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informe o login do docente: ");
         String login = scanner.nextLine();
+        if(leitor.busca(login) != null)
+			throw new IllegalArgumentException("Cadastro repetido: "+login+".");
         System.out.println("Informe o nome do docente: ");
         String nome = scanner.nextLine();
         System.out.println("Deseja acrescentar um site do docente? ('s' caso queira) ");
@@ -56,6 +58,8 @@ public class LeitorDocente implements Serializable{
     }
 
     public void listar(){
+        System.out.println("------------------------");
+        System.out.println("Docentes cadastrados:");
         for (String i : mapa.keySet()){
             System.out.println(mapa.get(i));
         }

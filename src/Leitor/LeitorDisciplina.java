@@ -9,7 +9,7 @@ import Modelo.Disciplina;
 import Modelo.Periodo;
 import Modelo.Docente;
 
-public class LeitorDisciplina implements Serializable{
+public class LeitorDisciplina extends ILeitor implements Serializable{
     private HashMap<String, Disciplina> mapa = new HashMap<>();
     private static LeitorDisciplina leitor;
 
@@ -35,6 +35,10 @@ public class LeitorDisciplina implements Serializable{
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informe o codigo da disciplina: ");
         String codigo = scanner.next();
+        
+        if (busca(codigo+"-"+periodo.obterCodigo()) != null){
+            throw new RuntimeException("Cadastro repetido: "+codigo+".");
+        }
         scanner.nextLine();
         System.out.println("Informe o nome da disciplina: ");
         String nome = scanner.nextLine();
@@ -49,6 +53,8 @@ public class LeitorDisciplina implements Serializable{
     }
 
     public void listar(){
+        System.out.println("------------------------");
+		System.out.println("Disciplinas cadastradas:");
         for (String i : mapa.keySet()){
             System.out.println(mapa.get(i));
         }

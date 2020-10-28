@@ -8,7 +8,7 @@ import java.util.HashMap;
 
 import Modelo.Estudante;
 
-public class LeitorEstudante implements Serializable{
+public class LeitorEstudante extends ILeitor implements Serializable{
     private HashMap<Integer, Estudante> mapa = new HashMap<>();
     private static LeitorEstudante leitor;
 
@@ -37,7 +37,14 @@ public class LeitorEstudante implements Serializable{
     public Estudante ler(){
         Scanner scanner = new Scanner(System.in);
         System.out.println("Informe a matricula do estudante: ");
-        int matricula = scanner.nextInt();
+        int matricula;
+        try {
+            matricula = scanner.nextInt();
+        } catch (Exception e) {
+            throw new RuntimeException("Dado inválido: "+scanner.next());
+        }
+        if(busca(matricula) != null)
+			throw new IllegalArgumentException("Cadastro repetido: "+matricula+".");
         System.out.println("Informe o nome do estudante:  ");
         scanner.nextLine();
         String nome = scanner.nextLine();

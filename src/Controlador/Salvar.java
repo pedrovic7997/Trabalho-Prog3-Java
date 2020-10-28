@@ -29,18 +29,19 @@ public class Salvar {
         saida.writeObject(LeitorPeriodo.obterInstancia());
     }
 
-    public void salvaDados(String caminho) throws Exception{
+    public void salvaDados(String caminho) {
 
-        File file = new File(caminho);
-        file.delete();
-        FileOutputStream arq = new FileOutputStream(caminho);
-        
-        ObjectOutputStream saida = new ObjectOutputStream(arq);
-        salvaEstudantes(saida);
-        salvaDocente(saida);
-        salvaDisciplinaEstudante(saida);
-        salvaPeriodo(saida);
-        salvaDisciplina(saida);
-        saida.close();
+        try {
+            FileOutputStream arq = new FileOutputStream(caminho);
+            ObjectOutputStream saida = new ObjectOutputStream(arq);
+            salvaEstudantes(saida);
+            salvaDocente(saida);
+            salvaDisciplinaEstudante(saida);
+            salvaPeriodo(saida);
+            salvaDisciplina(saida);
+            saida.close();
+        } catch (Exception e) {
+            System.out.println("Erro de I/O.");
+        }
     }
 }

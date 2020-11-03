@@ -23,6 +23,7 @@ public class Main{
 				escolherMenu(opcao,args);				
 			} catch (Exception e) {
 				System.out.println(e.getMessage()+"\n");
+				opcao = 0;
 			}
 
 		}while(opcao != 0);

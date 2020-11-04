@@ -7,27 +7,30 @@ import Modelo.*;
 
 public class Main{
 	public static void main(String[] args){
-		int opcao = -1;
-		Scanner scan = new Scanner(System.in);
-		do{
-			menu();
-			try{
-				opcao = scan.nextInt();
-			} catch (InputMismatchException e){
-				System.out.println("\nOpcão invalida!\n");
-				scan.next();
-				continue;
-			}
+		// int opcao = -1;
+		// Scanner scan = new Scanner(System.in);
+		// do{
+		// 	menu();
+		// 	try{
+		// 		opcao = scan.nextInt();
+		// 	} catch (InputMismatchException e){
+		// 		System.out.println("\nOpcão invalida!\n");
+		// 		scan.next();
+		// 		continue;
+		// 	}
 
-			try {
-				escolherMenu(opcao,args);				
-			} catch (Exception e) {
-				System.out.println(e.getMessage()+"\n");
-				opcao = 0;
-			}
+		// 	try {
+		// 		escolherMenu(opcao,args);				
+		// 	} catch (Exception e) {
+		// 		System.out.println(e.getMessage()+"\n");
+		// 		opcao = 0;
+		// 	}
 
-		}while(opcao != 0);
-		scan.close();
+		// }while(opcao != 0);
+		// scan.close();
+
+		Carregar carregador= new Carregar();
+		carregador.teste(args);
  
 	}
 

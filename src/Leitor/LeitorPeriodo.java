@@ -30,8 +30,7 @@ public class LeitorPeriodo extends ILeitor implements Serializable{
         leitor = novo;
     }
 
-    public Periodo ler(){
-        Scanner scanner = new Scanner(System.in);
+    public Periodo ler(Scanner scan){
         System.out.println("Informe o ano do periodo: ");
         int ano = 0;
         boolean correto = false;

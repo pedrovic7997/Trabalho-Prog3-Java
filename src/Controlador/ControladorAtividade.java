@@ -104,4 +104,22 @@ public class ControladorAtividade implements IControlador{
 				return true;
 		return false;
 	}
+
+	public ler(Scanner scan){
+		LeitorAtividade leitor = LeitorAtividade.obterInstancia();
+		LeitorDisciplina lDisciplina = LeitorDisciplina.obterInstancia();
+		while(scan.hasNext()){
+			Disciplina disciplina = lDisciplina.busca(scan.next());
+			Atividade atividade = leitor.ler(scan);
+			leitor.anexaHash(Atividade);
+		}
+	}
+
+	public lerAvaliação(Scanner scan){
+		LeitorPeriodo leitor = LeitorPeriodo.obterInstancia();
+		while(scan.hasNext()){
+			Periodo periodo = leitor.ler(scan);
+			leitor.anexaHash(periodo);
+		}
+	}
 }

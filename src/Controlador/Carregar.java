@@ -5,12 +5,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import Leitor.LeitorDisciplina;
 import Leitor.LeitorDisciplinaEstudante;
 import Leitor.LeitorDocente;
 import Leitor.LeitorEstudante;
 import Leitor.LeitorPeriodo;
+import Leitor.LeitorAtividade;
+import Leitor.LeitorAvaliacao;
 
 public class Carregar{
     private boolean read;
@@ -63,40 +66,53 @@ public class Carregar{
         
     }
 
-
-
     private void csvCarregaEstudantes(String entrada) throws Exception{
         FileInputStream arq = new FileInputStream(entrada);
-        LeitorEstudante leitor = ;
-        LeitorEstudante.setInstancia(leitor);
+        ControladorPeriodo controlador = new ControladorPeriodo();
+        Scanner scan = new Scanner(arq);
+        controlador.ler(scan);
     }
 
     private void csvCarregaDocente(String entrada) throws Exception{
-        LeitorDocente leitor = ;
-        LeitorDocente.setInstancia(leitor);
+        FileInputStream arq = new FileInputStream(entrada);
+        ControladorDocente leitor = new ControladorDocente();
+        Scanner scan = new Scanner(arq);
+        controlador.ler(scan);
     }
 
     private void csvCarregaDisciplina(String entrada) throws Exception{
-        LeitorDisciplina leitor = ;
-        LeitorDisciplina.setInstancia(leitor);
+        FileInputStream arq = new FileInputStream(entrada);
+        ControladorDisciplina leitor = new ControladorDisciplina();
+        Scanner scan = new Scanner(arq);
+        controlador.ler(scan);
     }
 
     private void csvCarregaDisciplinaEstudante(String entrada) throws Exception{
-        LeitorDisciplinaEstudante leitor = ;
-        LeitorDisciplinaEstudante.setInstancia(leitor);
+        FileInputStream arq = new FileInputStream(entrada);
+        ControladorDisciplinaEstudante leitor = new ControladorDisciplinaEstudante();
+        Scanner scan = new Scanner(arq);
+        controlador.ler(scan);
     }
 
     private void csvCarregaPeriodo(String entrada) throws Exception{
-        LeitorPeriodo leitor = ;
-        LeitorPeriodo.setInstancia(leitor);
+        FileInputStream arq = new FileInputStream(entrada);
+        ControladorPeriodo leitor = new ControladorPeriodo();
+        Scanner scan = new Scanner(arq);
+        controlador.ler(scan);
     }
 
     private void csvCarregaAtividade(String entrada){
-
+        FileInputStream arq = new FileInputStream(entrada);
+        ControladorAtividade leitor = new ControladorAtividade();
+        Scanner scan = new Scanner(arq);
+        controlador.ler(scan);
     }
 
     private void csvCarregaAvaliacao(String entrada){
-        
+        FileInputStream arq = new FileInputStream(entrada);
+        ControladorAvaliacao leitor = new ControladorAvaliacao();
+        Scanner scan = new Scanner(arq);
+        controlador.ler(scan);
     }
 
     public void csvCarregaDados(ArrayList<String> arquivos) throws Exception{

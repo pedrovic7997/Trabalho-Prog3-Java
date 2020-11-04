@@ -41,19 +41,18 @@ public class LeitorAtividade extends ILeitor implements Serializable{
         return null;
     }
 
-    public Atividade ler(){
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Informe o tipo da atividade?(Aula, estudo, prova ou trabalho)");
+    public Atividade ler(Scanner scan){
+        String nome = scan.useDelimiter(";");
         String tipo=scan.next();
         while(true){
             if(tipo.toLowerCase().equals("aula"))
-                return criaAula();
+                return criaAula(nome);
             if(tipo.toLowerCase().equals("trabalho"))
-                return criaTrabalho();
+                return criaTrabalho(nome);
             if(tipo.toLowerCase().equals("prova"))
-                return criaProva();
+                return criaProva(nome);
             if(tipo.toLowerCase().equals("estudo"))
-                return criaEstudo();
+                return criaEstudo(nome);
             System.out.println("Opção invalida. Digite novamente:");
             tipo=scan.next();
         }

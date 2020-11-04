@@ -27,5 +27,13 @@ public class ControladorPeriodo implements IControlador{
 				System.out.println();
 			}
 		}
-  	}
+	  }
+	  
+	public ler(Scanner scan){
+		LeitorPeriodo leitor = LeitorPeriodo.obterInstancia();
+		while(scan.hasNext()){
+			Periodo periodo = leitor.ler(scan);
+			leitor.anexaHash(periodo);
+		}
+	}
 }

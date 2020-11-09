@@ -28,9 +28,26 @@ public class Main{
 
 		// }while(opcao != 0);
 		// scan.close();
+		
+		boolean erro = false;
+		Carregar carregador = new Carregar();
 
-		Carregar carregador= new Carregar();
-		carregador.teste(args);
+		try {
+			carregador.teste(args);
+		} catch(Exception e){
+			System.out.println(e.getMessage());
+			erro = true;
+		}
+
+		if(!erro){ 
+			if(!carregador.getWrite()){
+				Salvar salvador = new Salvar();
+				salvador.salvaDados("dados.dat");
+			}
+			else {
+				// TODO
+			}
+		}
  
 	}
 
@@ -95,7 +112,7 @@ public class Main{
 
 
 
-	public static void salvaDados(String[] args) throws Exception{
+	public static void salvaDados(String[] args) throws Exception {
 		Salvar salvar= new Salvar();
 		if(args.length>=1){
 			salvar.salvaDados(args[0]);
@@ -108,9 +125,9 @@ public class Main{
 		}
 	}
 
-	public static void carregaDados(String[] args) throws Exception{
+	public static void carregaDados(String[] args) throws Exception {
 		Carregar carregador= new Carregar();
-		if(args.length>1){
+		if(args.length>=1){
 			carregador.carregaDados(args[1]);
 		}
 		else {

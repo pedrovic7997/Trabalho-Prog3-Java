@@ -24,6 +24,9 @@ public class Carregar{
         write = true;
     }
 
+    public boolean getRead(){ return read; }
+    public boolean getWrite(){ return write; }
+
     private void carregaEstudantes(ObjectInputStream entrada)throws Exception{
         LeitorEstudante leitor = (LeitorEstudante)entrada.readObject();
         LeitorEstudante.setInstancia(leitor);
@@ -50,6 +53,14 @@ public class Carregar{
     }
 
     public void carregaDados(String caminho) {
+        // try {
+        //     FileInputStream arq = new FileInputStream(caminho);
+        //     ObjectInputStream entrada = new ObjectInputStream(arq);
+        //     Scanner scanner = new Scanner(arq);
+        //     scanner.hasNext();
+        // } catch (Exception e) {
+        //     throw new Exception();
+        // }
         
         try {
             FileInputStream arq = new FileInputStream(caminho);
@@ -70,7 +81,8 @@ public class Carregar{
         FileInputStream arq = new FileInputStream(entrada);
         ControladorPeriodo controlador = new ControladorPeriodo();
         Scanner scan = new Scanner(arq);
-        scan.useDelimiter(";");
+        scan.useDelimiter("[;\n]");
+        scan.nextLine();
         controlador.ler(scan);
     }
 
@@ -78,7 +90,8 @@ public class Carregar{
         FileInputStream arq = new FileInputStream(entrada);
         ControladorDocente controlador = new ControladorDocente();
         Scanner scan = new Scanner(arq);
-        scan.useDelimiter(";");
+        scan.useDelimiter("[;\n]");
+        scan.nextLine();
         controlador.ler(scan);
     }
 
@@ -86,7 +99,8 @@ public class Carregar{
         FileInputStream arq = new FileInputStream(entrada);
         ControladorDisciplina controlador = new ControladorDisciplina();
         Scanner scan = new Scanner(arq);
-        scan.useDelimiter(";");
+        scan.useDelimiter("[;\n]");
+        scan.nextLine();
         controlador.ler(scan);
     }
 
@@ -94,7 +108,8 @@ public class Carregar{
         FileInputStream arq = new FileInputStream(entrada);
         ControladorDisciplina controlador = new ControladorDisciplina();
         Scanner scan = new Scanner(arq);
-        scan.useDelimiter(";");
+        scan.useDelimiter("[;\n]");
+        scan.nextLine();
         controlador.lerMatricula(scan);
     }
 
@@ -102,7 +117,8 @@ public class Carregar{
         FileInputStream arq = new FileInputStream(entrada);
         ControladorPeriodo controlador = new ControladorPeriodo();
         Scanner scan = new Scanner(arq);
-        scan.useDelimiter(";");
+        scan.useDelimiter("[;\n]");
+        scan.nextLine();
         controlador.ler(scan);
     }
 
@@ -110,7 +126,8 @@ public class Carregar{
         FileInputStream arq = new FileInputStream(entrada);
         ControladorAtividade controlador = new ControladorAtividade();
         Scanner scan = new Scanner(arq);
-        scan.useDelimiter(";");
+        scan.useDelimiter("[;\n]");
+        scan.nextLine();
         controlador.ler(scan);
     }
 
@@ -118,7 +135,8 @@ public class Carregar{
         FileInputStream arq = new FileInputStream(entrada);
         ControladorAtividade controlador = new ControladorAtividade();
         Scanner scan = new Scanner(arq);
-        scan.useDelimiter(";");
+        scan.useDelimiter("[;\n]");
+        scan.nextLine();
         controlador.lerAvaliacao(scan);
     }
 
@@ -146,7 +164,7 @@ public class Carregar{
     }
 
 
-    public void teste(String args[]){
+    public void teste(String args[]) throws Exception {
         System.out.println(args.length);
         String arqPeriodo=null, arqDocente=null, arqDisciplina=null, arqEstudantes=null, arqMatriculas=null, arqAtividades=null, arqAvaliacoes=null;
         ArrayList<String> arquivos = new ArrayList<>();
@@ -206,10 +224,10 @@ public class Carregar{
         arquivos.add(arqAvaliacoes);
 
         if(read){
-
+            csvCarregaDados(arquivos);
         }
-        if(write){
-
+        else {
+            carregaDados("dados.dat");
         }
     }
 }

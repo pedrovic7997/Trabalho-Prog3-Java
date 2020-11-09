@@ -30,36 +30,23 @@ public class LeitorPeriodo extends ILeitor implements Serializable{
         leitor = novo;
     }
 
-    public Periodo ler(Scanner scan){
+    public Periodo ler(Scanner scanner) throws Exception {
         System.out.println("Informe o ano do periodo: ");
         int ano = 0;
-        boolean correto = false;
-        while(!correto)
-            try {
-                ano = scanner.nextInt();
-                correto = true;  
-            } catch (Exception e) {
-                System.out.println("\nDado invalido: "+ scanner.next()+".\n");
-                System.out.println("Digite o ano novamente.\n");
-                correto = false;
-            }
-        System.out.println("Informe o semestre do periodo: ");
-        correto = false;
-        String semestre = "";
-        while(!correto)
-            try {
-                semestre = scanner.next();
-                Pattern pattern = Pattern.compile("[0-9A-Za-z]");
-                Matcher matcher = pattern.matcher(semestre);
-                correto = true;
-                if(!matcher.matches())
-                    throw new Exception();
-            } catch (Exception e) {
-                System.out.println("\nDado invalido: "+ semestre +".\n");
-                System.out.println("Digite o semestre novamente.\n");
-                correto = false;
-            }
         
+        try {
+            ano = scanner.nextInt();
+        } catch (Exception e) {
+            throw new Exception("\nDado invalido: "+ scanner.next()+".\n");
+        }
+        
+        String semestre = "";
+        semestre = scanner.next();
+        Pattern pattern = Pattern.compile("[0-9A-Za-z]");
+        Matcher matcher = pattern.matcher(semestre);
+        if(!matcher.matches())
+            throw new Exception("Dado invalido: "+ semestre +".");
+                
         Periodo periodo = new Periodo(ano, semestre.charAt(0));
         return periodo;
     }

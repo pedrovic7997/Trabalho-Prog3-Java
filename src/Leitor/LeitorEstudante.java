@@ -34,9 +34,7 @@ public class LeitorEstudante extends ILeitor implements Serializable{
         leitor = novo;
     }
     
-    public Estudante ler(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Informe a matricula do estudante: ");
+    public Estudante ler(Scanner scanner){
         int matricula;
         try {
             matricula = scanner.nextInt();
@@ -45,9 +43,7 @@ public class LeitorEstudante extends ILeitor implements Serializable{
         }
         if(busca(matricula) != null)
 			throw new IllegalArgumentException("Cadastro repetido: "+matricula+".");
-        System.out.println("Informe o nome do estudante:  ");
-        scanner.nextLine();
-        String nome = scanner.nextLine();
+        String nome = scanner.next();
         Estudante aluno = new Estudante(matricula, nome);
         return aluno;
     }

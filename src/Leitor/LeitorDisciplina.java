@@ -40,8 +40,7 @@ public class LeitorDisciplina extends ILeitor implements Serializable{
         if (busca(codigo+"-"+periodo.obterCodigo()) != null){
             throw new RuntimeException("Cadastro repetido: "+codigo+".");
         }
-        scanner.nextLine();
-        String nome = scanner.nextLine();
+        String nome = scanner.next();
 
         Disciplina disciplina = new Disciplina(codigo,nome,periodo,controlador.busca(scanner.next()));
         return disciplina;

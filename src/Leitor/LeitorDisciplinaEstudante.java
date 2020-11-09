@@ -10,7 +10,7 @@ import Modelo.Estudante;
 public class LeitorDisciplinaEstudante extends ILeitor implements Serializable{
 
     HashMap<String,ArrayList<Estudante>> mapDisciplina;
-    HashMap<Integer,ArrayList<Disciplina>> mapEstudante;
+    HashMap<String,ArrayList<Disciplina>> mapEstudante;
     static LeitorDisciplinaEstudante leitor;
 
     private LeitorDisciplinaEstudante(){
@@ -57,7 +57,7 @@ public class LeitorDisciplinaEstudante extends ILeitor implements Serializable{
         mapDisciplina.get(disciplina.obterCodigo()).add(estudante);
     }
 
-    public Estudante busca(Disciplina disciplina,int matricula){
+    public Estudante busca(Disciplina disciplina,String matricula){
         if (!mapDisciplina.containsKey(disciplina.obterCodigo()))
             return null;
         for(Estudante e : mapDisciplina.get(disciplina.obterCodigo())){

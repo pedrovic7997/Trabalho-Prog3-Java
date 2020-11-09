@@ -3,15 +3,15 @@ package Modelo;
 import java.io.Serializable;
 
 public class Estudante implements Serializable{
-    private int matricula;
+    private String matricula;
     private String nome;
 
-    public Estudante(int matricula, String nome) {
+    public Estudante(String matricula, String nome) {
         this.matricula = matricula;
         this.nome = nome;
     }
 
-    public int obterMatricula() {
+    public String obterMatricula() {
         return matricula;
     }
 

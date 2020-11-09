@@ -125,8 +125,8 @@ public class ControladorAtividade implements IControlador{
 		while(scan.hasNext()){
 			int codigo = scan.nextInt();
 			Disciplina disciplina = cDisciplina.busca(scan.next());
-			Estudante estudante = cEstudante.busca(scan.nextInt());
-			Atividade atividade = lAtividade.busca(codigo, disciplina.obterAtividades());
+			Estudante estudante = cEstudante.busca(scan.next());
+			Atividade atividade = lAtividade.busca(codigo-1, disciplina.obterAtividades());
 			Avaliacao avaliacao = lAvaliacao.ler(scan, estudante);
 			if(verificaCadastroAvaliacao(atividade, estudante))
 				throw new Exception("Avaliação repetida: estudante "+estudante.obterMatricula()+ 

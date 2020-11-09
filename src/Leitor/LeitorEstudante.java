@@ -9,7 +9,7 @@ import java.util.HashMap;
 import Modelo.Estudante;
 
 public class LeitorEstudante extends ILeitor implements Serializable{
-    private HashMap<Integer, Estudante> mapa = new HashMap<>();
+    private HashMap<String, Estudante> mapa = new HashMap<>();
     private static LeitorEstudante leitor;
 
     private LeitorEstudante(){}
@@ -22,11 +22,11 @@ public class LeitorEstudante extends ILeitor implements Serializable{
         else return leitor;
     }
 
-    public Set<Integer> obterChaves(){
+    public Set<String> obterChaves(){
         return mapa.keySet(); 
     }
 
-    public HashMap<Integer,Estudante> obterHash(){
+    public HashMap<String,Estudante> obterHash(){
         return mapa;
     }
 
@@ -35,9 +35,9 @@ public class LeitorEstudante extends ILeitor implements Serializable{
     }
     
     public Estudante ler(Scanner scanner){
-        int matricula;
+        String matricula;
         try {
-            matricula = scanner.nextInt();
+            matricula = scanner.next();
         } catch (Exception e) {
             throw new RuntimeException("Dado inválido: "+scanner.next());
         }
@@ -53,12 +53,12 @@ public class LeitorEstudante extends ILeitor implements Serializable{
     }
 
     public void listar(){
-        for (Integer i : mapa.keySet()){
+        for (String i : mapa.keySet()){
             System.out.println(mapa.get(i));
         }
     }
 
-    public Estudante busca(int matricula){
+    public Estudante busca(String matricula){
         if(mapa.containsKey(matricula)){
             return mapa.get(matricula);
         }

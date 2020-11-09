@@ -31,7 +31,7 @@ public class ControladorEstudante implements IControlador{
 		leitor.listar();
 	}
 
-	public Estudante busca(int matricula){
+	public Estudante busca(String matricula){
 		LeitorEstudante lEstudante = LeitorEstudante.obterInstancia();
 		return lEstudante.busca(matricula);
 	}

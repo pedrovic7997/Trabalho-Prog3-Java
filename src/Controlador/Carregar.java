@@ -79,7 +79,7 @@ public class Carregar{
 
     private void csvCarregaEstudantes(String entrada) throws Exception {
         FileInputStream arq = new FileInputStream(entrada);
-        ControladorPeriodo controlador = new ControladorPeriodo();
+        ControladorEstudante controlador = new ControladorEstudante();
         Scanner scan = new Scanner(arq);
         scan.useDelimiter("[;\n]");
         scan.nextLine();
@@ -142,7 +142,7 @@ public class Carregar{
 
     public void csvCarregaDados(ArrayList<String> arquivos) throws Exception{
         
-        try {
+        // try {
             if(arquivos.get(0) != null)
                 csvCarregaPeriodo(arquivos.get(0));
             if(arquivos.get(1) != null)
@@ -157,15 +157,14 @@ public class Carregar{
                 csvCarregaAtividade(arquivos.get(5));
             if(arquivos.get(6) != null)
                 csvCarregaAvaliacao(arquivos.get(6));
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        }
+        // } catch (Exception e) {
+        //     throw new Exception(e.getMessage());
+        // }
         
     }
 
 
     public void teste(String args[]) throws Exception {
-        System.out.println(args.length);
         String arqPeriodo=null, arqDocente=null, arqDisciplina=null, arqEstudantes=null, arqMatriculas=null, arqAtividades=null, arqAvaliacoes=null;
         ArrayList<String> arquivos = new ArrayList<>();
                 

@@ -182,10 +182,10 @@ public class Relatorio implements IControlador{
         LeitorAvaliacao lAvaliacao = LeitorAvaliacao.obterInstancia();
         System.out.println("------------------------");
         System.out.println("Estatística dos estudantes:");
-        Set<Integer> matriculasEstudantes = lEstudante.obterChaves();
-        double[][] estatistica = new double[matriculasEstudantes.size()][5];
+        Set<String> matriculasEstudantes = lEstudante.obterChaves();
+        String[][] estatistica = new String[matriculasEstudantes.size()][5];
         int count = 0;
-        for(int matricula : matriculasEstudantes){
+        for(String matricula : matriculasEstudantes){
             Estudante estudante = lEstudante.busca(matricula);
             ArrayList<Disciplina> disciplinas =  lDisLeitorEstudante.busca(estudante);
             double mediaTotal = 0;
@@ -215,31 +215,31 @@ public class Relatorio implements IControlador{
                 }
             }
             if(periodos.size() != 0)
-                estatistica[count][1] = disciplinas.size()/periodos.size();
-            else estatistica[count][1] = 0;
+                estatistica[count][1] = String.valueOf(disciplinas.size()/periodos.size());
+            else estatistica[count][1] = "0";
             if(disciplinas.size() != 0)
-                estatistica[count][2] = qtdAvaliacoes/disciplinas.size();
-            else estatistica[count][2] = 0;
+                estatistica[count][2] = String.valueOf(qtdAvaliacoes/disciplinas.size());
+            else estatistica[count][2] = "0";
             if(qtdAvaliacoes != 0)
-                estatistica[count][3] = mediaTotal/qtdAvaliacoes;
-            else estatistica[count][3] = 0;
-            estatistica[count][4] = qtdAvaliacoes;
+                estatistica[count][3] = String.valueOf(mediaTotal/qtdAvaliacoes);
+            else estatistica[count][3] = "0";
+            estatistica[count][4] = String.valueOf(qtdAvaliacoes);
             count++;
         }
-        Arrays.sort(estatistica, new Comparator<double[]>(){
+        Arrays.sort(estatistica, new Comparator<String[]>(){
             @Override
-            public int compare(double[] aluno1, double[] aluno2){
+            public int compare(String[] aluno1, String[] aluno2){
                 if(aluno1[4] == aluno2[4])
-                    return lEstudante.busca((int)aluno1[0]).obterNome().toLowerCase().compareTo(
-                                    lEstudante.busca((int)aluno1[0]).obterNome().toLowerCase());
-                return (int) (aluno1[4]-aluno2[4]);
+                    return lEstudante.busca(aluno1[0]).obterNome().toLowerCase().compareTo(
+                                    lEstudante.busca(aluno1[0]).obterNome().toLowerCase());
+                return (aluno1[4].compareTo(aluno2[4]));
             }
         });
         for(int i=0; i<count; i++){
-            int matricula = (int)estatistica[i][0];
-            System.out.printf("%d - %s - Media de disciplinas matriculado: %.2f - Media de avaliaçoes realizadas: %.2f - Media de notas: %.2f\n"
+            String matricula = estatistica[i][0];
+            System.out.printf("%s - %s - Media de disciplinas matriculado: %.2f - Media de avaliaçoes realizadas: %.2f - Media de notas: %.2f\n"
                                     , matricula, lEstudante.busca(matricula),
-                                        estatistica[i][1], estatistica[i][2], estatistica[i][3]);
+                                        Double.valueOf(estatistica[i][1]), Double.valueOf(estatistica[i][2]), Double.valueOf(estatistica[i][3]));
         }
     }
 

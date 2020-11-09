@@ -115,7 +115,7 @@ public class ControladorDisciplina implements IControlador {
 		return leitor.busca(codigo);
 	}
 
-	public Estudante busca(Disciplina disciplina, int matricula){
+	public Estudante busca(Disciplina disciplina, String matricula){
 		LeitorDisciplinaEstudante leitor = LeitorDisciplinaEstudante.obterInstancia();
 		return leitor.busca(disciplina,matricula);
 	}
@@ -125,17 +125,21 @@ public class ControladorDisciplina implements IControlador {
 		return leitor.busca(docente);
 	}
 
-	public boolean verificaMatriculaEstudante(Disciplina disciplina,int matricula){
+	public boolean verificaMatriculaEstudante(Disciplina disciplina, String matricula){
 		return busca(disciplina,matricula) != null;
 
 	}
 	
-    public void ler(Scanner scan){
+    public void ler(Scanner scan) throws Exception {
 		LeitorDisciplina leitor = LeitorDisciplina.obterInstancia();
 		ControladorDocente cDocente = new ControladorDocente();
 		ControladorPeriodo cPeriodo = new ControladorPeriodo();
 		while(scan.hasNext()){
-			Disciplina disciplina = leitor.ler(scan, cPeriodo.busca(scan.next()), cDocente);
+			String codigo = scan.next();
+			Periodo periodo = cPeriodo.busca(codigo);
+			if (periodo == null)
+				throw new Exception("Referência inválida: " + codigo);
+			Disciplina disciplina = leitor.ler(scan, periodo, cDocente);
 			leitor.anexaHash(disciplina);
 		}
 	}
@@ -149,7 +153,7 @@ public class ControladorDisciplina implements IControlador {
 			if(disciplina==null){
 				throw new NoSuchElementException("Referência inválida: "+codigo+".");
 			}
-			int matricula = scan.nextInt();
+			String matricula = scan.next();
 			Estudante estudante = cEstudante.busca(matricula);
 			if(estudante==null){
 				throw new NoSuchElementException("Referência inválida: "+matricula+".");

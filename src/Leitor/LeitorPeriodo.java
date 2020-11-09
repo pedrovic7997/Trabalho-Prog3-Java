@@ -31,7 +31,6 @@ public class LeitorPeriodo extends ILeitor implements Serializable{
     }
 
     public Periodo ler(Scanner scanner) throws Exception {
-        System.out.println("Informe o ano do periodo: ");
         int ano = 0;
         
         try {
@@ -39,7 +38,7 @@ public class LeitorPeriodo extends ILeitor implements Serializable{
         } catch (Exception e) {
             throw new Exception("\nDado invalido: "+ scanner.next()+".\n");
         }
-        
+
         String semestre = "";
         semestre = scanner.next();
         Pattern pattern = Pattern.compile("[0-9A-Za-z]");

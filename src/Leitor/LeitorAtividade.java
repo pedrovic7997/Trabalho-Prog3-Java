@@ -45,7 +45,6 @@ public class LeitorAtividade extends ILeitor implements Serializable{
     }
 
     public Atividade ler(Scanner scan) throws Exception{
-        scan.useDelimiter("[;\n]");
         String nome=scan.next();
         String tipo=scan.next();
 
@@ -119,12 +118,12 @@ public class LeitorAtividade extends ILeitor implements Serializable{
 
     private Prova criaProva(String nome, Scanner scan) throws Exception {
         String dataString = scan.next();
-        dataString += " " + scan.next();
+        dataString += " ";
+        dataString += scan.next();
         Scanner dataScanner = new Scanner(dataString);
         
         Calendar data = Calendar.getInstance();
-        System.out.println("Informe o nome da prova: ");
-        
+                
         int dia[] = new int[5];
         
         dataScanner.useDelimiter("[/ :]");

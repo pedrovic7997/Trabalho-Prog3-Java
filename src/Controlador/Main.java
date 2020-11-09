@@ -6,7 +6,7 @@ import Leitor.*;
 import Modelo.*;
 
 public class Main{
-	public static void main(String[] args){
+	public static void main(String[] args) throws Exception {
 		// int opcao = -1;
 		// Scanner scan = new Scanner(System.in);
 		// do{
@@ -32,12 +32,12 @@ public class Main{
 		boolean erro = false;
 		Carregar carregador = new Carregar();
 
-		try {
+		// try {
 			carregador.teste(args);
-		} catch(Exception e){
-			System.out.println(e.getMessage());
-			erro = true;
-		}
+		// } catch(Exception e){
+		// 	System.out.println(e.getMessage());
+		// 	erro = true;
+		// }
 
 		if(!erro){ 
 			if(!carregador.getWrite()){

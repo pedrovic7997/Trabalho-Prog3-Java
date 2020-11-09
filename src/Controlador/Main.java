@@ -34,64 +34,64 @@ public class Main{
  
 	}
 
-	public static void menu(){
-		System.out.println("Escolha uma opção:");
-		System.out.println("1-Cadastro de períodos;");
-		System.out.println("2-Cadastro de docentes;");
-		System.out.println("3-Cadastro de disciplinas;");
-		System.out.println("4-Cadastro de estudantes;");
-		System.out.println("5-Matrícula de estudantes em disciplinas;");
-		System.out.println("6-Cadastro de atividade de disciplinas;");
-		System.out.println("7-Avalição de atividade por parte de estudante;");
-		System.out.println("8-Relatórios;");
-		System.out.println("9-Salvar dados;");
-		System.out.println("10-Carregar dados;");
-		System.out.println("0-Sair do programa;");
-	}
+	// public static void menu(){
+	// 	System.out.println("Escolha uma opção:");
+	// 	System.out.println("1-Cadastro de períodos;");
+	// 	System.out.println("2-Cadastro de docentes;");
+	// 	System.out.println("3-Cadastro de disciplinas;");
+	// 	System.out.println("4-Cadastro de estudantes;");
+	// 	System.out.println("5-Matrícula de estudantes em disciplinas;");
+	// 	System.out.println("6-Cadastro de atividade de disciplinas;");
+	// 	System.out.println("7-Avalição de atividade por parte de estudante;");
+	// 	System.out.println("8-Relatórios;");
+	// 	System.out.println("9-Salvar dados;");
+	// 	System.out.println("10-Carregar dados;");
+	// 	System.out.println("0-Sair do programa;");
+	// }
 	
-	public static void escolherMenu(int opcao, String[] args) throws Exception{
-		IControlador controlador;
-		switch(opcao){
-			case 0: System.out.println("\nSaindo do programa...");
-				break;
-			case 1: controlador = new ControladorPeriodo();
-				controlador.menu("");
-				break;
-			case 2:
-				controlador = new ControladorDocente();
-				controlador.menu("");
-				break;
-			case 3:
-				controlador = new ControladorDisciplina();
-				controlador.menu("Disciplina");
-				break;
-			case 4:
-				controlador = new ControladorEstudante();
-				controlador.menu("");
-				break;
-			case 5:
-				controlador = new ControladorDisciplina();
-				controlador.menu("");
-				break;
-			case 6:
-				controlador = new ControladorAtividade();
-				controlador.menu("Atividade");
-				break;
-			case 7:
-				controlador = new ControladorAtividade();
-				controlador.menu("");
-				break;
-			case 8:
-				controlador = new Relatorio();
-				controlador.menu("");
-				break;
-			case 9: salvaDados(args);
-				break;
-			case 10: carregaDados(args);
-				break;
-			default : System.out.println("\nOpcão invalida!\n");
-		}
-	}
+	// public static void escolherMenu(int opcao, String[] args) throws Exception{
+	// 	IControlador controlador;
+	// 	switch(opcao){
+	// 		case 0: System.out.println("\nSaindo do programa...");
+	// 			break;
+	// 		case 1: controlador = new ControladorPeriodo();
+	// 			controlador.menu("");
+	// 			break;
+	// 		case 2:
+	// 			controlador = new ControladorDocente();
+	// 			controlador.menu("");
+	// 			break;
+	// 		case 3:
+	// 			controlador = new ControladorDisciplina();
+	// 			controlador.menu("Disciplina");
+	// 			break;
+	// 		case 4:
+	// 			controlador = new ControladorEstudante();
+	// 			controlador.menu("");
+	// 			break;
+	// 		case 5:
+	// 			controlador = new ControladorDisciplina();
+	// 			controlador.menu("");
+	// 			break;
+	// 		case 6:
+	// 			controlador = new ControladorAtividade();
+	// 			controlador.menu("Atividade");
+	// 			break;
+	// 		case 7:
+	// 			controlador = new ControladorAtividade();
+	// 			controlador.menu("");
+	// 			break;
+	// 		case 8:
+	// 			controlador = new Relatorio();
+	// 			controlador.menu("");
+	// 			break;
+	// 		case 9: salvaDados(args);
+	// 			break;
+	// 		case 10: carregaDados(args);
+	// 			break;
+	// 		default : System.out.println("\nOpcão invalida!\n");
+	// 	}
+	// }
 
 
 

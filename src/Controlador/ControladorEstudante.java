@@ -25,4 +25,9 @@ public class ControladorEstudante implements IControlador{
 			}
 		}
 	}
+
+	public Estudante busca(int matricula){
+		LeitorEstudante lEstudante = LeitorEstudante.obterInstancia();
+		return lEstudante.busca(matricula);
+	}
 }

@@ -29,26 +29,14 @@ public class LeitorDocente extends ILeitor implements Serializable{
         leitor = novo;
     }
 
-    public Docente ler(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Informe o login do docente: ");
-        String login = scanner.nextLine();
+    public Docente ler(Scanner scanner){
+        String login = scanner.next();
         if(leitor.busca(login) != null)
 			throw new IllegalArgumentException("Cadastro repetido: "+login+".");
-        System.out.println("Informe o nome do docente: ");
-        String nome = scanner.nextLine();
-        System.out.println("Deseja acrescentar um site do docente? ('s' caso queira) ");
-        String opcao;
-        opcao = scanner.next();
+        String nome = scanner.next();
         Docente docente;
-        if(opcao.toLowerCase().equals("s")){
-            String site = scanner.next();
-            System.out.println("Informe o site: ");
-            docente = new Docente(login,nome,site);
-        }
-        else{
-            docente = new Docente(login, nome);
-        }
+        String site = scanner.next();
+        docente = new Docente(login,nome,site);
         
         return docente;
     }
@@ -75,4 +63,5 @@ public class LeitorDocente extends ILeitor implements Serializable{
     public Set<String> obterChaves(){
         return mapa.keySet();
     }
+
 }

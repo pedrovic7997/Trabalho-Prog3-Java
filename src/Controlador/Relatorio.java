@@ -2,6 +2,7 @@ package Controlador;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -150,7 +151,7 @@ public class Relatorio implements IControlador{
             }
             estatistica[count][2] = String.valueOf(periodos.size());
             if(disciplinas.size()!=0){
-                Double valor = (double)numAtividadesTotal/(double)disciplinas.size();
+                float valor = (float)numAtividadesTotal/disciplinas.size();
                 DecimalFormat df = new DecimalFormat("#0.0");
                 estatistica[count][3] = df.format(valor);
             }
@@ -166,7 +167,7 @@ public class Relatorio implements IControlador{
                 estatistica[count][6] = "0";
             }
             if(numAvaliacoesTotal!=0){
-                Double valor = notaTotal/numAvaliacoesTotal;
+                float valor = (float)notaTotal/numAvaliacoesTotal;
                 DecimalFormat df = new DecimalFormat("#0.0");
                 estatistica[count][5] = df.format(valor);
             }
@@ -235,19 +236,19 @@ public class Relatorio implements IControlador{
                 }
             }
             if(periodos.size() != 0){
-                Double valor = (double)disciplinas.size()/(double)periodos.size();
+                float valor = (float)disciplinas.size()/periodos.size();
                 DecimalFormat df = new DecimalFormat("#0.0");
                 estatistica[count][1] = df.format(valor);
             }
             else estatistica[count][1] = "0,0";
             if(disciplinas.size() != 0){
-                Double valor = (double)qtdAvaliacoes/(double)disciplinas.size();
+                float valor = (float)qtdAvaliacoes/disciplinas.size();
                 DecimalFormat df = new DecimalFormat("#0.0");
                 estatistica[count][2] = df.format(valor);
             }
             else estatistica[count][2] = "0,0";
             if(qtdAvaliacoes != 0){
-                Double valor = (double)mediaTotal/(double)qtdAvaliacoes;
+                float valor = (float)mediaTotal/qtdAvaliacoes;
                 DecimalFormat df = new DecimalFormat("#0.0");
                 estatistica[count][3] = df.format(valor);
             }

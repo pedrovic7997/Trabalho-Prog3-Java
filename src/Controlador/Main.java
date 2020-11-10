@@ -2,52 +2,58 @@ package Controlador;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
 import Leitor.*;
 import Modelo.*;
 
-public class Main{
-	public static void main(String[] args) throws Exception {
+public class Main {
+	public static void main(String[] args) {
 		// int opcao = -1;
 		// Scanner scan = new Scanner(System.in);
 		// do{
-		// 	menu();
-		// 	try{
-		// 		opcao = scan.nextInt();
-		// 	} catch (InputMismatchException e){
-		// 		System.out.println("\nOpcão invalida!\n");
-		// 		scan.next();
-		// 		continue;
-		// 	}
+		// menu();
+		// try{
+		// opcao = scan.nextInt();
+		// } catch (InputMismatchException e){
+		// System.out.println("\nOpcão invalida!\n");
+		// scan.next();
+		// continue;
+		// }
 
-		// 	try {
-		// 		escolherMenu(opcao,args);				
-		// 	} catch (Exception e) {
-		// 		System.out.println(e.getMessage()+"\n");
-		// 		opcao = 0;
-		// 	}
+		// try {
+		// escolherMenu(opcao,args);
+		// } catch (Exception e) {
+		// System.out.println(e.getMessage()+"\n");
+		// opcao = 0;
+		// }
 
 		// }while(opcao != 0);
 		// scan.close();
-		
+
 		boolean erro = false;
 		Carregar carregador = new Carregar();
 
 		try {
 			carregador.teste(args);
-		} catch(Exception e){
+		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			erro = true;
-			throw e;
+			// throw e;
 		}
 
-		if(!erro){ 
-			if(!carregador.getWrite()){
+		if (!erro) {
+			if (!carregador.getWrite()) {
 				Salvar salvador = new Salvar();
 				salvador.salvaDados("dados.dat");
-			}
-			else {
+			} else {
 				Relatorio relatorio = new Relatorio();
-				relatorio.escreveRelatorios();
+				try {
+					relatorio.escreveRelatorios();
+				} catch (Exception e) {
+					System.out.println(e.getMessage());
+				}
 			}
 		}
  

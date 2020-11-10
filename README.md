@@ -1,7 +1,7 @@
 # Trabalho-Prog3-Java
 Trabalho para matéria Programação III
 
-Dentro do diretório *src*:
+Para rodar manualmente, basta os arquivos CSV's estarem na pasta ***src*** e executar os comandos abaixo (no diretorio do build.xml).
 
 ### Para construir os arquivos executáveis: 
 ```
@@ -9,15 +9,15 @@ ant compile
 ```
 
 ### Para rodar:
-#### Read e Write
+- Read e Write
 ```
 ant run
 ```
-#### Read only
+- Read only
 ```
 ant run-read-only
 ```
-#### Write only
+- Write only
 ```
 ant run-write-only
 ```

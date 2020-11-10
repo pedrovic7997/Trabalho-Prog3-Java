@@ -21,6 +21,6 @@ public class Estudante implements Serializable{
 
     @Override
     public String toString() {
-        return "Nome: " + nome + " - Matricula: " + matricula;
+        return matricula + ";" + nome;
     }
 }

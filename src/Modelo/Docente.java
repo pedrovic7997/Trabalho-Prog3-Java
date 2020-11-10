@@ -2,7 +2,7 @@ package Modelo;
 
 import java.io.Serializable;
 
-public class Docente implements Serializable{
+public class Docente implements Serializable, Comparable<Docente>{
     private String login;
     private String nome;
     private String paginaWeb;
@@ -29,6 +29,11 @@ public class Docente implements Serializable{
 
     public String obterPaginaWeb() {
         return paginaWeb;
+    }
+
+    @Override
+    public int compareTo(Docente arg0) {
+        return arg0.nome.compareTo(nome);
     }
 
     @Override

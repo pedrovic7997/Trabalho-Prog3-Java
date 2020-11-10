@@ -1,5 +1,8 @@
 package Controlador;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -8,6 +11,8 @@ import java.util.InputMismatchException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 import java.util.Set;
+
+import javax.print.Doc;
 
 import Modelo.*;
 import Leitor.LeitorPeriodo;
@@ -19,96 +24,100 @@ import Leitor.LeitorAvaliacao;
 
 public class Relatorio implements IControlador{
 
-    public void menu(String func) {
+    // public void menu(String func) {
 
-		Scanner scan = new Scanner(System.in);
-		int opcao = -1;
-		do{
-			System.out.println("\nEscolha uma opção:");
-			System.out.println("1-Visão geral do período acadêmico;");
-			System.out.println("2-Estatísticas dos docentes;");
-			System.out.println("3-Estatísticas dos estudantes;");
-			System.out.println("4-Estatísticas das disciplinas de um docente;");
-			System.out.println("0-Voltar ao menu principal:");
-			try{
-				opcao = scan.nextInt();
-			} catch (InputMismatchException e){
-				System.out.println("\nOpcão invalida! Voltando ao menu...\n");
-				// opcao = 0;
-				scan.next();
-				continue;
-			}
-			try{
-				escolherMenu(opcao);
-			} catch (Exception e) {
-				System.out.println(e.getMessage()+"\n");
-			}
-			System.out.println("");
-		}while(opcao != 0);
-    }
+	// 	Scanner scan = new Scanner(System.in);
+	// 	int opcao = -1;
+	// 	do{
+	// 		System.out.println("\nEscolha uma opção:");
+	// 		System.out.println("1-Visão geral do período acadêmico;");
+	// 		System.out.println("2-Estatísticas dos docentes;");
+	// 		System.out.println("3-Estatísticas dos estudantes;");
+	// 		System.out.println("4-Estatísticas das disciplinas de um docente;");
+	// 		System.out.println("0-Voltar ao menu principal:");
+	// 		try{
+	// 			opcao = scan.nextInt();
+	// 		} catch (InputMismatchException e){
+	// 			System.out.println("\nOpcão invalida! Voltando ao menu...\n");
+	// 			// opcao = 0;
+	// 			scan.next();
+	// 			continue;
+	// 		}
+	// 		try{
+	// 			escolherMenu(opcao);
+	// 		} catch (Exception e) {
+	// 			System.out.println(e.getMessage()+"\n");
+	// 		}
+	// 		System.out.println("");
+	// 	}while(opcao != 0);
+    // }
     
-    public void escolherMenu(int opcao) throws Exception {
-		switch(opcao){
-			case 1: panoramaPeriodo();
-				break;
-			case 2: estatisticaDocentes();
-				break;
-			case 3: estatisticaEstudantes();
-				break;
-			case 4: estatisticaDisciplinasDocente();
-				break;
-			default :
-				System.out.println("\nVoltando ao menu...");
-		}
-	}
+    // public void escolherMenu(int opcao) throws Exception {
+	// 	switch(opcao){
+	// 		case 1: panoramaPeriodo();
+	// 			break;
+	// 		case 2: estatisticaDocentes();
+	// 			break;
+	// 		case 3: estatisticaEstudantes();
+	// 			break;
+	// 		case 4: estatisticaDisciplinasDocente();
+	// 			break;
+	// 		default :
+	// 			System.out.println("\nVoltando ao menu...");
+	// 	}
+    // }
+    
+    public void escreveRelatorios() throws Exception {
+        panoramaPeriodo();
+        estatisticaDocentes();
+        estatisticaEstudantes();
+        estatisticaDisciplinasDocente();
+    }
 
-    public void panoramaPeriodo(){
+    public void panoramaPeriodo() throws IOException {
         LeitorPeriodo lPeriodo = LeitorPeriodo.obterInstancia();
-
-        System.out.println("------------------------");
-        System.out.println("Períodos cadastrados:");
-        lPeriodo.listar();
-        System.out.println("\nEntre com o período desejado: ");
-        Scanner scanner = new Scanner(System.in);
-        String codigo = scanner.nextLine();
-
-        Periodo periodo = lPeriodo.busca(codigo);
-        if (periodo == null){
-            throw new NoSuchElementException("Referência inválida: "+codigo);
+        
+        ArrayList<Periodo> periodos = new ArrayList<>();
+        for (String codigo : lPeriodo.obterHash().keySet()) {
+            periodos.add(lPeriodo.busca(codigo));
         }
-        LeitorDisciplina lDisciplina = LeitorDisciplina.obterInstancia();
-        ArrayList<Disciplina> list = lDisciplina.busca(periodo);
-        Collections.sort(list, new Comparator<Disciplina>(){
-            @Override
-            public int compare(Disciplina disc1, Disciplina disc2){
-                return disc1.obterNome().toLowerCase().compareTo(disc2.obterNome().toLowerCase());
-            }
-        });
+        Collections.sort(periodos);
 
+        LeitorDisciplina lDisciplina = LeitorDisciplina.obterInstancia();
         LeitorDisciplinaEstudante lDisciplinaEstudante = LeitorDisciplinaEstudante.obterInstancia();
 
-        System.out.println("------------------------");
-        System.out.println("Disciplinas achadas: ");
-        for(Disciplina d : list){
-            ArrayList<Estudante> list2 = lDisciplinaEstudante.busca(d);
-            System.out.println(d.obterCodigo() + " - " + d.obterNome() +
-                                " - Professor(a): " + d.obterDocente().obterNome() +
-                                " -> " + d.obterDocente().obterLogin() + "@ufes.br - " +
-                                list2.size() + " estudantes - " +
-                                d.obterAtividades().size() + " atividades");
+        String output;
+        output = "Período;Código Disciplina;Disciplina;Docente Responsável;E-mail Docente;Qtd. Estudantes;Qtd. Atividades";
+        
+        for (Periodo periodo : periodos) {
+            ArrayList<Disciplina> list = lDisciplina.busca(periodo);
+            Collections.sort(list);
+            for(Disciplina d : list){
+                ArrayList<Estudante> list2 = lDisciplinaEstudante.busca(d);
+                output += "\n" + periodo.obterCodigo() + ";" + d.obterCodigo() + 
+                                    ";" + d.obterNome() +
+                                    ";" + d.obterDocente().obterNome() +
+                                    ";" + d.obterDocente().obterLogin() + "@ufes.br;" +
+                                    list2.size() + ";" +
+                                    d.obterAtividades().size();
+            }
         }
+        output += "\n";
+
+        FileWriter arquivo = new FileWriter("1-visao-geral.csv");
+        arquivo.write(output);
+        arquivo.close();
 
     }
 
-    public void estatisticaDocentes(){
+    public void estatisticaDocentes() throws IOException {
         LeitorDocente lDocente = LeitorDocente.obterInstancia();
         LeitorDisciplina lDisciplina = LeitorDisciplina.obterInstancia();
 
-        System.out.println("------------------------");
-        System.out.println("Estatística dos docentes:");
         Set<String> loginsDocentes = lDocente.obterChaves();
-        String[][] estatistica = new String[loginsDocentes.size()][6];
+        String[][] estatistica = new String[loginsDocentes.size()][7];
         int count = 0;
+        
         for(String login : loginsDocentes){
             
             ArrayList<Disciplina> disciplinas = lDisciplina.busca(lDocente.busca(login));
@@ -128,7 +137,7 @@ public class Relatorio implements IControlador{
                 numAtividadesSincronas += disciplina.obterSincronas();
                 numAtividadesTotal += disciplina.obterAtividades().size();
                 notaTotal += disciplina.obterNotaTotal();
-                numAtividadesTotal += disciplina.obterAtividadesTotal();
+                numAvaliacoesTotal += disciplina.obterAvaliacoesTotal();
 
                 for(int j=0; j<periodos.size() && !possui; j++){
                     if(disciplina.obterPeriodo() == periodos.get(j)){
@@ -140,20 +149,29 @@ public class Relatorio implements IControlador{
                 }
             }
             estatistica[count][2] = String.valueOf(periodos.size());
-            if(disciplinas.size()!=0)
-                estatistica[count][3] = Double.toString(numAtividadesTotal/disciplinas.size());
+            if(disciplinas.size()!=0){
+                Double valor = (double)numAtividadesTotal/(double)disciplinas.size();
+                DecimalFormat df = new DecimalFormat("#0.0");
+                estatistica[count][3] = df.format(valor);
+            }
             else 
-                estatistica[count][3] = "0.0";
+                estatistica[count][3] = "0,0";
             if(numAtividadesTotal!=0){
                 int sincronas = Math.round(((float)numAtividadesSincronas/(float)numAtividadesTotal)*100);
                 estatistica[count][4] = Integer.toString(sincronas);
+                estatistica[count][6] = Integer.toString(100-sincronas);
             }   
-            else
+            else{
                 estatistica[count][4] = "0";
-            if(numAvaliacoesTotal!=0)
-                estatistica[count][5] = Double.toString(notaTotal/numAvaliacoesTotal);
+                estatistica[count][6] = "0";
+            }
+            if(numAvaliacoesTotal!=0){
+                Double valor = notaTotal/numAvaliacoesTotal;
+                DecimalFormat df = new DecimalFormat("#0.0");
+                estatistica[count][5] = df.format(valor);
+            }
             else
-                estatistica[count][5] = "0.0";
+                estatistica[count][5] = "0,0";
             count++;
         }
 
@@ -164,35 +182,37 @@ public class Relatorio implements IControlador{
             }
         });
 
+        String output;
+        output = "Docente;Qtd. Disciplinas;Qtd. Períodos;Média Atividades/Disciplina;% Síncronas;% Assíncronas;Média de Notas";
+
         for(int i=0; i<count; i++){
-
-            System.out.printf("%s - %s disciplinas - %s períodos cadastrados - %s atividades/disciplinas - %s%% síncronas x %d%% assíncronas - Média de notas: %s\n", 
-                                estatistica[i][0], estatistica[i][1], estatistica[i][2], estatistica[i][3], estatistica[i][4], 100 - Integer.valueOf(estatistica[i][4]), estatistica[i][5]);
-
-            // System.out.println(estatistica[i][0] + " - " + estatistica[i][1] + " disciplinas - " + 
-            //                     estatistica[i][2] + " períodos cadastrados - " + estatistica[i][3] + " atividades/disciplina - " +
-            //                     estatistica[i][4] + "% síncronas x " + Double.valueOf(estatistica[i][4]) + "% assíncronas - " + 
-            //                     "Média de notas: " + estatistica[i][5]);
+            output += "\n" + estatistica[i][0] + ";" + estatistica[i][1] + ";" + estatistica[i][2] + ";" + estatistica[i][3] + ";" + estatistica[i][4] + "%;" + estatistica[i][6] + "%;" + estatistica[i][5];
         }
+        output += "\n";
+
+        FileWriter arquivo = new FileWriter("2-docentes.csv");
+        arquivo.write(output);
+        arquivo.close();
+
     }
     
-    public void estatisticaEstudantes(){
+    public void estatisticaEstudantes() throws IOException {
         LeitorEstudante lEstudante = LeitorEstudante.obterInstancia();
         LeitorDisciplinaEstudante lDisLeitorEstudante = LeitorDisciplinaEstudante.obterInstancia();
         LeitorAvaliacao lAvaliacao = LeitorAvaliacao.obterInstancia();
-        System.out.println("------------------------");
-        System.out.println("Estatística dos estudantes:");
+        
         Set<String> matriculasEstudantes = lEstudante.obterChaves();
         String[][] estatistica = new String[matriculasEstudantes.size()][5];
         int count = 0;
         for(String matricula : matriculasEstudantes){
+            
             Estudante estudante = lEstudante.busca(matricula);
             ArrayList<Disciplina> disciplinas =  lDisLeitorEstudante.busca(estudante);
             double mediaTotal = 0;
             int qtdAvaliacoes = 0;
             ArrayList<Periodo> periodos = new ArrayList<>();
-            ArrayList<Integer> somatorioMateriasPeriodo = new ArrayList<>();
             Boolean possui= false;
+
             estatistica[count][0] = matricula;
             for(int i=0; i<disciplinas.size(); i++){
 
@@ -214,48 +234,78 @@ public class Relatorio implements IControlador{
                     }
                 }
             }
-            if(periodos.size() != 0)
-                estatistica[count][1] = String.valueOf(disciplinas.size()/periodos.size());
-            else estatistica[count][1] = "0";
-            if(disciplinas.size() != 0)
-                estatistica[count][2] = String.valueOf(qtdAvaliacoes/disciplinas.size());
-            else estatistica[count][2] = "0";
-            if(qtdAvaliacoes != 0)
-                estatistica[count][3] = String.valueOf(mediaTotal/qtdAvaliacoes);
-            else estatistica[count][3] = "0";
+            if(periodos.size() != 0){
+                Double valor = (double)disciplinas.size()/(double)periodos.size();
+                DecimalFormat df = new DecimalFormat("#0.0");
+                estatistica[count][1] = df.format(valor);
+            }
+            else estatistica[count][1] = "0,0";
+            if(disciplinas.size() != 0){
+                Double valor = (double)qtdAvaliacoes/(double)disciplinas.size();
+                DecimalFormat df = new DecimalFormat("#0.0");
+                estatistica[count][2] = df.format(valor);
+            }
+            else estatistica[count][2] = "0,0";
+            if(qtdAvaliacoes != 0){
+                Double valor = (double)mediaTotal/(double)qtdAvaliacoes;
+                DecimalFormat df = new DecimalFormat("#0.0");
+                estatistica[count][3] = df.format(valor);
+            }
+            else estatistica[count][3] = "0,0";
             estatistica[count][4] = String.valueOf(qtdAvaliacoes);
             count++;
         }
         Arrays.sort(estatistica, new Comparator<String[]>(){
             @Override
             public int compare(String[] aluno1, String[] aluno2){
-                if(aluno1[4] == aluno2[4])
-                    return lEstudante.busca(aluno1[0]).obterNome().toLowerCase().compareTo(
-                                    lEstudante.busca(aluno1[0]).obterNome().toLowerCase());
-                return (aluno1[4].compareTo(aluno2[4]));
+                if(aluno1[4].equals(aluno2[4]))
+                    return lEstudante.busca(aluno1[0]).obterNome().compareToIgnoreCase(
+                                    lEstudante.busca(aluno2[0]).obterNome());
+                return (Integer.valueOf(aluno2[4]) - Integer.valueOf(aluno1[4]));
             }
         });
+
+        String output = "Matrícula;Nome;Média Disciplinas/Período;Média Avaliações/Disciplina;Média Notas Avaliações";
+
         for(int i=0; i<count; i++){
-            String matricula = estatistica[i][0];
-            System.out.printf("%s - %s - Media de disciplinas matriculado: %.2f - Media de avaliaçoes realizadas: %.2f - Media de notas: %.2f\n"
-                                    , matricula, lEstudante.busca(matricula),
-                                        Double.valueOf(estatistica[i][1]), Double.valueOf(estatistica[i][2]), Double.valueOf(estatistica[i][3]));
+            output += "\n" + lEstudante.busca(estatistica[i][0]) + ";" + estatistica[i][1] + ";" + estatistica[i][2] + ";" + estatistica[i][3];
         }
+        output += "\n";
+
+        FileWriter arquivo = new FileWriter("3-estudantes.csv");
+        arquivo.write(output);
+        arquivo.close();
+
     }
 
-    public void estatisticaDisciplinasDocente() throws Exception{
-        Scanner scan = new Scanner(System.in);
+    public void estatisticaDisciplinasDocente() throws Exception {
+        
         ControladorDocente cDocente = new ControladorDocente();
-		ControladorDisciplina cDisciplina = new ControladorDisciplina();
-        cDocente.listar();
-        System.out.println("\nEntre com o docente desejado: ");
-        String codigo = scan.nextLine();
-        Docente docente = cDocente.busca(codigo);
-        if (docente == null){
-            throw new NoSuchElementException("Referência inválida: "+codigo);
+        ControladorDisciplina cDisciplina = new ControladorDisciplina();
+        LeitorDisciplina lDisciplina = LeitorDisciplina.obterInstancia();
+        String output = "Docente;Período;Código;Nome;Qtd. Atividades;% Síncronas;% Assíncronas;CH;Datas Avaliações";
+        
+        ArrayList<Disciplina> disciplinas = new ArrayList<>();
+        for (String codigo : lDisciplina.obterHash().keySet()) {
+            disciplinas.add(lDisciplina.busca(codigo));
         }
-        ArrayList<Disciplina> disciplinas = cDisciplina.busca(docente);
-        String[][] estatistica = new String[disciplinas.size()][5];
+        Collections.sort(disciplinas);
+
+        disciplinas.sort(new Comparator<Disciplina>(){
+            @Override
+            public int compare(Disciplina disc, Disciplina disc2){
+                Periodo periodo1, periodo2;
+                periodo1 = disc.obterPeriodo();
+                periodo2 = disc2.obterPeriodo();
+                if( periodo1.obterCodigo().compareTo(periodo2.obterCodigo()) == 0){
+                    return disc.obterCodigo().compareToIgnoreCase(disc2.obterCodigo());
+                }
+                return periodo1.obterCodigo().compareTo(periodo2.obterCodigo());
+            }
+        });
+        
+        String[][] estatistica = new String[disciplinas.size()][6];
+        
         int count=0;
         for (Disciplina disciplina : disciplinas) {
             estatistica[count][0] = disciplina.obterCodigo()+"-"+disciplina.obterPeriodo().obterAno()+
@@ -264,43 +314,46 @@ public class Relatorio implements IControlador{
             if(disciplina.obterAtividades().size() != 0){
                 int sincronas = Math.round(((float)disciplina.obterSincronas()/(float)disciplina.obterAtividades().size())*100);
                 estatistica[count][2] = Integer.toString(sincronas);
+                estatistica[count][5] = Integer.toString(100 - sincronas);
             }
             else {
                 estatistica[count][2] = "0";
+                estatistica[count][5] = "0";
             }
             estatistica[count][3] = String.valueOf(disciplina.obterCargaHoraria());
             estatistica[count][4] = String.valueOf(disciplina.obterAvalitiva());
             count++;
         }
-        Arrays.sort(estatistica, new Comparator<String[]>(){
-            @Override
-            public int compare(String[] disc, String[] disc2){
-                Periodo periodo1, periodo2;
-                periodo1 = cDisciplina.busca(disc[0]).obterPeriodo();
-                periodo2 = cDisciplina.busca(disc2[0]).obterPeriodo();
-                if( periodo1.obterCodigo().compareTo(periodo2.obterCodigo()) == 0){
-                    return disc[0].toLowerCase().compareTo(disc2[0].toLowerCase());
-                }
-                return periodo1.obterCodigo().compareTo(periodo2.obterCodigo());
-            }
-        });
+
         for(int x = 0; x < count; x++){
-            int assinc =  100-Integer.valueOf(estatistica[x][2]);
             Disciplina d =cDisciplina.busca(estatistica[x][0]);
-            System.out.println("Periodo: "+ d.obterPeriodo().obterCodigo() + " - Codigo: " + 
-                                d.obterCodigo() + " - Nome: "+d.obterNome() + " Atividades: " + 
-                                estatistica[x][1]+" - Sincronas " + estatistica[x][2]+ "% x "+ assinc
-                                +"% Assincronas - Carga Horaria: "+ estatistica[x][3]
-                                +"% - Quantidade de atividades avaliativas: "+ estatistica[x][4] +
-                                "\nAtividades avaliativas:");
-            ArrayList<Atividade> lista = (ArrayList<Atividade>) d.obterAtividades().clone();
+            output += "\n" + d.obterDocente().obterLogin() + ";" + d.obterPeriodo().obterCodigo() + ";" + 
+                                d.obterCodigo() + ";" + d.obterNome() + ";" + 
+                                estatistica[x][1] + ";" + estatistica[x][2] + "%;" + estatistica[x][5]
+                                + "%;" + estatistica[x][3]
+                                + ";";
+            ArrayList<Atividade> lista = (ArrayList<Atividade>)d.obterAtividades().clone();
             Collections.sort(lista);
-            for(Atividade a : lista){
-                if(a instanceof Trabalho || a instanceof Prova){
-                    System.out.println(a);
+
+            int idx = 0;
+            while(lista.size() > idx && !(lista.get(idx).ehAvaliativa()))
+                idx++;
+            if(lista.size() > idx){
+                Atividade aux = lista.remove(idx);
+                output += aux.toString();
+                for(Atividade a : lista){
+                    if(a.ehAvaliativa()){
+                        output += " " + a.toString();
+                    }
                 }
             }
-            System.out.println("");
         }
+
+        output += "\n";
+            
+        FileWriter arquivo = new FileWriter("4-disciplinas.csv");
+        arquivo.write(output);
+        arquivo.close();
+        
     }
 }

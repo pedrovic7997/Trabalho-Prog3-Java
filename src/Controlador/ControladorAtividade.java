@@ -123,14 +123,25 @@ public class ControladorAtividade implements IControlador{
 		LeitorAvaliacao lAvaliacao = LeitorAvaliacao.obterInstancia();
 
 		while(scan.hasNext()){
-			int codigo = scan.nextInt();
-			Disciplina disciplina = cDisciplina.busca(scan.next());
-			Estudante estudante = cEstudante.busca(scan.next());
-			Atividade atividade = lAtividade.busca(codigo-1, disciplina.obterAtividades());
+			String codigoDisc = scan.next();
+			Disciplina disciplina = cDisciplina.busca(codigoDisc);
+			if (disciplina == null){
+				throw new NoSuchElementException("Referência inválida: "+codigoDisc+".");
+			}
+			String matricula = scan.next();
+			Estudante estudante = cEstudante.busca(matricula);
+			if (estudante == null){
+				throw new NoSuchElementException("Referência inválida: "+matricula+".");
+			}
+			int codigoAtiv = scan.nextInt();
+			Atividade atividade = lAtividade.busca(codigoAtiv-1, disciplina.obterAtividades());
+			if (atividade == null){
+				throw new NoSuchElementException("Referência inválida: "+codigoAtiv+".");
+			}
 			Avaliacao avaliacao = lAvaliacao.ler(scan, estudante);
 			if(verificaCadastroAvaliacao(atividade, estudante))
 				throw new Exception("Avaliação repetida: estudante "+estudante.obterMatricula()+ 
-									" para atividade " +codigo +" de "+disciplina.obterCodigo()+"-"+
+									" para atividade " +codigoAtiv +" de "+disciplina.obterCodigo()+"-"+
 									disciplina.obterPeriodo().obterCodigo()+".");
 			atividade.anexaAvaliacao(avaliacao);
 		}

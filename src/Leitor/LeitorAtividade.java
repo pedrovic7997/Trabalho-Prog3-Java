@@ -38,7 +38,7 @@ public class LeitorAtividade extends ILeitor implements Serializable{
     }
 
     public Atividade busca(int posicao, List<Atividade> atividades){
-        if(atividades.size() >= posicao){
+        if(atividades.size() >= posicao && posicao >= 0 ){
             return atividades.get(posicao);
         }
         return null;
@@ -78,7 +78,7 @@ public class LeitorAtividade extends ILeitor implements Serializable{
             
         }
         dataScanner.close();
-        data.set(dia[0],dia[1],dia[2],dia[3],dia[4]);
+        data.set(dia[2],dia[1]-1,dia[0],dia[3],dia[4]);
         scan.nextLine();
         return new Aula(nome,true,data);
     }
@@ -98,7 +98,7 @@ public class LeitorAtividade extends ILeitor implements Serializable{
             }
         }
         dataScanner.close();
-        data.set(dia[0],dia[1],dia[2]);
+        data.set(dia[2],dia[1]-1,dia[0]);
         
         scan.next();
         scan.next();
@@ -136,9 +136,10 @@ public class LeitorAtividade extends ILeitor implements Serializable{
             
         }
         dataScanner.close();
-        data.set(dia[0],dia[1],dia[2],dia[3],dia[4]);
+        data.set(dia[2],dia[1]-1,dia[0],dia[3],dia[4]);
         ArrayList<String> conteudos;
         conteudos = lerConteudos(new Scanner(scan.next()));
+        scan.nextLine();
         return new Prova(nome,true,data,conteudos);
     }
 

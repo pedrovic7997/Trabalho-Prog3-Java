@@ -3,7 +3,7 @@ package Modelo;
 import java.io.Serializable;
 import java.util.*;
 
-public class Disciplina implements Serializable{
+public class Disciplina implements Serializable, Comparable<Disciplina>{
     private String codigo;
     private String nome;
     private Periodo periodo;
@@ -51,12 +51,24 @@ public class Disciplina implements Serializable{
         return notaTotal;
     }
 
-    public int obterAtividadesTotal(){
+    public int obterAvaliacoesTotal(){
         int qtdAvaliacao = 0;
         for(Atividade ativ : atividades){
             qtdAvaliacao += ativ.obterAvaliacoes().size();
         }
         return qtdAvaliacao;
+    }
+
+    public static int comparePeriodo(Disciplina disc1, Disciplina disc2){
+        if( disc1.periodo.obterCodigo().compareTo(disc2.periodo.obterCodigo()) == 0){
+            return disc1.codigo.compareToIgnoreCase(disc2.codigo);
+        }
+        return disc1.periodo.obterCodigo().compareTo(disc2.periodo.obterCodigo());
+    }
+
+    @Override
+    public int compareTo(Disciplina disc2){
+        return nome.compareToIgnoreCase(disc2.nome);
     }
 
     @Override

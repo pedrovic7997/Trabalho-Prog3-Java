@@ -2,6 +2,8 @@ package Leitor;
 
 import java.util.Scanner;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.beans.Transient;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -36,11 +38,17 @@ public class LeitorEstudante extends ILeitor implements Serializable{
     
     public Estudante ler(Scanner scanner){
         String matricula;
-        try {
-            matricula = scanner.next();
-        } catch (Exception e) {
-            throw new RuntimeException("Dado inválido: "+scanner.next());
+        
+        matricula = scanner.next();
+        
+        String pattern = "[^0-9]";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(matricula);
+
+        if(m.find()){
+            throw new RuntimeException("Dado inválido: "+matricula+".");
         }
+        
         if(busca(matricula) != null)
 			throw new IllegalArgumentException("Cadastro repetido: "+matricula+".");
         String nome = scanner.next();

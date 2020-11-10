@@ -2,7 +2,7 @@ package Modelo;
 
 import java.io.Serializable;
 
-public class Periodo implements Serializable{
+public class Periodo implements Serializable, Comparable<Periodo>{
     private int ano;
     private char semestre;
     private String codigo;
@@ -23,6 +23,11 @@ public class Periodo implements Serializable{
 
     public String obterCodigo() {
         return codigo;
+    }
+
+    @Override
+    public int compareTo(Periodo arg0) {
+        return codigo.compareTo(arg0.codigo);
     }
 
     @Override

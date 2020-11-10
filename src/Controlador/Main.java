@@ -32,12 +32,13 @@ public class Main{
 		boolean erro = false;
 		Carregar carregador = new Carregar();
 
-		// try {
+		try {
 			carregador.teste(args);
-		// } catch(Exception e){
-		// 	System.out.println(e.getMessage());
-		// 	erro = true;
-		// }
+		} catch(Exception e){
+			System.out.println(e.getMessage());
+			erro = true;
+			throw e;
+		}
 
 		if(!erro){ 
 			if(!carregador.getWrite()){
@@ -45,7 +46,8 @@ public class Main{
 				salvador.salvaDados("dados.dat");
 			}
 			else {
-				// TODO
+				Relatorio relatorio = new Relatorio();
+				relatorio.escreveRelatorios();
 			}
 		}
  

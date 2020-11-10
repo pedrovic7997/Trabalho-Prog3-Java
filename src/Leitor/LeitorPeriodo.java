@@ -45,8 +45,12 @@ public class LeitorPeriodo extends ILeitor implements Serializable{
         Matcher matcher = pattern.matcher(semestre);
         if(!matcher.matches())
             throw new Exception("Dado invalido: "+ semestre +".");
-                
+
         Periodo periodo = new Periodo(ano, semestre.charAt(0));
+
+        if(busca(periodo.obterCodigo()) != null)
+            throw new IllegalArgumentException("Cadastro repetido: "+periodo+".");
+
         return periodo;
     }
 

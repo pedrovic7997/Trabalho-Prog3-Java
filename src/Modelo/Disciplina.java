@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.*;
 
 public class Disciplina implements Serializable, Comparable<Disciplina>{
+
+    private static final long serialVersionUID = 1L;
     private String codigo;
     private String nome;
     private Periodo periodo;
@@ -44,7 +46,6 @@ public class Disciplina implements Serializable, Comparable<Disciplina>{
 
     public double obterNotaTotal(){
         double notaTotal = 0;
-        int qtdAvaliacao = 0;
         for(Atividade ativ : atividades){
             notaTotal += ativ.calculaNota();
         }

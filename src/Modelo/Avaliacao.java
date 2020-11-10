@@ -3,6 +3,8 @@ package Modelo;
 import java.io.Serializable;
 
 public class Avaliacao implements Serializable{
+
+    private static final long serialVersionUID = 1L;
     private Estudante aluno;
     private double nota;
 

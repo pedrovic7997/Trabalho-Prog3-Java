@@ -4,13 +4,14 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.beans.Transient;
 import java.io.Serializable;
 import java.util.HashMap;
 
 import Modelo.Estudante;
 
 public class LeitorEstudante extends ILeitor implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
     private HashMap<String, Estudante> mapa = new HashMap<>();
     private static LeitorEstudante leitor;
 
@@ -58,12 +59,6 @@ public class LeitorEstudante extends ILeitor implements Serializable{
 
     public void anexaHash(Estudante aluno){
         mapa.put(aluno.obterMatricula(), aluno);
-    }
-
-    public void listar(){
-        for (String i : mapa.keySet()){
-            System.out.println(mapa.get(i));
-        }
     }
 
     public Estudante busca(String matricula){

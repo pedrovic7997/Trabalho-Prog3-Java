@@ -13,6 +13,8 @@ import Modelo.Periodo;
 import Modelo.Docente;
 
 public class LeitorDisciplina extends ILeitor implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
     private HashMap<String, Disciplina> mapa = new HashMap<>();
     private static LeitorDisciplina leitor;
 

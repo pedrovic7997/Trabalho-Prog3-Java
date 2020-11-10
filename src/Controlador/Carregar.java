@@ -1,7 +1,6 @@
 package Controlador;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
@@ -12,8 +11,6 @@ import Leitor.LeitorDisciplinaEstudante;
 import Leitor.LeitorDocente;
 import Leitor.LeitorEstudante;
 import Leitor.LeitorPeriodo;
-import Leitor.LeitorAtividade;
-import Leitor.LeitorAvaliacao;
 
 public class Carregar{
     private boolean read;
@@ -53,15 +50,6 @@ public class Carregar{
     }
 
     public void carregaDados(String caminho) {
-        // try {
-        //     FileInputStream arq = new FileInputStream(caminho);
-        //     ObjectInputStream entrada = new ObjectInputStream(arq);
-        //     Scanner scanner = new Scanner(arq);
-        //     scanner.hasNext();
-        // } catch (Exception e) {
-        //     throw new Exception();
-        // }
-        
         try {
             FileInputStream arq = new FileInputStream(caminho);
             ObjectInputStream entrada = new ObjectInputStream(arq);
@@ -202,12 +190,10 @@ public class Carregar{
                     break;
 
                 case "--read-only":
-                    // System.out.println(args[i] + " dados.dat ");
                     write = false;
                     break;
 
                 case "--write-only":
-                    // System.out.println(args[i] + " dados.dat ");
                     read = false;
                     break;
             

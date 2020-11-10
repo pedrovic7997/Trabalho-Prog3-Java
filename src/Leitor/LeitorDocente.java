@@ -8,6 +8,8 @@ import java.util.HashMap;
 import Modelo.Docente;
 
 public class LeitorDocente extends ILeitor implements Serializable{
+   
+    private static final long serialVersionUID = 1L;
     private HashMap<String, Docente> mapa = new HashMap<>();
     private static LeitorDocente leitor;
 
@@ -43,14 +45,6 @@ public class LeitorDocente extends ILeitor implements Serializable{
 
     public void anexaHash(Docente docente){
         mapa.put(docente.obterLogin(), docente);
-    }
-
-    public void listar(){
-        System.out.println("------------------------");
-        System.out.println("Docentes cadastrados:");
-        for (String i : mapa.keySet()){
-            System.out.println(mapa.get(i));
-        }
     }
 
     public Docente busca(String login){

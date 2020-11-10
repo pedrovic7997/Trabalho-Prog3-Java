@@ -9,6 +9,8 @@ import Modelo.Avaliacao;
 import Modelo.Estudante;
 
 public class LeitorAvaliacao extends ILeitor implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
     private static LeitorAvaliacao leitor;
 
     private LeitorAvaliacao(){}
@@ -19,12 +21,6 @@ public class LeitorAvaliacao extends ILeitor implements Serializable{
             return leitor;
         }
         else return leitor;
-    }
-
-    public void lista(List<Avaliacao> avaliacoes){
-        for(Avaliacao a : avaliacoes){
-            System.out.println(a);
-        }
     }
 
     public ArrayList<Avaliacao> busca(List<Avaliacao> avaliacoes,Estudante estudante){

@@ -2,18 +2,13 @@ package Controlador;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.math.RoundingMode;
+import java.lang.SuppressWarnings;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.InputMismatchException;
-import java.util.NoSuchElementException;
-import java.util.Scanner;
 import java.util.Set;
-
-import javax.print.Doc;
 
 import Modelo.*;
 import Leitor.LeitorPeriodo;
@@ -23,51 +18,10 @@ import Leitor.LeitorDocente;
 import Leitor.LeitorEstudante;
 import Leitor.LeitorAvaliacao;
 
+@SuppressWarnings (value={"unchecked"})
+
 public class Relatorio implements IControlador{
 
-    // public void menu(String func) {
-
-	// 	Scanner scan = new Scanner(System.in);
-	// 	int opcao = -1;
-	// 	do{
-	// 		System.out.println("\nEscolha uma opção:");
-	// 		System.out.println("1-Visão geral do período acadêmico;");
-	// 		System.out.println("2-Estatísticas dos docentes;");
-	// 		System.out.println("3-Estatísticas dos estudantes;");
-	// 		System.out.println("4-Estatísticas das disciplinas de um docente;");
-	// 		System.out.println("0-Voltar ao menu principal:");
-	// 		try{
-	// 			opcao = scan.nextInt();
-	// 		} catch (InputMismatchException e){
-	// 			System.out.println("\nOpcão invalida! Voltando ao menu...\n");
-	// 			// opcao = 0;
-	// 			scan.next();
-	// 			continue;
-	// 		}
-	// 		try{
-	// 			escolherMenu(opcao);
-	// 		} catch (Exception e) {
-	// 			System.out.println(e.getMessage()+"\n");
-	// 		}
-	// 		System.out.println("");
-	// 	}while(opcao != 0);
-    // }
-    
-    // public void escolherMenu(int opcao) throws Exception {
-	// 	switch(opcao){
-	// 		case 1: panoramaPeriodo();
-	// 			break;
-	// 		case 2: estatisticaDocentes();
-	// 			break;
-	// 		case 3: estatisticaEstudantes();
-	// 			break;
-	// 		case 4: estatisticaDisciplinasDocente();
-	// 			break;
-	// 		default :
-	// 			System.out.println("\nVoltando ao menu...");
-	// 	}
-    // }
-    
     public void escreveRelatorios() throws Exception {
         panoramaPeriodo();
         estatisticaDocentes();
@@ -281,7 +235,6 @@ public class Relatorio implements IControlador{
 
     public void estatisticaDisciplinasDocente() throws Exception {
         
-        ControladorDocente cDocente = new ControladorDocente();
         ControladorDisciplina cDisciplina = new ControladorDisciplina();
         LeitorDisciplina lDisciplina = LeitorDisciplina.obterInstancia();
         String output = "Docente;Período;Código;Nome;Qtd. Atividades;% Síncronas;% Assíncronas;CH;Datas Avaliações";
@@ -333,6 +286,7 @@ public class Relatorio implements IControlador{
                                 estatistica[x][1] + ";" + estatistica[x][2] + "%;" + estatistica[x][5]
                                 + "%;" + estatistica[x][3]
                                 + ";";
+            
             ArrayList<Atividade> lista = (ArrayList<Atividade>)d.obterAtividades().clone();
             Collections.sort(lista);
 

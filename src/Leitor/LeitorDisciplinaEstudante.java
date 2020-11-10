@@ -9,7 +9,8 @@ import Modelo.Estudante;
 
 public class LeitorDisciplinaEstudante extends ILeitor implements Serializable{
 
-    HashMap<String,ArrayList<Estudante>> mapDisciplina;
+    private static final long serialVersionUID = 1L;
+    HashMap<String, ArrayList<Estudante>> mapDisciplina;
     HashMap<String,ArrayList<Disciplina>> mapEstudante;
     static LeitorDisciplinaEstudante leitor;
 
@@ -29,20 +30,6 @@ public class LeitorDisciplinaEstudante extends ILeitor implements Serializable{
             return leitor;
         }
         else return leitor;
-    }
-
-    public void lista(Disciplina disciplina){
-        if(mapDisciplina.containsKey(disciplina.obterCodigo()))
-            for(Estudante e : mapDisciplina.get(disciplina.obterCodigo())){
-                System.out.println(e);
-            }
-    }
-
-    public void lista(Estudante estudante){
-        if(mapEstudante.containsKey(estudante.obterMatricula()))
-            for(Disciplina d : mapEstudante.get(estudante.obterMatricula())){
-                System.out.println(d);
-            }
     }
 
     public void adiciona(Disciplina disciplina, Estudante estudante){

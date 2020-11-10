@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 public abstract class Atividade implements Cloneable, Serializable, Comparable<Atividade> {
+    
+    private static final long serialVersionUID = 1L;
     private String nome;
     private Boolean sincrona;
     private ArrayList<Avaliacao> avaliacoes;

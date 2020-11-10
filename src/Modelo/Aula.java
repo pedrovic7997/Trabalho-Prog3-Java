@@ -4,7 +4,10 @@ import java.util.Calendar;
 
 public class Aula extends Atividade{
 
-    public Aula (String nome,Boolean sincrona, Calendar data){
+    
+    private static final long serialVersionUID = 1L;
+
+    public Aula(String nome, Boolean sincrona, Calendar data) {
         super(nome, sincrona);
         this.data = data;
     }

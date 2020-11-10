@@ -3,6 +3,8 @@ package Modelo;
 import java.io.Serializable;
 
 public class Docente implements Serializable, Comparable<Docente>{
+
+    private static final long serialVersionUID = 1L;
     private String login;
     private String nome;
     private String paginaWeb;

@@ -17,6 +17,8 @@ import Modelo.Prova;
 import Modelo.Material;
 
 public class LeitorAtividade extends ILeitor implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
     private static LeitorAtividade leitor;
 
     private LeitorAtividade(){}
@@ -27,14 +29,6 @@ public class LeitorAtividade extends ILeitor implements Serializable{
             return leitor;
         }
         else return leitor;
-    }
-
-    public void lista(List<Atividade> atividades){
-        int cont=1;
-        for(Atividade a : atividades){
-            System.out.println(cont+"-"+a);
-            cont++;
-        }
     }
 
     public Atividade busca(int posicao, List<Atividade> atividades){
@@ -74,6 +68,7 @@ public class LeitorAtividade extends ILeitor implements Serializable{
             try {
                 dia[idx] = Integer.valueOf(elemento);
             } catch (Exception e) {
+                dataScanner.close();
                 throw new Exception("Dado inválido: " + elemento + ".");
             }
         }
@@ -95,6 +90,7 @@ public class LeitorAtividade extends ILeitor implements Serializable{
             try {
                 dia[idx] = Integer.valueOf(elemento);
             } catch (Exception e) {
+                dataScanner.close();
                 throw new Exception("Dado inválido: " + elemento + ".");
             }
         }
@@ -132,6 +128,7 @@ public class LeitorAtividade extends ILeitor implements Serializable{
             try {
                 dia[idx] = Integer.valueOf(elemento);
             } catch (Exception e) {
+                dataScanner.close();
                 throw new Exception("Dado inválido: " + elemento + ".");
             }
         }

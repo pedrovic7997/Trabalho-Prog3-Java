@@ -9,6 +9,8 @@ import java.util.HashMap;
 import Modelo.Periodo;
 
 public class LeitorPeriodo extends ILeitor implements Serializable{
+    
+    private static final long serialVersionUID = 1L;
     private HashMap<String, Periodo> mapa = new HashMap<>();
     private static LeitorPeriodo leitor;
 
@@ -56,12 +58,6 @@ public class LeitorPeriodo extends ILeitor implements Serializable{
 
     public void anexaHash(Periodo periodo){
         mapa.put(periodo.obterCodigo(), periodo);
-    }
-
-    public void listar(){
-        for (String i : mapa.keySet()){
-            System.out.println(mapa.get(i));
-        }
     }
 
     public Periodo busca(String codigo){

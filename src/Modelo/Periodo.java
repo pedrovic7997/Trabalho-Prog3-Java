@@ -3,6 +3,8 @@ package Modelo;
 import java.io.Serializable;
 
 public class Periodo implements Serializable, Comparable<Periodo>{
+
+    private static final long serialVersionUID = 1L;
     private int ano;
     private char semestre;
     private String codigo;

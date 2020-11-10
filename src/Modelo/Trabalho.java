@@ -1,10 +1,11 @@
 package Modelo;
 
-import java.beans.Transient;
 import java.util.Calendar;
 import java.text.SimpleDateFormat;
 
 public class Trabalho extends Atividade{
+    
+    private static final long serialVersionUID = 1L;
     int numMaxPorGrupo;
     int cargaHoraria;
 

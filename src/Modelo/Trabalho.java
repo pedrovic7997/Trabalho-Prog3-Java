@@ -2,6 +2,7 @@ package Modelo;
 
 import java.beans.Transient;
 import java.util.Calendar;
+import java.text.SimpleDateFormat;
 
 public class Trabalho extends Atividade{
     int numMaxPorGrupo;
@@ -25,7 +26,7 @@ public class Trabalho extends Atividade{
 
     @Override
     public String toString(){
-        return "Trabalho: " + this.obterNome() + " - Assincrona - " +
-                data.get(Calendar.DAY_OF_MONTH) + "/" + data.get(Calendar.MONTH) + "/" + data.get(Calendar.YEAR);
+        SimpleDateFormat dt1 = new SimpleDateFormat("dd/MM/yyyy");
+        return dt1.format(data.getTime());
     }
 }

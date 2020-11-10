@@ -2,6 +2,8 @@ package Leitor;
 
 import java.util.Scanner;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.beans.Transient;
 import java.io.Serializable;
 import java.util.HashMap;
@@ -9,7 +11,7 @@ import java.util.HashMap;
 import Modelo.Estudante;
 
 public class LeitorEstudante extends ILeitor implements Serializable{
-    private HashMap<Integer, Estudante> mapa = new HashMap<>();
+    private HashMap<String, Estudante> mapa = new HashMap<>();
     private static LeitorEstudante leitor;
 
     private LeitorEstudante(){}
@@ -22,11 +24,11 @@ public class LeitorEstudante extends ILeitor implements Serializable{
         else return leitor;
     }
 
-    public Set<Integer> obterChaves(){
+    public Set<String> obterChaves(){
         return mapa.keySet(); 
     }
 
-    public HashMap<Integer,Estudante> obterHash(){
+    public HashMap<String,Estudante> obterHash(){
         return mapa;
     }
 
@@ -34,20 +36,22 @@ public class LeitorEstudante extends ILeitor implements Serializable{
         leitor = novo;
     }
     
-    public Estudante ler(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Informe a matricula do estudante: ");
-        int matricula;
-        try {
-            matricula = scanner.nextInt();
-        } catch (Exception e) {
-            throw new RuntimeException("Dado inválido: "+scanner.next());
+    public Estudante ler(Scanner scanner){
+        String matricula;
+        
+        matricula = scanner.next();
+        
+        String pattern = "[^0-9]";
+        Pattern r = Pattern.compile(pattern);
+        Matcher m = r.matcher(matricula);
+
+        if(m.find()){
+            throw new RuntimeException("Dado inválido: "+matricula+".");
         }
+        
         if(busca(matricula) != null)
 			throw new IllegalArgumentException("Cadastro repetido: "+matricula+".");
-        System.out.println("Informe o nome do estudante:  ");
-        scanner.nextLine();
-        String nome = scanner.nextLine();
+        String nome = scanner.next();
         Estudante aluno = new Estudante(matricula, nome);
         return aluno;
     }
@@ -57,12 +61,12 @@ public class LeitorEstudante extends ILeitor implements Serializable{
     }
 
     public void listar(){
-        for (Integer i : mapa.keySet()){
+        for (String i : mapa.keySet()){
             System.out.println(mapa.get(i));
         }
     }
 
-    public Estudante busca(int matricula){
+    public Estudante busca(String matricula){
         if(mapa.containsKey(matricula)){
             return mapa.get(matricula);
         }

@@ -1,6 +1,9 @@
 package Leitor;
 
 import java.util.Scanner;
+
+import Controlador.ControladorDocente;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,19 +34,21 @@ public class LeitorDisciplina extends ILeitor implements Serializable{
         leitor = novo;
     }
 
-    public Disciplina ler(Periodo periodo, Docente professor){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Informe o codigo da disciplina: ");
+    public Disciplina ler(Scanner scanner, Periodo periodo, ControladorDocente controlador) throws Exception {
         String codigo = scanner.next();
         
         if (busca(codigo+"-"+periodo.obterCodigo()) != null){
-            throw new RuntimeException("Cadastro repetido: "+codigo+".");
+            throw new RuntimeException("Cadastro repetido: "+codigo+"-"+periodo.obterCodigo()+".");
         }
-        scanner.nextLine();
-        System.out.println("Informe o nome da disciplina: ");
-        String nome = scanner.nextLine();
+        String nome = scanner.next();
 
-        Disciplina disciplina = new Disciplina(codigo,nome,periodo,professor);
+        String login = scanner.next();
+        Docente docente = controlador.busca(login);
+        if(docente == null){
+            throw new Exception("Referência inválida: " + login + ".");
+        }
+
+        Disciplina disciplina = new Disciplina(codigo, nome, periodo, docente);
         return disciplina;
     }
 

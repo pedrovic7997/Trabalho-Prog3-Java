@@ -37,19 +37,16 @@ public class LeitorAvaliacao extends ILeitor implements Serializable{
         return lista;
     }
 
-    public Avaliacao ler(Estudante aluno){
-
-        // System.out.println("Digite a matricula do aluno: ");
+    public Avaliacao ler(Scanner scan, Estudante aluno) throws Exception {
         
-        Scanner scan = new Scanner(System.in);
-        // Estudante aluno = leitorE.busca(scan.nextInt());
-        // if(aluno != null){
-        System.out.println("Qual a nota desse aluno? ");
-        return new Avaliacao(aluno, scan.nextFloat());
-        // }
-        // else{
-        //     System.out.println("Aluno invalido");
-        //     return null;
-        // }
+        float nota;
+
+        try {
+            nota = scan.nextFloat();
+        } catch (Exception e){
+            throw new Exception("Dado inválido: " + scan.next() + ".");
+        }
+
+        return new Avaliacao(aluno, nota);
     }
 }

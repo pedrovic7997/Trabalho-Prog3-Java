@@ -5,15 +5,24 @@ Dentro do diretório *src*:
 
 ### Para construir os arquivos executáveis: 
 ```
-make
+ant compile
 ```
 
 ### Para rodar:
+#### Read e Write
 ```
-make run
+ant run
+```
+#### Read only
+```
+ant run-read-only
+```
+#### Write only
+```
+ant run-write-only
 ```
 
 ### Para limpar .class:
 ```
-make clean
+ant clean
 ```

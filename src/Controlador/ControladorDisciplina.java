@@ -138,7 +138,7 @@ public class ControladorDisciplina implements IControlador {
 			String codigo = scan.next();
 			Periodo periodo = cPeriodo.busca(codigo);
 			if (periodo == null)
-				throw new Exception("Referência inválida: " + codigo);
+				throw new Exception("Referência inválida: " + codigo + ".");
 			Disciplina disciplina = leitor.ler(scan, periodo, cDocente);
 			leitor.anexaHash(disciplina);
 		}
@@ -151,12 +151,12 @@ public class ControladorDisciplina implements IControlador {
 			String codigo = scan.next();
 			Disciplina disciplina = busca(codigo);
 			if(disciplina==null){
-				throw new NoSuchElementException("Referência inválida: "+codigo+".");
+				throw new NoSuchElementException("Referência inválida: " + codigo + ".");
 			}
 			String matricula = scan.next();
 			Estudante estudante = cEstudante.busca(matricula);
 			if(estudante==null){
-				throw new NoSuchElementException("Referência inválida: "+matricula+".");
+				throw new NoSuchElementException("Referência inválida: " + matricula + ".");
 			}
 			if(verificaMatriculaEstudante(disciplina, estudante.obterMatricula()))
 				throw new Exception("Matrícula repetida: "+estudante.obterMatricula()+

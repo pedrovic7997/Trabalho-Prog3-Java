@@ -57,7 +57,7 @@ public class LeitorAtividade extends ILeitor implements Serializable{
         if(tipo.equalsIgnoreCase("e"))
             return criaEstudo(nome, scan);
 
-        throw new Exception("Tipo de avaliacao errada: " + tipo);
+        throw new Exception("Dado inválido: " + tipo + ".");
     }
 
     private Aula criaAula(String nome, Scanner scan) throws Exception{
@@ -70,12 +70,12 @@ public class LeitorAtividade extends ILeitor implements Serializable{
         
         dataScanner.useDelimiter("[/ :]");
         for(int idx = 0; idx<5; idx++){
+            String elemento = dataScanner.next();
             try {
-                dia[idx] = Integer.valueOf(dataScanner.next());
+                dia[idx] = Integer.valueOf(elemento);
             } catch (Exception e) {
-                throw new Exception("Dado invalido: "+ scan.next()+".");
+                throw new Exception("Dado inválido: " + elemento + ".");
             }
-            
         }
         dataScanner.close();
         data.set(dia[2],dia[1]-1,dia[0],dia[3],dia[4]);
@@ -91,10 +91,11 @@ public class LeitorAtividade extends ILeitor implements Serializable{
         
         int dia[] = new int[3];
         for(int idx = 0; idx<3; idx++){
+            String elemento = dataScanner.next();
             try {
-                dia[idx] = Integer.valueOf(dataScanner.next());
+                dia[idx] = Integer.valueOf(elemento);
             } catch (Exception e) {
-                throw new Exception("Dado invalido: "+ scan.next()+".");
+                throw new Exception("Dado inválido: " + elemento + ".");
             }
         }
         dataScanner.close();
@@ -110,7 +111,6 @@ public class LeitorAtividade extends ILeitor implements Serializable{
     private Estudo criaEstudo(String nome, Scanner scan){
         scan.next();
         scan.next();
-        // TODO: PEGAR CONTEUDO ([NOME] E (LINK)) COM REGEX
         ArrayList<Material> materiais = lerMateriais(new Scanner(scan.next()));
         scan.nextLine();
         return new Estudo(nome,false,materiais);
@@ -128,12 +128,12 @@ public class LeitorAtividade extends ILeitor implements Serializable{
         
         dataScanner.useDelimiter("[/ :]");
         for(int idx = 0; idx<5; idx++){
+            String elemento = dataScanner.next();
             try {
-                dia[idx] = dia[idx] = Integer.valueOf(dataScanner.next());
+                dia[idx] = Integer.valueOf(elemento);
             } catch (Exception e) {
-                throw new Exception("Dado invalido: "+ scan.next()+".");
+                throw new Exception("Dado inválido: " + elemento + ".");
             }
-            
         }
         dataScanner.close();
         data.set(dia[2],dia[1]-1,dia[0],dia[3],dia[4]);

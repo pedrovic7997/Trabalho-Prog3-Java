@@ -142,7 +142,7 @@ public class Carregar{
 
     public void csvCarregaDados(ArrayList<String> arquivos) throws Exception{
         
-        // try {
+        try {
             if(arquivos.get(0) != null)
                 csvCarregaPeriodo(arquivos.get(0));
             if(arquivos.get(1) != null)
@@ -157,14 +157,16 @@ public class Carregar{
                 csvCarregaAtividade(arquivos.get(5));
             if(arquivos.get(6) != null)
                 csvCarregaAvaliacao(arquivos.get(6));
-        // } catch (Exception e) {
-        //     throw new Exception(e.getMessage());
-        // }
+        }catch (IOException ioe){
+            throw new Exception("Erro de I/O.");
+        } catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
         
     }
 
 
-    public void teste(String args[]) throws Exception {
+    public void executa(String args[]) throws Exception {
         String arqPeriodo=null, arqDocente=null, arqDisciplina=null, arqEstudantes=null, arqMatriculas=null, arqAtividades=null, arqAvaliacoes=null;
         ArrayList<String> arquivos = new ArrayList<>();
                 

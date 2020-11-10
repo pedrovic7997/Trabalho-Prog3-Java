@@ -36,7 +36,7 @@ public class Main {
 		Carregar carregador = new Carregar();
 
 		try {
-			carregador.teste(args);
+			carregador.executa(args);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			erro = true;

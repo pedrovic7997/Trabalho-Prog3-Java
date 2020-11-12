@@ -24,9 +24,12 @@ public class ControladorAtividade implements IControlador{
 		ControladorDisciplina controlador = new ControladorDisciplina();
 		
 		while(scan.hasNext()){
-			Disciplina disciplina = controlador.busca(scan.next());
-			Atividade atividade = leitor.ler(scan);
-			disciplina.anexaAtividade(atividade);
+                    String codigoDisc = scan.next();
+                    Disciplina disciplina = controlador.busca(codigoDisc);
+                    if(disciplina == null)
+                        throw new Exception("Referência inválida: "+codigoDisc+".");
+                    Atividade atividade = leitor.ler(scan);
+                    disciplina.anexaAtividade(atividade);
 		}
 	}
 

@@ -99,8 +99,21 @@ public class LeitorAtividade extends ILeitor implements Serializable{
         
         scan.next();
         scan.next();
-        int numAlunos = scan.nextInt();
-        int cargaHoraria = scan.nextInt();
+        int numAlunos = 0, cargaHoraria = 0;
+        String aux;
+        try{
+            aux = scan.next();
+            numAlunos = Integer.valueOf(aux);
+        } catch (Exception e){
+            throw new Exception("Dado inválido: " + scan.next() + ".");
+        }
+        try{
+            aux = scan.next();
+            cargaHoraria = Integer.valueOf(aux);
+        } catch (Exception e){
+            throw new Exception("Dado inválido: " + scan.next() + ".");
+        }
+        scan.nextLine();
         return new Trabalho(nome,false,data,numAlunos,cargaHoraria);
     }
 

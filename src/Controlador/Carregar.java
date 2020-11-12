@@ -69,7 +69,7 @@ public class Carregar{
         FileInputStream arq = new FileInputStream(entrada);
         ControladorEstudante controlador = new ControladorEstudante();
         Scanner scan = new Scanner(arq);
-        scan.useDelimiter("[;\n]");
+        scan.useDelimiter("[;\r\n]");
         scan.nextLine();
         controlador.ler(scan);
     }
@@ -78,7 +78,7 @@ public class Carregar{
         FileInputStream arq = new FileInputStream(entrada);
         ControladorDocente controlador = new ControladorDocente();
         Scanner scan = new Scanner(arq);
-        scan.useDelimiter("[;\n]");
+        scan.useDelimiter("[;\r\n]");
         scan.nextLine();
         controlador.ler(scan);
     }
@@ -87,7 +87,7 @@ public class Carregar{
         FileInputStream arq = new FileInputStream(entrada);
         ControladorDisciplina controlador = new ControladorDisciplina();
         Scanner scan = new Scanner(arq);
-        scan.useDelimiter("[;\n]");
+        scan.useDelimiter("[;\r\n]");
         scan.nextLine();
         controlador.ler(scan);
     }
@@ -96,7 +96,7 @@ public class Carregar{
         FileInputStream arq = new FileInputStream(entrada);
         ControladorDisciplina controlador = new ControladorDisciplina();
         Scanner scan = new Scanner(arq);
-        scan.useDelimiter("[;\n]");
+        scan.useDelimiter("[;\r\n]");
         scan.nextLine();
         controlador.lerMatricula(scan);
     }
@@ -105,7 +105,7 @@ public class Carregar{
         FileInputStream arq = new FileInputStream(entrada);
         ControladorPeriodo controlador = new ControladorPeriodo();
         Scanner scan = new Scanner(arq);
-        scan.useDelimiter("[;\n]");
+        scan.useDelimiter("[;\r\n]");
         scan.nextLine();
         controlador.ler(scan);
     }
@@ -114,7 +114,7 @@ public class Carregar{
         FileInputStream arq = new FileInputStream(entrada);
         ControladorAtividade controlador = new ControladorAtividade();
         Scanner scan = new Scanner(arq);
-        scan.useDelimiter("[;\n]");
+        scan.useDelimiter("[;\r\n]");
         scan.nextLine();
         controlador.ler(scan);
     }
@@ -123,7 +123,7 @@ public class Carregar{
         FileInputStream arq = new FileInputStream(entrada);
         ControladorAtividade controlador = new ControladorAtividade();
         Scanner scan = new Scanner(arq);
-        scan.useDelimiter("[;\n]");
+        scan.useDelimiter("[;\r\n]");
         scan.nextLine();
         controlador.lerAvaliacao(scan);
     }

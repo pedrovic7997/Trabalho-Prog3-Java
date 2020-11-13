@@ -49,7 +49,7 @@ public class Carregar{
         LeitorPeriodo.setInstancia(leitor);
     }
 
-    public void carregaDados(String caminho) {
+    public void carregaDados(String caminho) throws Exception {
         try {
             FileInputStream arq = new FileInputStream(caminho);
             ObjectInputStream entrada = new ObjectInputStream(arq);
@@ -60,7 +60,7 @@ public class Carregar{
             carregaDisciplina(entrada);
             entrada.close();
         } catch (Exception e) {
-            System.out.println("Erro de I/O.");
+            throw new Exception("Erro de I/O.");
         }
         
     }

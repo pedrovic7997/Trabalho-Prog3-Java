@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.lang.SuppressWarnings;
 import java.math.RoundingMode;
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.text.DecimalFormat;
 import java.text.Normalizer;
 import java.util.ArrayList;
@@ -209,10 +208,6 @@ public class Relatorio implements IControlador {
                     }
                 }
             }
-
-            DecimalFormat df = new DecimalFormat("#0.0");
-            // df.setRoundingMode(RoundingMode.HALF_UP);
-            // MathContext mc = new MathContext(1);
 
             if (periodos.size() != 0) {
                 double valor = (double)disciplinas.size() / periodos.size();

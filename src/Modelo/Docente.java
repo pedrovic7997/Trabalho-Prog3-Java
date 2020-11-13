@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.text.Normalizer;
 
 public class Docente implements Serializable, Comparable<Docente>{
 
@@ -35,7 +36,13 @@ public class Docente implements Serializable, Comparable<Docente>{
 
     @Override
     public int compareTo(Docente arg0) {
-        return arg0.nome.compareTo(nome);
+        String str1 = Normalizer
+                        .normalize(arg0.nome, Normalizer.Form.NFD)
+                        .replaceAll("[^\\p{ASCII}]", "");
+        String str2 = Normalizer
+                        .normalize(nome, Normalizer.Form.NFD)
+                        .replaceAll("[^\\p{ASCII}]", "");
+        return str1.compareTo(str2);
     }
 
     @Override

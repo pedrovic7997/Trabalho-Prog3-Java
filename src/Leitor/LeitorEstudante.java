@@ -40,7 +40,7 @@ public class LeitorEstudante extends ILeitor implements Serializable{
     public Estudante ler(Scanner scanner){
         String matricula;
         
-        matricula = scanner.next();
+        matricula = scanner.next().trim();
         
         String pattern = "[^0-9]";
         Pattern r = Pattern.compile(pattern);
@@ -52,8 +52,10 @@ public class LeitorEstudante extends ILeitor implements Serializable{
         
         if(busca(matricula) != null)
 			throw new IllegalArgumentException("Cadastro repetido: "+matricula+".");
-        String nome = scanner.next();
+        String nome = scanner.next().trim().replaceAll(" +", " ");
         Estudante aluno = new Estudante(matricula, nome);
+        if(scanner.hasNext())
+            scanner.nextLine();
         return aluno;
     }
 

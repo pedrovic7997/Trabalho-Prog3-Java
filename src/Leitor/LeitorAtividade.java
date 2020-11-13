@@ -39,8 +39,8 @@ public class LeitorAtividade extends ILeitor implements Serializable{
     }
 
     public Atividade ler(Scanner scan) throws Exception{
-        String nome=scan.next();
-        String tipo=scan.next();
+        String nome=scan.next().trim();
+        String tipo=scan.next().trim();
 
         if(tipo.equalsIgnoreCase("a"))
             return criaAula(nome, scan);
@@ -55,8 +55,8 @@ public class LeitorAtividade extends ILeitor implements Serializable{
     }
 
     private Aula criaAula(String nome, Scanner scan) throws Exception{
-        String dataString = scan.next();
-        dataString += " " + scan.next();
+        String dataString = scan.next().trim();
+        dataString += " " + scan.next().trim();
         Scanner dataScanner = new Scanner(dataString);
         
         Calendar data = Calendar.getInstance();
@@ -64,7 +64,7 @@ public class LeitorAtividade extends ILeitor implements Serializable{
         
         dataScanner.useDelimiter("[/ :]");
         for(int idx = 0; idx<5; idx++){
-            String elemento = dataScanner.next();
+            String elemento = dataScanner.next().trim();
             try {
                 dia[idx] = Integer.valueOf(elemento);
             } catch (Exception e) {
@@ -74,19 +74,20 @@ public class LeitorAtividade extends ILeitor implements Serializable{
         }
         dataScanner.close();
         data.set(dia[2],dia[1]-1,dia[0],dia[3],dia[4]);
-        scan.nextLine();
+        if(scan.hasNext())
+            scan.nextLine();
         return new Aula(nome,true,data);
     }
 
     private Trabalho criaTrabalho(String nome, Scanner scan) throws Exception {
-        String dataString = scan.next();
+        String dataString = scan.next().trim();
         Scanner dataScanner = new Scanner(dataString);
         dataScanner.useDelimiter("/");
         Calendar data = Calendar.getInstance();
         
         int dia[] = new int[3];
         for(int idx = 0; idx<3; idx++){
-            String elemento = dataScanner.next();
+            String elemento = dataScanner.next().trim();
             try {
                 dia[idx] = Integer.valueOf(elemento);
             } catch (Exception e) {
@@ -97,38 +98,40 @@ public class LeitorAtividade extends ILeitor implements Serializable{
         dataScanner.close();
         data.set(dia[2],dia[1]-1,dia[0]);
         
-        scan.next();
-        scan.next();
+        scan.next().trim();
+        scan.next().trim();
         int numAlunos = 0, cargaHoraria = 0;
         String aux;
         try{
-            aux = scan.next();
+            aux = scan.next().trim();
             numAlunos = Integer.valueOf(aux);
         } catch (Exception e){
             throw new Exception("Dado inválido: " + scan.next() + ".");
         }
         try{
-            aux = scan.next();
+            aux = scan.next().trim();
             cargaHoraria = Integer.valueOf(aux);
         } catch (Exception e){
             throw new Exception("Dado inválido: " + scan.next() + ".");
         }
-        scan.nextLine();
+        if(scan.hasNext())
+            scan.nextLine();
         return new Trabalho(nome,false,data,numAlunos,cargaHoraria);
     }
 
     private Estudo criaEstudo(String nome, Scanner scan){
-        scan.next();
-        scan.next();
+        scan.next().trim();
+        scan.next().trim();
         ArrayList<Material> materiais = lerMateriais(new Scanner(scan.next()));
-        scan.nextLine();
+        if(scan.hasNext())
+            scan.nextLine();
         return new Estudo(nome,false,materiais);
     }
 
     private Prova criaProva(String nome, Scanner scan) throws Exception {
-        String dataString = scan.next();
+        String dataString = scan.next().trim();
         dataString += " ";
-        dataString += scan.next();
+        dataString += scan.next().trim();
         Scanner dataScanner = new Scanner(dataString);
         
         Calendar data = Calendar.getInstance();
@@ -137,7 +140,7 @@ public class LeitorAtividade extends ILeitor implements Serializable{
         
         dataScanner.useDelimiter("[/ :]");
         for(int idx = 0; idx<5; idx++){
-            String elemento = dataScanner.next();
+            String elemento = dataScanner.next().trim();
             try {
                 dia[idx] = Integer.valueOf(elemento);
             } catch (Exception e) {
@@ -149,7 +152,8 @@ public class LeitorAtividade extends ILeitor implements Serializable{
         data.set(dia[2],dia[1]-1,dia[0],dia[3],dia[4]);
         ArrayList<String> conteudos;
         conteudos = lerConteudos(new Scanner(scan.next()));
-        scan.nextLine();
+        if(scan.hasNext())
+            scan.nextLine();
         return new Prova(nome,true,data,conteudos);
     }
 
@@ -178,7 +182,7 @@ public class LeitorAtividade extends ILeitor implements Serializable{
 
         scan.useDelimiter(".");
         while(scan.hasNext()){
-            nome = scan.next();
+            nome = scan.next().trim();
             if (!nome.isEmpty()){
                 lista.add(nome);
             }

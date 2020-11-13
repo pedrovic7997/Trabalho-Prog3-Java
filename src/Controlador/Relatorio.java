@@ -3,7 +3,11 @@ package Controlador;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.SuppressWarnings;
+import java.math.RoundingMode;
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.text.DecimalFormat;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -49,12 +53,21 @@ public class Relatorio implements IControlador {
             Collections.sort(list);
             for (Disciplina d : list) {
                 ArrayList<Estudante> list2 = lDisciplinaEstudante.busca(d);
-                output += "\n" + periodo.obterCodigo() + ";" + d.obterCodigo()
-                        + ";" + d.obterNome()
-                        + ";" + d.obterDocente().obterNome()
-                        + ";" + d.obterDocente().obterLogin() + "@ufes.br;"
-                        + list2.size() + ";"
-                        + d.obterAtividades().size();
+                if(list2 == null){
+                    output += "\n" + periodo.obterCodigo() + ";" + d.obterCodigo()
+                            + ";" + d.obterNome()
+                            + ";" + d.obterDocente().obterNome()
+                            + ";" + d.obterDocente().obterLogin() + "@ufes.br;"
+                            + "0" + ";"
+                            + d.obterAtividades().size();
+                } else {
+                    output += "\n" + periodo.obterCodigo() + ";" + d.obterCodigo()
+                            + ";" + d.obterNome()
+                            + ";" + d.obterDocente().obterNome()
+                            + ";" + d.obterDocente().obterLogin() + "@ufes.br;"
+                            + list2.size() + ";"
+                            + d.obterAtividades().size();
+                }
             }
         }
         output += "\n";
@@ -132,7 +145,13 @@ public class Relatorio implements IControlador {
         Arrays.sort(estatistica, new Comparator<String[]>() {
             @Override
             public int compare(String[] nome1, String[] nome2) {
-                return nome2[0].toLowerCase().compareTo(nome1[0].toLowerCase());
+                String str1 = Normalizer
+                    .normalize(nome1[0], Normalizer.Form.NFD)
+                    .replaceAll("[^\\p{ASCII}]", "");
+                String str2 = Normalizer
+                    .normalize(nome2[0], Normalizer.Form.NFD)
+                    .replaceAll("[^\\p{ASCII}]", "");
+                return str2.compareToIgnoreCase(str1);
             }
         });
 
@@ -165,12 +184,12 @@ public class Relatorio implements IControlador {
             double mediaTotal = 0;
             int qtdAvaliacoes = 0;
             ArrayList<Periodo> periodos = new ArrayList<>();
-            Boolean possui = false;
 
             estatistica[count][0] = matricula;
             if (disciplinas != null) {
                 for (int i = 0; i < disciplinas.size(); i++) {
 
+                    Boolean possui = false;
                     for (Periodo periodo : periodos) {
                         if (disciplinas.get(i).obterPeriodo() == periodo) {
                             possui = true;
@@ -191,24 +210,28 @@ public class Relatorio implements IControlador {
                 }
             }
 
+            DecimalFormat df = new DecimalFormat("#0.0");
+            // df.setRoundingMode(RoundingMode.HALF_UP);
+            // MathContext mc = new MathContext(1);
+
             if (periodos.size() != 0) {
-                float valor = (float) disciplinas.size() / periodos.size();
-                DecimalFormat df = new DecimalFormat("#0.0");
-                estatistica[count][1] = df.format(valor);
+                double valor = (double)disciplinas.size() / periodos.size();
+                BigDecimal media  = BigDecimal.valueOf(valor).setScale(1, RoundingMode.HALF_EVEN);
+                estatistica[count][1] = String.format("%.1f",media);
             } else {
                 estatistica[count][1] = "0,0";
             }
             if (disciplinas != null && disciplinas.size() != 0) {
-                float valor = (float) qtdAvaliacoes / disciplinas.size();
-                DecimalFormat df = new DecimalFormat("#0.0");
-                estatistica[count][2] = df.format(valor);
+                double valor = (double) qtdAvaliacoes / disciplinas.size();
+                BigDecimal media  = BigDecimal.valueOf(valor).setScale(1, RoundingMode.HALF_EVEN);
+                estatistica[count][2] = String.format("%.1f",media);
             } else {
                 estatistica[count][2] = "0,0";
             }
             if (qtdAvaliacoes != 0) {
-                float valor = (float) mediaTotal / qtdAvaliacoes;
-                DecimalFormat df = new DecimalFormat("#0.0");
-                estatistica[count][3] = df.format(valor);
+                double valor = (double) mediaTotal / qtdAvaliacoes;
+                BigDecimal media  = BigDecimal.valueOf(valor).setScale(1, RoundingMode.HALF_EVEN);
+                estatistica[count][3] = String.format("%.1f",media);
             } else {
                 estatistica[count][3] = "0,0";
             }
@@ -219,8 +242,13 @@ public class Relatorio implements IControlador {
             @Override
             public int compare(String[] aluno1, String[] aluno2) {
                 if (aluno1[4].equals(aluno2[4])) {
-                    return lEstudante.busca(aluno1[0]).obterNome().compareToIgnoreCase(
-                            lEstudante.busca(aluno2[0]).obterNome());
+                    String str1 = Normalizer
+                        .normalize(lEstudante.busca(aluno1[0]).obterNome(), Normalizer.Form.NFD)
+                        .replaceAll("[^\\p{ASCII}]", "");
+                    String str2 = Normalizer
+                        .normalize(lEstudante.busca(aluno2[0]).obterNome(), Normalizer.Form.NFD)
+                        .replaceAll("[^\\p{ASCII}]", "");
+                    return str1.compareToIgnoreCase(str2);
                 }
                 return (Integer.valueOf(aluno2[4]) - Integer.valueOf(aluno1[4]));
             }

@@ -42,7 +42,8 @@ public class LeitorAvaliacao extends ILeitor implements Serializable{
         } catch (Exception e){
             throw new Exception("Dado inválido: " + scan.next() + ".");
         }
-        scan.nextLine();
+        if(scan.hasNext())
+            scan.nextLine();
 
         return new Avaliacao(aluno, nota);
     }

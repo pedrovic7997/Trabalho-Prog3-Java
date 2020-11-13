@@ -32,12 +32,12 @@ public class LeitorDocente extends ILeitor implements Serializable{
     }
 
     public Docente ler(Scanner scanner){
-        String login = scanner.next();
+        String login = scanner.next().trim();
         if(leitor.busca(login) != null)
 			throw new IllegalArgumentException("Cadastro repetido: "+login+".");
-        String nome = scanner.next();
+        String nome = scanner.next().trim();
         Docente docente;
-        String site = scanner.next();
+        String site = scanner.next().trim();
         docente = new Docente(login,nome,site);
         
         return docente;

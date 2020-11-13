@@ -38,16 +38,16 @@ public class LeitorDisciplinaEstudante extends ILeitor implements Serializable{
         }
         mapEstudante.get(estudante.obterMatricula()).add(disciplina);
 
-        if(!mapDisciplina.containsKey(disciplina.obterCodigo())){
-            mapDisciplina.put(disciplina.obterCodigo(),new ArrayList<>());
+        if(!mapDisciplina.containsKey(disciplina.obterCodigo() + disciplina.obterPeriodo().obterCodigo())){
+            mapDisciplina.put(disciplina.obterCodigo() + disciplina.obterPeriodo().obterCodigo(),new ArrayList<>());
         }
-        mapDisciplina.get(disciplina.obterCodigo()).add(estudante);
+        mapDisciplina.get(disciplina.obterCodigo() + disciplina.obterPeriodo().obterCodigo()).add(estudante);
     }
 
     public Estudante busca(Disciplina disciplina,String matricula){
-        if (!mapDisciplina.containsKey(disciplina.obterCodigo()))
+        if (!mapDisciplina.containsKey(disciplina.obterCodigo() + disciplina.obterPeriodo().obterCodigo()))
             return null;
-        for(Estudante e : mapDisciplina.get(disciplina.obterCodigo())){
+        for(Estudante e : mapDisciplina.get(disciplina.obterCodigo() + disciplina.obterPeriodo().obterCodigo())){
             if( e.obterMatricula()==matricula)
                 return e;
         }
@@ -55,7 +55,7 @@ public class LeitorDisciplinaEstudante extends ILeitor implements Serializable{
     }
 
     public ArrayList<Estudante> busca(Disciplina disciplina){
-        return mapDisciplina.get(disciplina.obterCodigo());
+        return mapDisciplina.get(disciplina.obterCodigo() + disciplina.obterPeriodo().obterCodigo());
     }
     public ArrayList<Disciplina> busca(Estudante estudante){
         return mapEstudante.get(estudante.obterMatricula());

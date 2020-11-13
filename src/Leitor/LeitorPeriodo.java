@@ -42,7 +42,7 @@ public class LeitorPeriodo extends ILeitor implements Serializable{
         }
 
         String semestre = "";
-        semestre = scanner.next();
+        semestre = scanner.next().trim();
         Pattern pattern = Pattern.compile("[0-9A-Za-z]");
         Matcher matcher = pattern.matcher(semestre);
         if(!matcher.matches())

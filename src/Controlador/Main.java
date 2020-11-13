@@ -9,7 +9,6 @@ public class Main {
 			carregador.executa(args);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-//			e.printStackTrace();
 			erro = true;
 		}
 
@@ -23,7 +22,6 @@ public class Main {
 					relatorio.escreveRelatorios();
 				} catch (Exception e) {
 					System.out.println(e.getMessage());
-//					e.printStackTrace();
 				}
 			}
 		}

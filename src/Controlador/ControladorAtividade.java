@@ -24,7 +24,7 @@ public class ControladorAtividade implements IControlador{
 		ControladorDisciplina controlador = new ControladorDisciplina();
 		
 		while(scan.hasNext()){
-                    String codigoDisc = scan.next();
+                    String codigoDisc = scan.next().trim();
                     Disciplina disciplina = controlador.busca(codigoDisc);
                     if(disciplina == null)
                         throw new Exception("Referência inválida: "+codigoDisc+".");
@@ -40,12 +40,12 @@ public class ControladorAtividade implements IControlador{
 		LeitorAvaliacao lAvaliacao = LeitorAvaliacao.obterInstancia();
 
 		while(scan.hasNext()){
-			String codigoDisc = scan.next();
+			String codigoDisc = scan.next().trim();
 			Disciplina disciplina = cDisciplina.busca(codigoDisc);
 			if (disciplina == null){
 				throw new NoSuchElementException("Referência inválida: "+codigoDisc+".");
 			}
-			String matricula = scan.next();
+			String matricula = scan.next().trim();
 			Estudante estudante = cEstudante.busca(matricula);
 			if (estudante == null){
 				throw new NoSuchElementException("Referência inválida: "+matricula+".");

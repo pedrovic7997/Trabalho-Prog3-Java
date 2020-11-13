@@ -39,7 +39,7 @@ public class ControladorDisciplina implements IControlador {
 		ControladorDocente cDocente = new ControladorDocente();
 		ControladorPeriodo cPeriodo = new ControladorPeriodo();
 		while(scan.hasNext()){
-			String codigo = scan.next();
+			String codigo = scan.next().trim();
 			Periodo periodo = cPeriodo.busca(codigo);
 			if (periodo == null)
 				throw new Exception("Referência inválida: " + codigo + ".");
@@ -52,12 +52,12 @@ public class ControladorDisciplina implements IControlador {
 		ControladorEstudante cEstudante = new ControladorEstudante();
 		LeitorDisciplinaEstudante lDisciplinaEstudante = LeitorDisciplinaEstudante.obterInstancia();
 		while(scan.hasNext()){
-			String codigo = scan.next();
+			String codigo = scan.next().trim();
 			Disciplina disciplina = busca(codigo);
 			if(disciplina==null){
 				throw new NoSuchElementException("Referência inválida: " + codigo + ".");
 			}
-			String matricula = scan.next();
+			String matricula = scan.next().trim();
 			Estudante estudante = cEstudante.busca(matricula);
 			if(estudante==null){
 				throw new NoSuchElementException("Referência inválida: " + matricula + ".");
@@ -67,7 +67,10 @@ public class ControladorDisciplina implements IControlador {
 							" em "+disciplina.obterCodigo()+"-"+disciplina.obterPeriodo().obterCodigo()+
 							".");
 			lDisciplinaEstudante.adiciona(disciplina, estudante);
+			if(scan.hasNext())
+				scan.nextLine();
 		}
+                
 	}
 
 }

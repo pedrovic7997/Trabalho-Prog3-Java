@@ -37,18 +37,20 @@ public class LeitorDisciplina extends ILeitor implements Serializable{
     }
 
     public Disciplina ler(Scanner scanner, Periodo periodo, ControladorDocente controlador) throws Exception {
-        String codigo = scanner.next();
+        String codigo = scanner.next().trim();
         
         if (busca(codigo+"-"+periodo.obterCodigo()) != null){
             throw new RuntimeException("Cadastro repetido: "+codigo+"-"+periodo.obterCodigo()+".");
         }
-        String nome = scanner.next();
+        String nome = scanner.next().trim();
 
-        String login = scanner.next();
+        String login = scanner.next().trim();
         Docente docente = controlador.busca(login);
         if(docente == null){
             throw new Exception("Referência inválida: " + login + ".");
         }
+        if(scanner.hasNext())
+            scanner.nextLine();
 
         Disciplina disciplina = new Disciplina(codigo, nome, periodo, docente);
         return disciplina;

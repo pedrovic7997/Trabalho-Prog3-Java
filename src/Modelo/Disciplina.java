@@ -1,6 +1,7 @@
 package Modelo;
 
 import java.io.Serializable;
+import java.text.Collator;
 import java.util.*;
 
 public class Disciplina implements Serializable, Comparable<Disciplina>{
@@ -69,7 +70,8 @@ public class Disciplina implements Serializable, Comparable<Disciplina>{
 
     @Override
     public int compareTo(Disciplina disc2){
-        return nome.compareToIgnoreCase(disc2.nome);
+        Collator c = Collator.getInstance(Locale.getDefault());
+        return c.compare(nome, disc2.nome);
     }
 
     @Override

@@ -145,7 +145,7 @@ public class Carregar{
                 csvCarregaAtividade(arquivos.get(5));
             if(arquivos.get(6) != null)
                 csvCarregaAvaliacao(arquivos.get(6));
-        }catch (IOException ioe){
+        } catch (IOException ioe) {
             throw new Exception("Erro de I/O.");
         } catch (Exception e) {
             throw new Exception(e.getMessage());

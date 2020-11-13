@@ -1,7 +1,7 @@
 # Trabalho-Prog3-Java
 Trabalho para matéria Programação III
 
-Para rodar manualmente, basta os arquivos CSV's estarem na pasta ***src*** e executar os comandos abaixo (no diretorio do build.xml).
+Para rodar manualmente, basta os arquivos CSV's estarem no mesmo diretório que ***src*** e build.xml, daí só executar os comandos abaixo.
 
 ### Para construir os arquivos executáveis: 
 ```

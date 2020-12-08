@@ -75,7 +75,7 @@
          <fileset dir="." includes="*.txt" />
       </delete>
       <delete>
-         <fileset dir="." includes="*.csv" />
+         <fileset dir="." includes="[1-4]-*.csv" />
       </delete>
       <delete>
          <fileset dir="." includes="*.dat" />

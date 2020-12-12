@@ -1,5 +1,5 @@
 prefix=./
-bindir=$(prefix)/bin
+bindir=$(prefix)/bin/
 CC = g++
 FLAGS = -lm -g
 EXEC = main
@@ -12,13 +12,13 @@ OBJM= $(SRCM:.c=.o)
 OBJL= $(SRCL:.c=.o)
 OBJC= $(SRCC:.c=.o)
 
-all : $(EXEC)
+all: $(EXEC)
 
 main: $(OBJ) $(OBJM) $(OBJL) $(OBJC) 
 	$(CC) $^ -o $@
 
 %.o: %.c
-	@$(CC) -o $@ -c $< $(CFLAGS)
+	@$(CC) -o $(bindir)$@ -c $< $(CFLAGS)
 
 clean: main
 	@rm $^

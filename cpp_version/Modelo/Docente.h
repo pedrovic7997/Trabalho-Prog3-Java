@@ -3,13 +3,14 @@
 
 #include <iostream>
 #include <string>
-#include "Disciplina.h"
 #include "Periodo.h"
 #include "Atividade.h"
 #include "../Leitor/LeitorDisciplina.h"
 #include "../Leitor/LeitorPeriodo.h"
 
 using namespace std;
+
+class disciplina{};
 
 class Docente {
     string login;

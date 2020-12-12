@@ -43,11 +43,11 @@ int Atividade :: obterQtdAvaliacoes(){
 
 ostream& operator<< (ostream& os, Atividade &atividade){
     if(atividade.obterSincrona()){
-        os << "Nome: " << atividade.nome << " - Sincrona";
+        os << "Nome: " << atividade.nome << " - Sincrona" << endl;
         return os;
     }
     else{
-        os << "Nome: " << atividade.nome << " - Assincrona";
+        os << "Nome: " << atividade.nome << " - Assincrona" << endl;
         return os;
     }
 }

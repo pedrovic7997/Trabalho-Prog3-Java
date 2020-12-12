@@ -102,6 +102,6 @@ double Estudante :: mediaNotas(){
 }
 
 ostream& operator<<(ostream& os, Estudante &estudante){
-    os << estudante.matricula << ";" << estudante.nome;
+    os << estudante.matricula << ";" << estudante.nome << endl;
     return os;
 }

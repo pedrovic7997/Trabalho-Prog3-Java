@@ -117,11 +117,11 @@ double Docente :: mediaNotasRecebidas(){
 
 ostream& operator<<(ostream& os, Docente &docente){
     if(docente.paginaWeb == "null"){
-        os << "Nome: " << docente.nome << " - Login: " << docente.login;
+        os << "Nome: " << docente.nome << " - Login: " << docente.login << endl;
         return os;
     }
     else{
-        os << "Nome: " << docente.nome << " - Login: " << docente.login << " - Site: " << docente.paginaWeb;
+        os << "Nome: " << docente.nome << " - Login: " << docente.login << " - Site: " << docente.paginaWeb << endl;
         return os;
     }
 }

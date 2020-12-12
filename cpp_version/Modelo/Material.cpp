@@ -14,6 +14,6 @@ string Material :: obterLink(){
 }
 
 ostream& operator<<(ostream& os, Material &material){
-    os << material.nome << ": " << material.link;
+    os << material.nome << ": " << material.link << endl;
     return os;
 }

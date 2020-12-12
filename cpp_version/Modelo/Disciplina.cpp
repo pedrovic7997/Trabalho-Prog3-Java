@@ -129,6 +129,6 @@ int Disciplina :: obterQtdAvaliacoesTotal(){
 }
 
 ostream& operator<<(ostream& os, Disciplina &disciplina){
-    os << "Codigo: " << disciplina.codigo << "-" << disciplina.periodo->obeterAno() << "/" << disciplina.periodo->obterSemestre() << " - Nome: " << disciplina.nome << " - Professor: " << disciplina.professor->obterNome();
+    os << "Codigo: " << disciplina.codigo << "-" << disciplina.periodo->obeterAno() << "/" << disciplina.periodo->obterSemestre() << " - Nome: " << disciplina.nome << " - Professor: " << disciplina.professor->obterNome() << endl;
     return os;
 }

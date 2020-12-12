@@ -14,6 +14,6 @@ vector<Material> Estudo :: getMateriais(){
 }
 
 ostream& operator<<(ostream& os, Estudo &estudo){
-    os << "Estudo: " << estudo.obterNome() << " - Assincrono - Materiais: ";
+    os << "Estudo: " << estudo.obterNome() << " - Assincrono - Materiais: " << endl;
     return os;
 }

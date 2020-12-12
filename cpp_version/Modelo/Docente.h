@@ -1,16 +1,9 @@
 #ifndef DOCENTE_H
 #define DOCENTE_H
 
-#include <iostream>
-#include <string>
-#include "Periodo.h"
-#include "Atividade.h"
-#include "../Leitor/LeitorDisciplina.h"
-#include "../Leitor/LeitorPeriodo.h"
+#include "../Incluidor.h"
 
 using namespace std;
-
-class disciplina{};
 
 class Docente {
     string login;

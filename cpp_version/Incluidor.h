@@ -1,11 +1,13 @@
 #ifndef INLCUIDOR_H
-#define INCLUIDOR_H
+#define INLCUIDOR_H
 
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
 #include <map>
+#include <chrono>
+#include <ctime>
 
 class Atividade;
 class Aula;
@@ -27,23 +29,23 @@ class LeitorDocente;
 class LeitorEstudante;
 class LeitorPeriodo;
 
-#include "Modelo/Atividade.h";
-#include "Modelo/Aula.h";
-#include "Modelo/Avaliacao.h";
-#include "Modelo/Disciplina.h";
-#include "Modelo/Docente.h";
-#include "Modelo/Estudante.h";
-#include "Modelo/Estudante.h";
-#include "Modelo/Estudo.h";
-#include "Modelo/Material.h";
-#include "Modelo/Periodo.h";
-#include "Modelo/Prova.h";
-#include "Modelo/Trabalho.h";
-#include "Leitor/LeitorAtividade.h";
-#include "Leitor/LeitorAvaliacao.h";
-#include "Leitor/LeitorDisciplina.h";
-#include "Leitor/LeitorDisciplinaEstudante.h";
-#include "Leitor/LeitorDocente.h";
-#include "Leitor/LeitorEstudante.h";
-#include "Leitor/LeitorPeriodo.h";
+#include "Modelo/Atividade.h"
+#include "Modelo/Aula.h"
+#include "Modelo/Avaliacao.h"
+#include "Modelo/Disciplina.h"
+#include "Modelo/Docente.h"
+#include "Modelo/Estudante.h"
+#include "Modelo/Estudante.h"
+#include "Modelo/Estudo.h"
+#include "Modelo/Material.h"
+#include "Modelo/Periodo.h"
+#include "Modelo/Prova.h"
+#include "Modelo/Trabalho.h"
+#include "Leitor/LeitorAtividade.h"
+#include "Leitor/LeitorAvaliacao.h"
+#include "Leitor/LeitorDisciplina.h"
+#include "Leitor/LeitorDisciplinaEstudante.h"
+#include "Leitor/LeitorDocente.h"
+#include "Leitor/LeitorEstudante.h"
+#include "Leitor/LeitorPeriodo.h"
 #endif

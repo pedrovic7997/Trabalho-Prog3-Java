@@ -1,6 +1,8 @@
 #ifndef ATIVIDADE_H
 #define ATIVIDADE_H
+
 #include "../Incluidor.h"
+
 using namespace std;
 
 class Atividade {

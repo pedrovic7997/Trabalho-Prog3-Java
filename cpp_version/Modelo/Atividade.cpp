@@ -1,3 +1,4 @@
+#include "Atividade.h"
 
 Atividade :: Atividade (string nome, bool sincrona){
     this->nome = nome;

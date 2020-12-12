@@ -1,8 +1,7 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 
-#include <iostream>
-#include <string>
+#include "../Incluidor.h"
 
 using namespace std;
 

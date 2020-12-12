@@ -1,11 +1,7 @@
 #ifndef ESTUDO_H
 #define ESTUDO_H
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include "Atividade.h"
-#include "Material.h"
+#include "../Incluidor.h"
 
 using namespace std;
 

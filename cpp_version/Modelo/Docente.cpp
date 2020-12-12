@@ -78,7 +78,7 @@ double Docente :: percentualAtividadesSincronas(){
 
 double Docente :: percentualAtividadesAssincronas(){
     LeitorDisciplina lDisciplinas = LeitorDisciplina :: obterInstancia();
-    vector<Disciplina> disciplinas = lDisciplinas.busca(this);
+    vector<Disciplina> disciplinas = lDisciplinas.busca(*this);
 
     if(disciplinas.size() == 0) return 0;
 

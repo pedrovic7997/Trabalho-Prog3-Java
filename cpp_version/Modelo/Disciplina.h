@@ -1,12 +1,7 @@
 #ifndef DISCIPLINA_H
 #define DISCIPLINA_H
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include "Atividade.h"
-#include "Periodo.h"
-#include "Docente.h"
+#include "../Incluidor.h"
 
 using namespace std;
 

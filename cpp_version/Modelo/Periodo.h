@@ -1,8 +1,7 @@
 #ifndef PERIODO_H
 #define PERIODO_H
 
-#include <iostream>
-#include <string>
+#include "../Incluidor.h"
 
 using namespace std;
 

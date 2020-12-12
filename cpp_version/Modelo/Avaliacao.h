@@ -1,9 +1,7 @@
 #ifndef AVALIACAO_H
 #define AVALIACAO_H
 
-#include <iostream>
-#include <string>
-#include "Estudante.h"
+#include "../Incluidor.h"
 
 using namespace std;
 

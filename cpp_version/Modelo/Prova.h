@@ -1,10 +1,7 @@
 #ifndef PROVA_H
 #define PROVA_H
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include "Atividade.h"
+#include "../Incluidor.h"
 
 using namespace std;
 

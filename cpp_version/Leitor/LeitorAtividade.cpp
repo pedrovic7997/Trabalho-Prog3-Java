@@ -1,6 +1,6 @@
 #include "LeitorAtividade.h"
 
-LeitorAtividade :: leitorAtividade() {}
+//LeitorAtividade :: leitorAtividade() {}
 
 Atividade LeitorAtividade :: busca(int posicao, vector<Atividade> atividades){
     

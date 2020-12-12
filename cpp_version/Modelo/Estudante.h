@@ -16,6 +16,12 @@ class Estudante {
         string obterMatricula();
         string obterNome();
 
+        int contaDiciplina();
+        double mediaDiciplinasPorPeriodo();
+        int contaAvaliacoes();
+        double mediaAvaliacoes();
+        double mediaNotas();
+
         friend ostream& operator<<(ostream& os, Estudante &estudante);
 };
 

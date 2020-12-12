@@ -19,6 +19,13 @@ class Docente {
         string obterNome() const;
         string obterPaginaWeb() const;
 
+        int contaDisciplinas();
+        int contaPeriodos();
+        double mediaAtividadesPorDiciplina();
+        double percentualAtividadesSincronas();
+        double percentualAtividadesAssincronas();
+        double mediaNotasRecebidas();
+
         friend ostream& operator<<(ostream& os, Docente &docente);
 };
 

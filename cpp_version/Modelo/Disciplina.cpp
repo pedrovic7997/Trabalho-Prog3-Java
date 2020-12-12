@@ -80,6 +80,44 @@ int Disciplina :: obterCargaHoraria(){
     return cargaHoraria;
 }
 
+double Disciplina :: percentualAtividadesSincronas(){
+    double cont=0, cont2=0;
+
+    if(atividades.size() == 0) return 0;
+
+    for(Atividade a : obterAtividades()){
+        cont2++;
+        if(a.obterSincrona())
+            cont ++;
+    }
+
+    return (cont/cont2)*100;
+}
+
+double Disciplina :: percentualAtividadesAssincronas(){
+    double cont=0, cont2=0;
+
+    if(atividades.size() == 0) return 0;
+
+    for(Atividade a : obterAtividades()){
+        cont2++;
+        if(!a.obterSincrona())
+            cont ++;
+    }
+
+    return (cont/cont2)*100;
+}
+
+int Disciplina :: calculaCargaHorariaTotal(){
+    double cont=0;
+
+    for(Atividade a : obterAtividades()){
+        cont += a.obterCargaHoraria();
+    }
+
+    return cont;
+}
+
 ostream& operator<<(ostream& os, Disciplina &disciplina){
     os << "Codigo: " << disciplina.codigo << "-" << disciplina.periodo->obeterAno() << "/" << disciplina.periodo->obterSemestre() << " - Nome: " << disciplina.nome << " - Professor: " << disciplina.professor->obterNome();
     return os;

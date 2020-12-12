@@ -35,6 +35,10 @@ class Disciplina{
         int obterAvalitiva();
         int obterCargaHoraria();
 
+        double percentualAtividadesSincronas();
+        double percentualAtividadesAssincronas();
+        int calculaCargaHorariaTotal();
+
         friend ostream& operator<<(ostream& os, Disciplina &disciplina); 
 };
 

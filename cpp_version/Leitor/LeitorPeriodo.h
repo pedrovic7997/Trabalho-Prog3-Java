@@ -6,6 +6,7 @@
 #include <map>
 
 #include "../Modelo/Periodo.h"
+#include "../Modelo/Docente.h"
 
 using namespace std;
 
@@ -26,6 +27,8 @@ class LeitorPeriodo{
     void anexaHash(Periodo periodo);
 
     Periodo busca(string codigo);
+
+    vector<Periodo> busca(Docente docente);
 
 };
 #endif

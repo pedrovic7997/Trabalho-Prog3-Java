@@ -18,3 +18,8 @@ string Periodo :: obterCodigo() const{
     return codigo;
 }
 
+ostream& operator<<(ostream& os, Periodo &periodo){
+    os << "Periodo: " << periodo.codigo;
+    return os;
+}
+

@@ -1,3 +1,6 @@
+#ifndef TRABALHO_H
+#define TRABALHO_H
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -18,3 +21,5 @@ class Trabalho : public Atividade {
 
         bool ehAvaliativa();
 };
+
+#endif

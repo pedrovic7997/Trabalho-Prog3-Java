@@ -16,3 +16,8 @@ Estudante* Avaliacao :: obterAluno(){
 double Avaliacao :: obterNota(){
     return nota;
 }
+
+ostream& operator<< (ostream& os, Avaliacao &avaliacao){
+    os << "Aluno: " << avaliacao.aluno->obterMatricula() << " - Nota: " << avaliacao.nota;
+    return os;
+}   

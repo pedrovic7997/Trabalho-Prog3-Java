@@ -1,3 +1,6 @@
+#ifndef PERIODO_H
+#define PERIODO_H
+
 #include <iostream>
 #include <string>
 
@@ -14,4 +17,8 @@ class Periodo {
         int obeterAno() const;
         char obterSemestre() const;
         string obterCodigo() const;
+
+        friend ostream& operator<<(ostream& os, Periodo &periodo); 
 };
+
+#endif

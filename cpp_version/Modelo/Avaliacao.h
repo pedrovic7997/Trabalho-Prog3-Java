@@ -1,3 +1,6 @@
+#ifndef AVALIACAO_H
+#define AVALIACAO_H
+
 #include <iostream>
 #include <string>
 #include "Estudante.h"
@@ -14,4 +17,8 @@ class Avaliacao {
 
         Estudante* obterAluno();
         double obterNota();
+
+        friend ostream& operator<<(ostream& os, Avaliacao &avaliacao); 
 };
+
+#endif

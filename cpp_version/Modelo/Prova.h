@@ -1,3 +1,6 @@
+#ifndef PROVA_H
+#define PROVA_H
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -16,3 +19,5 @@ class Prova : public Atividade {
 
         bool ehAvaliativa();
 };
+
+#endif

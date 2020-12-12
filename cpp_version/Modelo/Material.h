@@ -1,3 +1,6 @@
+#ifndef MATERIAL_H
+#define MATERIAL_H
+
 #include <iostream>
 #include <string>
 
@@ -12,4 +15,8 @@ class Material {
 
         string obterNome();
         string obterLink();
+
+        friend ostream& operator<<(ostream& os, Material &material); 
 };
+
+#endif

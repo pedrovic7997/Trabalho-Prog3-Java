@@ -12,3 +12,8 @@ string Estudante :: obterMatricula(){
 string Estudante :: obterNome(){
     return nome;
 }
+
+ostream& operator<<(ostream& os, Estudante &estudante){
+    os << estudante.matricula << ";" << estudante.nome;
+    return os;
+}

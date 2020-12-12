@@ -1,3 +1,6 @@
+#ifndef ESTUDO_H
+#define ESTUDO_H
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -18,4 +21,8 @@ class Estudo : public Atividade{
 
         vector<Material> getMateriais();
         bool ehAvaliativa();
+
+        friend ostream& operator<<(ostream& os, Estudo &Estudo); 
 };
+
+#endif

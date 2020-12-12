@@ -8,7 +8,7 @@ using namespace std;
 class Aula : public Atividade {
 
     public:
-        Aula (string nome, bool sincrona) : Atividade(nome, sincrona) {}
+        Aula (string nome, bool sincrona, time_t data);
 
         bool ehAvaliativa();
 };

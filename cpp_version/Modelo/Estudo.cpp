@@ -7,3 +7,8 @@ bool Atividade :: ehAvaliativa(){
 vector<Material> Estudo :: getMateriais(){
     return materiais;
 }
+
+ostream& operator<<(ostream& os, Estudo &estudo){
+    os << "Estudo: " << estudo.obterNome() << " - Assincrono - Materiais: ";
+    return os;
+}

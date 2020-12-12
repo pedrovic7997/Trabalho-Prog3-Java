@@ -1,3 +1,6 @@
+#ifndef DISCIPLINA_H
+#define DISCIPLINA_H
+
 #include <iostream>
 #include <string>
 #include <vector>
@@ -31,4 +34,8 @@ class Disciplina{
         int obterSincronas();
         int obterAvalitiva();
         int obterCargaHoraria();
+
+        friend ostream& operator<<(ostream& os, Disciplina &disciplina); 
 };
+
+#endif

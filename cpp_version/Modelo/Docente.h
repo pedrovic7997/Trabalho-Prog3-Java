@@ -1,3 +1,6 @@
+#ifndef DOCENTE_H
+#define DOCENTE_H
+
 #include <iostream>
 #include <string>
 
@@ -15,4 +18,8 @@ class Docente {
         string obterLogin() const;
         string obterNome() const;
         string obterPaginaWeb() const;
+
+        friend ostream& operator<<(ostream& os, Docente &docente);
 };
+
+#endif

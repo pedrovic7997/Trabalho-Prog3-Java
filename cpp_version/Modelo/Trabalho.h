@@ -10,11 +10,7 @@ class Trabalho : public Atividade {
     int cargaHoraria;
 
     public:
-        Trabalho (string nome, bool sincrona, int numMaxPorGrupo, int cargaHoraria) : 
-        Atividade(nome, sincrona){
-            this->numMaxPorGrupo = numMaxPorGrupo;
-            this->cargaHoraria = cargaHoraria;
-        }
+        Trabalho (string nome, bool sincrona, time_t prazo, int numMaxPorGrupo, int cargaHoraria);
 
         bool ehAvaliativa();
 };

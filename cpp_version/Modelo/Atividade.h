@@ -9,17 +9,17 @@ class Atividade {
     string nome;
     bool sincrona;
     vector<Avaliacao> avaliacoes;
-    // protected Calendar data;
 
     public:
+        time_t data;
+        
         Atividade (string nome, bool sincrona);
-        ~Atividade();
         
         string obterNome() const;
         bool obterSincrona() const;
         int obterCargaHoraria() const;
         vector<Avaliacao> obterAvaliacoes();
-        // Calendar obterData();
+        time_t obterData();
 
         void anexaAvaliacao(Avaliacao avaliacao);
         double calculaNotaTotal();

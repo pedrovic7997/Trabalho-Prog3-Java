@@ -21,6 +21,10 @@ vector<Avaliacao> Atividade :: obterAvaliacoes(){
     return avaliacoes;
 }
 
+time_t Atividade :: obterData(){
+    return data;
+}
+
 void Atividade :: anexaAvaliacao(Avaliacao avaliacao){    
     avaliacoes.push_back(avaliacao);
 }

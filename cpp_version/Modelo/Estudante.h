@@ -3,6 +3,11 @@
 
 #include <iostream>
 #include <string>
+#include "Periodo.h"
+#include "Atividade.h"
+#include "Avaliacao.h"
+#include "../Leitor/LeitorDisciplinaEstudante.h"
+#include "../Leitor/LeitorAvaliacao.h"
 
 using namespace std;
 

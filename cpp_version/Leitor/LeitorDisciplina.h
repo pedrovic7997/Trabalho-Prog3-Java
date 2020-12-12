@@ -32,7 +32,7 @@ class LeitorDisciplina{
 
     void anexaHash(Disciplina disciplina);
 
-    vector<Diciplina> retornaDisciplinas();
+    vector<Disciplina> retornaDisciplinas();
 
 };
 #endif

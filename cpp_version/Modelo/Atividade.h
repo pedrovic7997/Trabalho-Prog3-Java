@@ -21,12 +21,13 @@ class Atividade {
         string obterNome() const;
         bool obterSincrona() const;
         int obterCargaHoraria() const;
+        vector<Avaliacao> obterAvaliacoes();
         // Calendar obterData();
 
         void anexaAvaliacao(Avaliacao avaliacao);
-
-        vector<Avaliacao> obterAvaliacoes();
-        // double calculaNota();
+        double calculaNotaTotal();
+        
+        int obterQtdAvaliacoes();
 
         virtual bool ehAvaliativa();
 

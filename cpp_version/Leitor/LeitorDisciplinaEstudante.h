@@ -22,13 +22,13 @@ class LeitorDisciplinaEstudante{
 
     static LeitorDisciplinaEstudante obterInstancia();
 
-    void adiciona(Disciplina disciplina, Esudante estdante);
+    void adiciona(Disciplina disciplina, Estudante estdante);
 
     Estudante busca(Disciplina disciplina,string matricula);
 
-    vector<Estudante> busca(Diciplina diciplina);
+    vector<Estudante> busca(Disciplina diciplina);
 
-    vector<Disciplina> busca(string codigo);
+    vector<Disciplina> busca(Estudante estudante);
 
 };
 #endif

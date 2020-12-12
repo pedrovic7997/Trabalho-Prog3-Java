@@ -38,6 +38,7 @@ class Disciplina{
         double percentualAtividadesSincronas();
         double percentualAtividadesAssincronas();
         int calculaCargaHorariaTotal();
+        int obterQtdAvaliacoesTotal();
 
         friend ostream& operator<<(ostream& os, Disciplina &disciplina); 
 };

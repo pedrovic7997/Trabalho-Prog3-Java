@@ -21,9 +21,21 @@ vector<Avaliacao> Atividade :: obterAvaliacoes(){
     return avaliacoes;
 }
 
- void Atividade :: anexaAvaliacao(Avaliacao avaliacao){
+void Atividade :: anexaAvaliacao(Avaliacao avaliacao){    
     avaliacoes.push_back(avaliacao);
- }
+}
+
+double Atividade :: calculaNotaTotal(){
+    double notaTotal = 0;
+    for(Avaliacao a : avaliacoes){
+        notaTotal += a.obterNota();
+    }
+    return notaTotal;
+}
+
+int Atividade :: obterQtdAvaliacoes(){
+    return avaliacoes.size();
+}
 
 ostream& operator<< (ostream& os, Atividade &atividade){
     if(atividade.obterSincrona()){

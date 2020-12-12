@@ -118,6 +118,16 @@ int Disciplina :: calculaCargaHorariaTotal(){
     return cont;
 }
 
+int Disciplina :: obterQtdAvaliacoesTotal(){
+    int cont=0;
+
+    for(Atividade a : obterAtividades()){
+        cont += a.obterQtdAvaliacoes();
+    }
+
+    return cont;
+}
+
 ostream& operator<<(ostream& os, Disciplina &disciplina){
     os << "Codigo: " << disciplina.codigo << "-" << disciplina.periodo->obeterAno() << "/" << disciplina.periodo->obterSemestre() << " - Nome: " << disciplina.nome << " - Professor: " << disciplina.professor->obterNome();
     return os;

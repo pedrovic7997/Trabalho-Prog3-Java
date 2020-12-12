@@ -11,7 +11,7 @@
 using namespace std;
 
 class LeitorDocente{
-    map<string,Docente> mapEstudante;
+    map<string,Docente> mapDocente;
     static LeitorDocente leitor;
     
     LeitorDocente();

@@ -18,8 +18,8 @@ class LeitorAvaliacao{
 
     static LeitorAvaliacao obterInstancia();
 
-    vector<Avaliacao> busca(vector<Avaliacao> , Estudante estudante);
+    vector<Avaliacao> busca(vector<Avaliacao> avaliacoes, Estudante estudante);
 
-    Avaliacao ler(ofstream scan,Estudante aluno);     
+    Avaliacao ler(ofstream scan,Estudante aluno);  
 };
 #endif

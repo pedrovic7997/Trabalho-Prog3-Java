@@ -15,7 +15,7 @@ OBJC= $(SRCC:.c=.o)
 all: $(EXEC)
 
 main: $(OBJ) $(OBJM) $(OBJL) $(OBJC) 
-	$(CC) $^ -o $@
+	$(CC) $(bindir)$^ -o $@
 
 %.o: %.c
 	@$(CC) -o $(bindir)$@ -c $< $(CFLAGS)

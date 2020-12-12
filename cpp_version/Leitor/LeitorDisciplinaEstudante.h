@@ -1,13 +1,7 @@
 #ifndef LEITOR_DISCIPLINAESTUDANTE
 #define LEITOR_DISCIPLINAESTUDANTE
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-#include <map>
 
-#include "../Modelo/Docente.h"
-#include "../Modelo/Estudante.h"
+#include "../Incluidor.h"
 
 using namespace std;
 

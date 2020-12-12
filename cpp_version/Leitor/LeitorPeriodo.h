@@ -1,12 +1,7 @@
 #ifndef LEITOR_PERIODO
 #define LEITOR_PERIODO
-#include <fstream>
-#include <string>
-#include <vector>
-#include <map>
 
-#include "../Modelo/Periodo.h"
-#include "../Modelo/Docente.h"
+#include "../Incluidor.h"
 
 using namespace std;
 

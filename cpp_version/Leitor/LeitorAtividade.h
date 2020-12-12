@@ -1,10 +1,7 @@
 #ifndef LEITOR_ATIVIDADE
 #define LEITOR_ATIVIDADE
-#include <fstream>
-#include <string>
-#include <vector>
 
-#include "../Modelo/Atividade.h"
+#include "../Incluidor.h"
 
 using namespace std;
 

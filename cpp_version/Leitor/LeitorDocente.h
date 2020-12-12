@@ -1,12 +1,7 @@
 #ifndef LEITOR_DOCENTE
 #define LEITOR_DOCENTE
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <vector>
-#include <map>
 
-#include "../Modelo/Docente.h"
+#include "../Incluidor.h"
 
 using namespace std;
 
@@ -21,8 +16,6 @@ class LeitorDocente{
     static LeitorDocente obterInstancia();
 
     vector<Docente> obterDocentes();
-
-    Docente busca(string nome);
 
     Docente ler(ofstream scanner);
 

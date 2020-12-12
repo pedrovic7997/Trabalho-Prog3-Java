@@ -5,6 +5,11 @@
 #include <vector>
 
 #include "../Modelo/Atividade.h"
+#include "../Modelo/Estudo.h"
+#include "../Modelo/Trabalho.h"
+#include "../Modelo/Aula.h"
+#include "../Modelo/Prova.h"
+#include "../Modelo/Material.h"
 
 using namespace std;
 
@@ -13,21 +18,21 @@ class LeitorAtividade{
     
     LeitorAtividade();
 
-    Trabalho criaTrabalho(String nome, ofstream scan);
+    Trabalho criaTrabalho(string nome, ofstream scan);
 
-    Aula criaAula(String nome, ofstream scan);
+    Aula criaAula(string nome, ofstream scan);
 
-    Estudo criaEstudo(String nome, ofstream scan);
+    Estudo criaEstudo(string nome, ofstream scan);
 
-    Prova criaProva(String nome, ofstream scan);
+    Prova criaProva(string nome, ofstream scan);
 
     vector<Material> lerMateriais(ofstream scan);
 
-    vector<String> lerConteudos(ofstream scan);
+    vector<string> lerConteudos(ofstream scan);
     
     public:
 
-    Atividade busca(int posicao, List<Atividade> atividades);
+    Atividade busca(int posicao, vector<Atividade> atividades);
 
     Atividade ler(ofstream scan);
 

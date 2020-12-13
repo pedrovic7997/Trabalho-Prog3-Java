@@ -10,6 +10,11 @@
 #include <chrono>
 #include <ctime>
 #include<cstdlib>
+#include "util/DateUtils.h"
+#include "util/NumberUtils.h"
+#include "util/NumPunctPTBR.h"
+#include "util/StringUtils.h"
+#include "util/Tokenizer.h"
 
 class Atividade;
 class Aula;

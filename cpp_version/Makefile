@@ -1,5 +1,5 @@
 prefix=./
-bindir=$(prefix)/bin/
+bindir=$(prefix)bin/
 CC = g++
 FLAGS = -lm -g
 EXEC = main
@@ -17,7 +17,7 @@ OBJU= $(SRCC:.c=.o)
 all: $(EXEC)
 
 main: $(OBJ) $(OBJM) $(OBJL) $(OBJC) $(OBJU)
-	$(CC) $(bindir)$^ -o $@
+	$(CC) $^ -o $(bindin)$@
 
 %.o: %.c
 	@$(CC) -o $(bindir)$@ -c $< $(CFLAGS)

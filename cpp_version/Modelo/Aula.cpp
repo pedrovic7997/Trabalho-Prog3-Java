@@ -4,6 +4,6 @@ Aula :: Aula (string nome, bool sincrona, time_t data) : Atividade (nome, sincro
     this->data = data;
 }
 
-bool Atividade :: ehAvaliativa(){
+bool Aula :: ehAvaliativa(){
     return true;
 }

@@ -6,6 +6,6 @@ Trabalho :: Trabalho (string nome, bool sincrona, time_t prazo, int numMaxPorGru
     this->cargaHoraria = cargaHoraria;
 }
 
-bool Atividade :: ehAvaliativa(){
+bool Trabalho :: ehAvaliativa(){
     return true;
 }

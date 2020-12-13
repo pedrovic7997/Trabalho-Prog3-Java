@@ -5,7 +5,7 @@ Estudo :: Estudo (string nome, bool sincrona, vector<Material> materiais, time_t
     this->data = data;
 }
 
-bool Atividade :: ehAvaliativa(){
+bool Estudo :: ehAvaliativa(){
     return true;
 }
 

@@ -11,7 +11,7 @@ Docente :: Docente(string login, string nome){
     this->login = login;
     this->nome = nome;
     // this->paginaWeb = NULL;
-    this->paginaWeb = "nulo";
+    this->paginaWeb = "";
 }
 
 string Docente :: obterLogin() const{
@@ -116,7 +116,7 @@ double Docente :: mediaNotasRecebidas(){
 }
 
 ostream& operator<<(ostream& os, Docente &docente){
-    if(docente.paginaWeb == "null"){
+    if(docente.paginaWeb == ""){
         os << "Nome: " << docente.nome << " - Login: " << docente.login << endl;
         return os;
     }

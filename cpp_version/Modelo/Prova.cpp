@@ -5,6 +5,6 @@ Prova :: Prova (string nome, bool sincrona, vector<string> conteudo, time_t data
     this->data = data;
 }
 
-bool Atividade :: ehAvaliativa(){
+bool Prova :: ehAvaliativa(){
     return true;
 }

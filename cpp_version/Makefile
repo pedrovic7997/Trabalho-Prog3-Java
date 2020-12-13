@@ -12,14 +12,15 @@ OBJ= $(SRC:.c=.o)
 OBJM= $(SRCM:.c=.o)
 OBJL= $(SRCL:.c=.o)
 OBJC= $(SRCC:.c=.o)
-OBJU= $(SRCC:.c=.o)
+OBJU= $(SRCU:.c=.o)
 
 all: $(EXEC)
+	@echo $(OBJC)
 
 main: $(OBJ) $(OBJM) $(OBJL) $(OBJC) $(OBJU)
 	$(CC) $^ -o $(bindin)$@
 
-%.o: %.c
+Modelo/%.o: Modelo/%.c
 	@$(CC) -o $(bindir)$@ -c $< $(CFLAGS)
 
 clean: main

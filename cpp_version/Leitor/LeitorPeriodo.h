@@ -17,7 +17,7 @@ class LeitorPeriodo{
 
     vector<Periodo> obterPeriodos();
 
-    Periodo ler(ofstream scanner);
+    Periodo ler(ifstream scanner);
 
     void anexaHash(Periodo periodo);
 

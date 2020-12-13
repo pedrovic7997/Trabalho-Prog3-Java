@@ -11,7 +11,7 @@ void ControladorAtividade :: ler(ifstream scan){
     LeitorAtividade leitor = LeitorAtividade.obterInstancia();
     ControladorDisciplina controlador = new ControladorDisciplina();
 		
-    while(scan.peek() != EOF){
+    while(!scan.eof()){
         string codigoDisc;
         scan >>codigoDisc;
         Disciplina disciplina = controlador.busca(codigoDisc);
@@ -29,24 +29,25 @@ void ControladorAtividade :: lerAvaliacao(ifstream scan){
     LeitorAvaliacao lAvaliacao = LeitorAvaliacao.obterInstancia();
 
     while(scan.hasNext()){
-        String codigoDisc = scan.next().trim();
+        string codigoDisc;
+        scan >>codigoDisc;
         Disciplina disciplina = cDisciplina.busca(codigoDisc);
-        if (disciplina == null){
-            throw new NoSuchElementException("Referência inválida: "+codigoDisc+".");
+        if (disciplina == NULL){
+            throw bad_typeid("Referência inválida: "+codigoDisc+".");
         }
         String matricula = scan.next().trim();
         Estudante estudante = cEstudante.busca(matricula);
-        if (estudante == null){
-            throw new NoSuchElementException("Referência inválida: "+matricula+".");
+        if (estudante == NULL){
+            throw bad_typeid("Referência inválida: "+matricula+".");
         }
         int codigoAtiv = scan.nextInt();
         Atividade atividade = lAtividade.busca(codigoAtiv-1, disciplina.obterAtividades());
-        if (atividade == null){
-            throw new NoSuchElementException("Referência inválida: "+codigoAtiv+".");
+        if (atividade == NULL){
+            throw bad_typeid("Referência inválida: "+codigoAtiv+".");
         }
         Avaliacao avaliacao = lAvaliacao.ler(scan, estudante);
         if(verificaCadastroAvaliacao(atividade, estudante))
-            throw new Exception("Avaliação repetida: estudante "+estudante.obterMatricula()+ 
+            throw exception("Avaliação repetida: estudante "+estudante.obterMatricula()+ 
                                 " para atividade " +codigoAtiv +" de "+disciplina.obterCodigo()+"-"+
                                 disciplina.obterPeriodo().obterCodigo()+".");
         atividade.anexaAvaliacao(avaliacao);

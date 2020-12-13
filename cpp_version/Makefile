@@ -15,7 +15,6 @@ OBJC= $(SRCC:.cpp=.o)
 OBJU= $(SRCU:.cpp=.o)
 
 all: $(EXEC)
-	@mv $(OBJU) $(bindir)/$(OBJU)
 
 main: $(OBJ) $(OBJM) $(OBJL) $(OBJC) $(OBJU)
 	@$(CC) $^ -o $(bindir)$@

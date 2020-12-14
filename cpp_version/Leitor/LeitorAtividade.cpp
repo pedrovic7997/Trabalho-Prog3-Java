@@ -26,19 +26,53 @@ Atividade LeitorAtividade :: ler(ifstream scan){
 
 }
 
-Trabalho criaTrabalho(string nome, ifstream scan){
-    string dataString;
+Trabalho LeitorAtividade :: criaTrabalho(string nome, ifstream scan){
+    string dataString, trash;
+    time_t data;
 
     getline(scan, dataString, ';');
     trim(dataString);
+    if(validDate(dataString, DATE_FORMAT_PT_BR_SHORT))
+        data = parseDate(dataString, DATE_FORMAT_PT_BR_SHORT);
+    else{
+        throw invalid_argument("Dado inválido: " + dataString + ".");
+    }
+    
+    getline(scan, trash, ';');
+    getline(scan, trash, ';');
+
+    int numAlunos = 0, cargaHoraria = 0;
+    string aux;
+    
+    try{
+        getline(scan, aux, ';');
+        trim(aux);
+        numAlunos = stoi(aux);
+    } 
+    // catch () {
+    //     // throw exception another = exception(e.what());
+    // }
+
+    try{
+        getline(scan, aux, ';');
+        trim(aux);
+        cargaHoraria = stoi(aux);
+    } 
+    // catch () {
+    //     // throw exception another = exception(e.what());
+    // }
+    if(scan.eof)
+
 }
 
-Aula criaAula(string nome, ifstream scan);
+Aula LeitorAtividade :: criaAula(string nome, ifstream scan){
 
-Estudo criaEstudo(string nome, ifstream scan);
+}
 
-Prova criaProva(string nome, ifstream scan);
+Estudo LeitorAtividade :: criaEstudo(string nome, ifstream scan);
 
-vector<Material> lerMateriais(ifstream scan);
+Prova LeitorAtividade :: criaProva(string nome, ifstream scan);
 
-vector<string> lerConteudos(ifstream scan);
+vector<Material> LeitorAtividade :: lerMateriais(ifstream scan);
+
+vector<string> LeitorAtividade :: lerConteudos(ifstream scan);

@@ -88,7 +88,7 @@ Aula LeitorAtividade :: criaAula(string nome, ifstream scan){
     if(!scan.eof())
         getline(scan, trash, '\n');
 
-    return new Aula(nome, true, data);
+    return Aula(nome, true, data);
 }
 
 Estudo LeitorAtividade :: criaEstudo(string nome, ifstream scan){
@@ -97,18 +97,71 @@ Estudo LeitorAtividade :: criaEstudo(string nome, ifstream scan){
     getline(scan, trash, ';');
     getline(scan, trash, ';');
 
-    vector<Material> materiais = 
+    vector<Material> materiais = lerMateriais(scan);
+
+    if(!scan.eof())
+        getline(scan, trash, '\n');
+
+    return Estudo(nome, false, materiais);
 }
 
-Prova LeitorAtividade :: criaProva(string nome, ifstream scan);
+Prova LeitorAtividade :: criaProva(string nome, ifstream scan){
+    string dataString, aux, trash;
+    time_t data;
+
+    getline(scan, dataString, ';');
+    trim(dataString);
+    
+    getline(scan, aux, ';');
+    trim(aux);
+    dataString += ';' + aux;
+
+    if(validDate(dataString, DATE_FORMAT_PT_BR))
+        data = parseDate(dataString, DATE_FORMAT_PT_BR);
+    else{
+        throw ExcecaoDado("Dado inválido: " + dataString + ".");
+    }
+
+    vector<string> conteudos = lerConteudos(scan);
+
+    if(!scan.eof())
+        getline(scan, trash, '\n');
+
+    return Prova(nome, true, conteudos, data);
+}
 
 vector<Material> LeitorAtividade :: lerMateriais(ifstream scan){
     string nome, url;
     string materialString;
+    vector<Material> lista;
 
     getline(scan, materialString);
 
-    string 
+    regex re("\\[([^\\]]*)\\]\\(([^\\)]*)\\)");
+    sregex_iterator next(materialString.begin(), materialString.end(), re);
+    sregex_iterator end;
+    while (next != end) {
+        smatch match = *next;
+        nome = match[1].str();
+        url = match[2].str();
+        Material material = Material(nome, url);
+        lista.push_back(material);
+        next++;
+    }
+
+    return lista;
 }
 
-vector<string> LeitorAtividade :: lerConteudos(ifstream scan);
+vector<string> LeitorAtividade :: lerConteudos(ifstream scan){
+    string nome;
+    vector<string> lista;
+
+    while(!scan.eof()){
+        getline(scan, nome, '.');
+        trim(nome);
+        if(!nome.empty())
+            lista.push_back(nome);
+    }
+
+    return lista;
+}

@@ -26,15 +26,17 @@ BIN:
 	@mkdir -p bin/Leitor
 	@mkdir -p bin/Modelo
 
-$(EXEC): $(OBJ) $(OBJM) $(OBJU) $(OBJC) $(OBJCE) $(OBJCL)
+$(EXEC): $(OBJ) $(OBJC) $(OBJM) $(OBJU) $(OBJCE) 
 	@$(CC) $^ -o $@ $(CFLAGS)
 
 %.o: %.cpp
-	$(CC) -o $@ -c $< $(CFLAGS)
+	@$(CC) -o $@ -c $< $(CFLAGS)
 	
+clean: rmproper
+	@rm $(EXEC)
 
-clean: 
-	@rm -f util/*.o Controlador/*.o Leitor/*.o Modelo/*.o Excecoes/*.o main.o $(EXEC)
+rmproper: 
+	@rm -f util/*.o Controlador/*.o Leitor/*.o Modelo/*.o Excecoes/*.o main.o 
 	@rm -r -f bin/Controlador
 	@rm -r -f bin/Leitor
 	@rm -r -f bin/Modelo

@@ -19,5 +19,11 @@ class ControladorDisciplina{
     vector<Disciplina*> busca(Docente* docente);
 
     void lerMatricula(ifstream* scan);
+
+    vector<Disciplina*> lista();
+
+    vector<Disciplina*> lista(Periodo* periodo);
+
+    vector<Estudante*> lista(Disciplina* disciplina);
 };
 #endif

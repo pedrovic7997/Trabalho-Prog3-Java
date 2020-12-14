@@ -72,3 +72,18 @@ void ControladorDisciplina::lerMatricula(ifstream* scan){
     }
 
 }
+
+vector<Disciplina*> ControladorDisciplina :: lista(Periodo* periodo){
+    LeitorDisciplina* leitor= LeitorDisciplina::obterInstancia();
+    return leitor->busca(periodo);
+}
+
+vector<Disciplina*> ControladorDisciplina :: lista(){
+    LeitorDisciplina* leitor= LeitorDisciplina::obterInstancia();
+    return leitor->obterDisciplinas();
+}
+
+vector<Estudante*> ControladorDisciplina :: lista(Disciplina* disciplina){
+    LeitorDisciplinaEstudante *lDisciplinaEstudante = LeitorDisciplinaEstudante::obterInstancia();
+    return lDisciplinaEstudante->busca(disciplina);
+}

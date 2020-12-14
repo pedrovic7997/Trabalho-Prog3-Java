@@ -11,5 +11,7 @@ class ControladorPeriodo{
     void ler(ifstream* scan);
 
     Periodo* busca(string codigo);
+
+    vector<Periodo*> lista();
 };
 #endif

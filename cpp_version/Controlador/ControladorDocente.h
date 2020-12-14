@@ -11,5 +11,7 @@ class ControladorDocente{
     void ler(ifstream* scan);
 
     Docente* busca(string codigo);
+
+    vector<Docente*> lista();
 };
 #endif

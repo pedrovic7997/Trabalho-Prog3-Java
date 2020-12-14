@@ -5,11 +5,11 @@ Estudante :: Estudante (string matricula, string nome){
     this->nome = nome;
 }
 
-string Estudante :: obterMatricula(){
+string Estudante :: obterMatricula() const{
     return matricula;
 }
 
-string Estudante :: obterNome(){
+string Estudante :: obterNome() const{
     return nome;
 }
 
@@ -39,7 +39,7 @@ double Estudante :: mediaDiciplinasPorPeriodo(){
     return disciplinas.size()/cont;
 }
 
-int Estudante :: contaAvaliacoes(){
+int Estudante :: contaAvaliacoes() {
     LeitorDisciplinaEstudante* lDisciplinas = LeitorDisciplinaEstudante :: obterInstancia();
     vector<Disciplina*> disciplinas = lDisciplinas->busca(this);
 
@@ -99,6 +99,18 @@ double Estudante :: mediaNotas(){
     }
 
     return notas/avaliacoes.size();
+}
+
+bool compara(Estudante* esq, Estudante* dir){
+    int cmp = 0;
+    if(esq->contaAvaliacoes() > esq->contaAvaliacoes())
+        cmp = 1;
+    if(esq->contaAvaliacoes() < esq->contaAvaliacoes())
+        cmp = -1;
+
+    if(cmp =! 0) return cmp;
+
+    return stringCompare(esq->obterNome(), dir->obterNome());
 }
 
 ostream& operator<<(ostream& os, Estudante &estudante){

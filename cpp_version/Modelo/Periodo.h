@@ -18,7 +18,7 @@ class Periodo {
         char obterSemestre() const;
         string obterCodigo() const;
 
-        bool comparaPeriodo(const Periodo* esq, const Periodo* dir);
+        bool compara(const Periodo* esq, const Periodo* dir);
 
         friend ostream& operator<<(ostream& os, Periodo &periodo); 
 };

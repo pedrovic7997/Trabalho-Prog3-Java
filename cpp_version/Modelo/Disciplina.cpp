@@ -128,7 +128,7 @@ int Disciplina :: obterQtdAvaliacoesTotal(){
     return cont;
 }
 
-bool comparaDisciplinasNome(const Disciplina* esq, const Disciplina* dir){
+bool comparaNome(const Disciplina* esq, const Disciplina* dir){
     return stringCompare(esq->obterNome(), dir->obterNome());
 }
 

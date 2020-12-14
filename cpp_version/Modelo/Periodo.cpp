@@ -18,7 +18,7 @@ string Periodo :: obterCodigo() const{
     return codigo;
 }
 
-bool comparaPeriodo(const Periodo* esq, const Periodo* dir){
+bool compara(const Periodo* esq, const Periodo* dir){
     return stringCompare(esq->obterCodigo(), dir->obterCodigo());
 }
 

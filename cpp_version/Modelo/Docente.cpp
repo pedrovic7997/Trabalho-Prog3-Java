@@ -115,6 +115,10 @@ double Docente :: mediaNotasRecebidas(){
     return notas/cont;
 }
 
+bool compara(const Docente* esq, const Docente* dir){
+    return !stringCompare(esq->obterNome(), dir->obterNome());
+}
+
 ostream& operator<<(ostream& os, Docente &docente){
     if(docente.paginaWeb == ""){
         os << "Nome: " << docente.nome << " - Login: " << docente.login << endl;

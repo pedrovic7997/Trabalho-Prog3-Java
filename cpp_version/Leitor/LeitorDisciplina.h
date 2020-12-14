@@ -15,15 +15,15 @@ class LeitorDisciplina{
 
     static LeitorDisciplina* obterInstancia();
 
-    vector<Disciplina*> busca(Periodo periodo);
+    vector<Disciplina*> busca(Periodo* periodo);
 
-    vector<Disciplina*> busca(Docente docente);
+    vector<Disciplina*> busca(Docente* docente);
 
     Disciplina* busca(string codigo);
 
     Disciplina* ler(ifstream* scan,Periodo periodo);
 
-    void anexaHash(Disciplina disciplina);
+    void anexaHash(Disciplina* disciplina);
 
     vector<Disciplina*> retornaDisciplinas();
 

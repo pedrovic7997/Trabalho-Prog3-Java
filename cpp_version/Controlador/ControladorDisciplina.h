@@ -14,7 +14,7 @@ class ControladorDisciplina{
 
     Estudante* busca(Disciplina* disciplina, string matricula);
 
-    bool verificaMatriculaEstudante(Disciplina* disciplina, string* matricula);
+    bool verificaMatriculaEstudante(Disciplina* disciplina, string matricula);
 
     vector<Disciplina*> busca(Docente* docente);
 

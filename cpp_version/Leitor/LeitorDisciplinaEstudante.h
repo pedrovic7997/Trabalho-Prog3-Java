@@ -18,7 +18,7 @@ class LeitorDisciplinaEstudante{
 
     void adiciona(Disciplina* disciplina, Estudante* estdante);
 
-    Estudante* busca(Disciplina* disciplina,string* matricula);
+    Estudante* busca(Disciplina* disciplina,string matricula);
 
     vector<Estudante*> busca(Disciplina* diciplina);
 

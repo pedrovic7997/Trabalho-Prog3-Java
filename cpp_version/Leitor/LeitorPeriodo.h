@@ -19,7 +19,7 @@ class LeitorPeriodo{
 
     Periodo* ler(ifstream* scanner);
 
-    void anexaHash(Periodo periodo);
+    void anexaHash(Periodo* periodo);
 
     Periodo* busca(string codigo);
 

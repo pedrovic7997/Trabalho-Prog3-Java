@@ -1,14 +1,14 @@
 #include "ControladorPeriodo.h"
 
-Periodo ControladorPeriodo :: busca(string codigo){
-    LeitorPeriodo leitor= LeitorPeriodo :: obterInstancia();
-    return leitor.busca(codigo);
+Periodo* ControladorPeriodo :: busca(string codigo){
+    LeitorPeriodo *leitor= LeitorPeriodo :: obterInstancia();
+    return leitor->busca(codigo);
 }
 
 void ler(ifstream* scan){
-    LeitorPeriodo leitor = LeitorPeriodo::obterInstancia();
+    LeitorPeriodo* leitor = LeitorPeriodo::obterInstancia();
     while(scan->eof()){
-        Periodo periodo = leitor.ler(scan);
-        leitor.anexaHash(periodo);
+        Periodo* periodo = leitor->ler(scan);
+        leitor->anexaHash(periodo);
     }
 }

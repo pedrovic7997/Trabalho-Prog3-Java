@@ -32,5 +32,4 @@ class LeitorAtividade{
     static LeitorAtividade* obterInstancia();
 };
 
-LeitorAtividade :: leitor = NULL;
 #endif

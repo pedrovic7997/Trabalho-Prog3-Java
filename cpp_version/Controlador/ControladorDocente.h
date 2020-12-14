@@ -8,7 +8,7 @@ using namespace std;
 class ControladorDocente{
     public:
 
-    void ler(ifstream scan);
+    void ler(ifstream* scan);
 
     Docente busca(string codigo);
 };

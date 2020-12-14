@@ -8,9 +8,9 @@ using namespace std;
 class ControladorAtividade{
     public:
 
-    void ler(ifstream &scan);
+    void ler(ifstream*scan);
 
-    void lerAvaliacao(ifstream &scan);
+    void lerAvaliacao(ifstream*scan);
 };
 
 #endif

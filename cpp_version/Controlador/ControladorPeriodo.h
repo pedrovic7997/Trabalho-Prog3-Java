@@ -8,7 +8,7 @@ using namespace std;
 class ControladorPeriodo{
     public:
 
-    void ler(ifstream scan);
+    void ler(ifstream* scan);
 
     Periodo busca(string codigo);
 };

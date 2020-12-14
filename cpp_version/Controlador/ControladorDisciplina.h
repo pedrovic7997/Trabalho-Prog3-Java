@@ -8,7 +8,7 @@ using namespace std;
 class ControladorDisciplina{
     public:
 
-    void ler(ifstream scan);
+    void ler(ifstream* scan);
 
     Disciplina busca(string codigo);
 
@@ -18,6 +18,6 @@ class ControladorDisciplina{
 
     vector<Disciplina> busca(Docente docente);
 
-    void lerMatricula(ifstream scan);
+    void lerMatricula(ifstream* scan);
 };
 #endif

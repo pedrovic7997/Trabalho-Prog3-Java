@@ -1,21 +1,22 @@
 #include "ControladorDisciplina.h"
 
-void ControladorDisciplina :: ler(ifstream scan){
+void ControladorDisciplina :: ler(ifstream* scan){
     LeitorDisciplina leitor = LeitorDisciplina::obterInstancia();
     ControladorDocente cDocente;
     ControladorPeriodo cPeriodo;
-    while(!scan.eof()){
+    while(!scan->eof()){
         string codigo;
-        scan >>codigo;
-       
+        *scan >>codigo;
+        Periodo* periodo;
         try{
-            Periodo periodo = cPeriodo.busca(codigo);
+            Periodo per = cPeriodo.busca(codigo);
+            periodo = &per;
 
         }
         catch(...){
-            throw ExcecaoRef("Referência inválida: "+codigoDisc+".");
+            throw ExcecaoRef("Referência inválida: "+codigo+".");
         }
-        Disciplina disciplina = leitor.ler(scan, periodo);
+        Disciplina disciplina = leitor.ler(scan, *periodo);
         leitor.anexaHash(disciplina);
     }
 }
@@ -35,9 +36,42 @@ bool ControladorDisciplina::verificaMatriculaEstudante(Disciplina disciplina, st
 }
 
 vector<Disciplina> ControladorDisciplina::busca(Docente docente){
-
+    LeitorDisciplina leitor= LeitorDisciplina::obterInstancia();
+    return leitor.busca(docente);
 }
 
-void ControladorDisciplina::lerMatricula(ifstream scan){
+void ControladorDisciplina::lerMatricula(ifstream* scan){
+    ControladorEstudante cEstudante;
+    LeitorDisciplinaEstudante lDisciplinaEstudante = LeitorDisciplinaEstudante::obterInstancia();
+    while(scan->eof()){
+        string codigo;
+        *scan >>codigo;
+        Disciplina* disciplina;
+        try{
+            Disciplina disc = busca(codigo);
+            disciplina = &disc;
+
+        }
+        catch(...){
+            throw ExcecaoRef("Referência inválida: "+codigo+".");
+        }
+        string matricula;
+        *scan >>matricula;
+        Estudante* estudante;
+        try{
+            Estudante est = cEstudante.busca(matricula);
+            estudante = &est;
+        }
+        catch(...){
+            throw ExcecaoRef("Referência inválida: "+codigo+".");
+        }
+        if(verificaMatriculaEstudante(*disciplina, estudante->obterMatricula()))
+            throw ExcecaoMat("Matrícula repetida: "+estudante->obterMatricula()+
+                        " em "+disciplina->obterCodigo()+"-"+disciplina->obterPeriodo()->obterCodigo()+
+                        ".");
+        lDisciplinaEstudante.adiciona(*disciplina, *estudante);
+        // if(scan->haseof())
+        //     scan->nextLine();
+    }
 
 }

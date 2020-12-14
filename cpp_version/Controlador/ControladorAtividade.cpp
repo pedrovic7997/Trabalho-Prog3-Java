@@ -7,13 +7,13 @@ bool verificaCadastroAvaliacao(Atividade atividade,Estudante estudante){
     return false;
 }
 
-void ControladorAtividade :: ler(ifstream &scan){
+void ControladorAtividade :: ler(ifstream*scan){
     LeitorAtividade leitor = LeitorAtividade::obterInstancia();
     ControladorDisciplina controlador;
 		
-    while(!scan.eof()){
+    while(!scan->eof()){
         string codigoDisc;
-        scan >>codigoDisc;
+        *scan >>codigoDisc;
         Disciplina *disciplina;
         try{
             Disciplina disc = controlador.busca(codigoDisc);
@@ -27,17 +27,17 @@ void ControladorAtividade :: ler(ifstream &scan){
     }
 }
 
-void ControladorAtividade :: lerAvaliacao(ifstream &scan){
+void ControladorAtividade :: lerAvaliacao(ifstream*scan){
     ControladorDisciplina cDisciplina;
     ControladorEstudante cEstudante;
     LeitorAtividade lAtividade = LeitorAtividade::obterInstancia();
     LeitorAvaliacao lAvaliacao = LeitorAvaliacao::obterInstancia();
 
-    while(!scan.eof()){
+    while(!scan->eof()){
         string codigoDisc;
-        scan >>codigoDisc;
+        *scan >>codigoDisc;
         string matricula;
-        scan >>matricula;
+        *scan >>matricula;
         Disciplina* disciplina;
         try{
             Disciplina disc = cDisciplina.busca(codigoDisc);

@@ -18,7 +18,7 @@ class LeitorEstudante{
 
     vector<Estudante> obterEstudantes();
 
-    Estudante ler(ifstream scanner);
+    Estudante ler(ifstream* scanner);
 
     void anexaHash(Estudante estudante);
 

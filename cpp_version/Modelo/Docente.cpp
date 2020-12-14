@@ -27,28 +27,28 @@ string Docente :: obterPaginaWeb() const{
 }
 
 int Docente :: contaDisciplinas(){
-    LeitorDisciplina lDisciplinas = LeitorDisciplina :: obterInstancia();
-    vector<Disciplina> disciplinas = lDisciplinas.busca(*this);
+    LeitorDisciplina* lDisciplinas = LeitorDisciplina :: obterInstancia();
+    vector<Disciplina*> disciplinas = lDisciplinas->busca(this);
 
     return disciplinas.size();
 }
 
 int Docente :: contaPeriodos(){
-    LeitorPeriodo lPeriodo = LeitorPeriodo :: obterInstancia();
-    vector<Periodo> periodo = lPeriodo.busca(*this);
+    LeitorPeriodo* lPeriodo = LeitorPeriodo :: obterInstancia();
+    vector<Periodo*> periodo = lPeriodo->busca(this);
 
     return periodo.size();
 }
 
 double Docente :: mediaAtividadesPorDiciplina(){
-    LeitorDisciplina lDisciplinas = LeitorDisciplina :: obterInstancia();
-    vector<Disciplina> disciplinas = lDisciplinas.busca(*this);
+    LeitorDisciplina* lDisciplinas = LeitorDisciplina :: obterInstancia();
+    vector<Disciplina*> disciplinas = lDisciplinas->busca(this);
 
     if(disciplinas.size() == 0) return 0;
 
     double cont=0;
-    for(Disciplina d : disciplinas){
-        vector<Atividade> atividades = d.obterAtividades();
+    for(Disciplina* d : disciplinas){
+        vector<Atividade*> atividades = d->obterAtividades();
         cont += atividades.size();
     }
 
@@ -56,17 +56,17 @@ double Docente :: mediaAtividadesPorDiciplina(){
 }
 
 double Docente :: percentualAtividadesSincronas(){
-    LeitorDisciplina lDisciplinas = LeitorDisciplina :: obterInstancia();
-    vector<Disciplina> disciplinas = lDisciplinas.busca(*this);
+    LeitorDisciplina* lDisciplinas = LeitorDisciplina :: obterInstancia();
+    vector<Disciplina*> disciplinas = lDisciplinas->busca(this);
 
     if(disciplinas.size() == 0) return 0;
 
     double cont=0, cont2=0;
-    for(Disciplina d : disciplinas){
-        vector<Atividade> atividades = d.obterAtividades();
+    for(Disciplina* d : disciplinas){
+        vector<Atividade*> atividades = d->obterAtividades();
         cont += atividades.size();
-        for(Atividade a : atividades){
-            if(a.obterSincrona())
+        for(Atividade* a : atividades){
+            if(a->obterSincrona())
                 cont2++;
         }
     }
@@ -77,17 +77,17 @@ double Docente :: percentualAtividadesSincronas(){
 }
 
 double Docente :: percentualAtividadesAssincronas(){
-    LeitorDisciplina lDisciplinas = LeitorDisciplina :: obterInstancia();
-    vector<Disciplina> disciplinas = lDisciplinas.busca(*this);
+    LeitorDisciplina* lDisciplinas = LeitorDisciplina :: obterInstancia();
+    vector<Disciplina*> disciplinas = lDisciplinas->busca(this);
 
     if(disciplinas.size() == 0) return 0;
 
     double cont=0, cont2=0;
-    for(Disciplina d : disciplinas){
-        vector<Atividade> atividades = d.obterAtividades();
+    for(Disciplina* d : disciplinas){
+        vector<Atividade*> atividades = d->obterAtividades();
         cont += atividades.size();
-        for(Atividade a : atividades){
-            if(!a.obterSincrona())
+        for(Atividade* a : atividades){
+            if(!a->obterSincrona())
                 cont2++;
         }
     }
@@ -98,15 +98,15 @@ double Docente :: percentualAtividadesAssincronas(){
 }
 
 double Docente :: mediaNotasRecebidas(){
-    LeitorDisciplina lDisciplinas = LeitorDisciplina :: obterInstancia();
-    vector<Disciplina> disciplinas = lDisciplinas.busca(*this);
+    LeitorDisciplina* lDisciplinas = LeitorDisciplina :: obterInstancia();
+    vector<Disciplina*> disciplinas = lDisciplinas->busca(this);
 
     double cont=0, notas=0;
-    for(Disciplina d : disciplinas){
-        vector<Atividade> atividades = d.obterAtividades();
-        for(Atividade a : atividades){
-            cont += a.obterQtdAvaliacoes();
-            notas += a.calculaNotaTotal();
+    for(Disciplina* d : disciplinas){
+        vector<Atividade*> atividades = d->obterAtividades();
+        for(Atividade* a : atividades){
+            cont += a->obterQtdAvaliacoes();
+            notas += a->calculaNotaTotal();
         }
     }
 

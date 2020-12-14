@@ -14,7 +14,7 @@ class LeitorAvaliacao{
 
     static LeitorAvaliacao* obterInstancia();
 
-    vector<Avaliacao*> busca(vector<Avaliacao> avaliacoes, Estudante estudante);
+    vector<Avaliacao*> busca(vector<Avaliacao*> avaliacoes, Estudante* estudante);
 
     Avaliacao* ler(ifstream* scan,Estudante aluno);  
 };

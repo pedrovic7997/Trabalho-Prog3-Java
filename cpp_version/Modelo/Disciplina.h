@@ -10,7 +10,7 @@ class Disciplina{
     string nome;
     Periodo *periodo;
     Docente *professor;
-    vector<Atividade> atividades;
+    vector<Atividade*> atividades;
 
     public:
         Disciplina(string codigo, string nome, Periodo *periodo, Docente *professor);
@@ -20,9 +20,9 @@ class Disciplina{
         string obterNome() const;
         Periodo* obterPeriodo() const;
         Docente* obterDocente() const;
-        vector<Atividade> obterAtividades();
+        vector<Atividade*> obterAtividades();
 
-        void anexaAtividade(Atividade atividade);
+        void anexaAtividade(Atividade* atividade);
         double obterNotaTotal();
         int obterAvaliacoesTotal();
 

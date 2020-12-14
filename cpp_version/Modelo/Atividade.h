@@ -8,7 +8,7 @@ using namespace std;
 class Atividade {
     string nome;
     bool sincrona;
-    vector<Avaliacao> avaliacoes;
+    vector<Avaliacao*> avaliacoes;
 
     public:
         time_t data;
@@ -18,10 +18,10 @@ class Atividade {
         string obterNome() const;
         bool obterSincrona() const;
         int obterCargaHoraria() const;
-        vector<Avaliacao> obterAvaliacoes();
+        vector<Avaliacao*> obterAvaliacoes();
         time_t obterData();
 
-        void anexaAvaliacao(Avaliacao avaliacao);
+        void anexaAvaliacao(Avaliacao* avaliacao);
         double calculaNotaTotal();
         
         int obterQtdAvaliacoes();

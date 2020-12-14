@@ -10,6 +10,6 @@ class CotroladorPeriodo{
 
     void ler(ifstream scan);
 
-    Periodo busca(String codigo);
+    Periodo busca(string codigo);
 };
 #endif

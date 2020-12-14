@@ -14,13 +14,21 @@ OBJL= $(SRCL:.cpp=.o)
 OBJC= $(SRCC:.cpp=.o)
 OBJU= $(SRCU:.cpp=.o)
 
-all: $(EXEC)
 
-main: $(OBJ) $(OBJM) $(OBJL) $(OBJC) $(OBJU)
+all: $(EXEC) BIN
+
+BIN: 
+	mkdir bin
+	mkdir bin/util
+	mkdir bin/Controlador
+	mkdir bin/Leitor
+	mkdir bin/Modelo
+
+$(EXEC): $(OBJ) $(OBJM) $(OBJU) $(OBJC)
 	@$(CC) $^ -o $(bindir)$@
 
-%.o: %.c
+%.o: %.cpp BIN
 	@$(CC) -o $(bindir)$@ -c $< $(CFLAGS)
 
 clean: 
-	@rm $(OBJ) $(OBJM) $(OBJL) $(OBJC) $(OBJU)
+	@rm $(bindir)util/*.o $(bindir)Controlador/*.o $(bindir)Leitor/*.o $(bindir)Modelo/*.o $(bindir)main.o

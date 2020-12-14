@@ -2,7 +2,7 @@
 
 bool ControladorAtividade :: verificaCadastroAvaliacao(Atividade atividade,Estudante estudante){
     for(Avaliacao avaliacao : atividade.obterAvaliacoes())
-        if(avaliacao.obterAluno() == estudante)
+        if(avaliacao.obterAluno()->obterMatricula == estudante.obterMatricula())
             return true;
     return false;
 }
@@ -14,9 +14,12 @@ void ControladorAtividade :: ler(ifstream scan){
     while(!scan.eof()){
         string codigoDisc;
         scan >>codigoDisc;
-        Disciplina disciplina = controlador.busca(codigoDisc);
-        if(disciplina == null)
-            throw new Exception("Referência inválida: "+codigoDisc+".");
+        try{
+            Disciplina disciplina = controlador.busca(codigoDisc);
+        }
+        catch{
+            throw bad_typeid("Referência inválida: "+codigoDisc+".");
+        }
         Atividade atividade = leitor.ler(scan);
         disciplina.anexaAtividade(atividade);
     }
@@ -31,20 +34,24 @@ void ControladorAtividade :: lerAvaliacao(ifstream scan){
     while(scan.hasNext()){
         string codigoDisc;
         scan >>codigoDisc;
-        Disciplina disciplina = cDisciplina.busca(codigoDisc);
-        if (disciplina == NULL){
+        String matricula = scan.next().trim();
+        try{
+            Disciplina disciplina = cDisciplina.busca(codigoDisc);
+
+        }
+        catch{
             throw bad_typeid("Referência inválida: "+codigoDisc+".");
         }
-        String matricula = scan.next().trim();
-        Estudante estudante = cEstudante.busca(matricula);
-        if (estudante == NULL){
+        try{
+            Estudante estudante = cEstudante.busca(matricula);
+
+        }
+        catch{
             throw bad_typeid("Referência inválida: "+matricula+".");
         }
+        
         int codigoAtiv = scan.nextInt();
         Atividade atividade = lAtividade.busca(codigoAtiv-1, disciplina.obterAtividades());
-        if (atividade == NULL){
-            throw bad_typeid("Referência inválida: "+codigoAtiv+".");
-        }
         Avaliacao avaliacao = lAvaliacao.ler(scan, estudante);
         if(verificaCadastroAvaliacao(atividade, estudante))
             throw exception("Avaliação repetida: estudante "+estudante.obterMatricula()+ 

@@ -41,7 +41,7 @@ int Atividade :: obterQtdAvaliacoes(){
     return avaliacoes.size();
 }
 
-bool compara(const Atividade* esq, const Atividade* dir){
+bool Atividade :: compara(const Atividade* esq, const Atividade* dir){
     if(esq->data > dir->data) return 1;
     if(esq->data < dir->data) return -1;
     if(esq->data == dir->data) return 0;

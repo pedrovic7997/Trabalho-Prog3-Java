@@ -18,6 +18,7 @@ namespace cpp_util {
 using namespace std;
 
 const string DATE_FORMAT_PT_BR_SHORT = "%d/%m/%Y";
+const string DATE_FORMAT_PT_BR = "%d/%m/%Y;%H:%M";
 
 /* Converts dates in human-readable format to machine-processable format for storing in objects. */
 time_t parseDate(const string& str, const string& formato);

@@ -1,14 +1,14 @@
 #include "ControladorAtividade.h"
 
-bool verificaCadastroAvaliacao(Atividade atividade,Estudante estudante){
-    for(Avaliacao avaliacao : atividade.obterAvaliacoes())
-        if(avaliacao.obterAluno()->obterMatricula() == estudante.obterMatricula())
+bool verificaCadastroAvaliacao(Atividade* atividade,Estudante* estudante){
+    for(Avaliacao* avaliacao : atividade->obterAvaliacoes())
+        if(avaliacao->obterAluno() == estudante)
             return true;
     return false;
 }
 
 void ControladorAtividade :: ler(ifstream*scan){
-    LeitorAtividade leitor = LeitorAtividade::obterInstancia();
+    LeitorAtividade* leitor = LeitorAtividade::obterInstancia();
     ControladorDisciplina controlador;
 		
     while(!scan->eof()){
@@ -16,13 +16,12 @@ void ControladorAtividade :: ler(ifstream*scan){
         *scan >>codigoDisc;
         Disciplina *disciplina;
         try{
-            Disciplina disc = controlador.busca(codigoDisc);
-            disciplina = &disc;
+            disciplina = controlador.busca(codigoDisc);
         }
         catch(...){
             throw ExcecaoRef("Referência inválida: "+codigoDisc+".");
         }
-        Atividade atividade = leitor.ler(scan);
+        Atividade* atividade = leitor->ler(scan);
         disciplina->anexaAtividade(atividade);
     }
 }
@@ -30,8 +29,8 @@ void ControladorAtividade :: ler(ifstream*scan){
 void ControladorAtividade :: lerAvaliacao(ifstream*scan){
     ControladorDisciplina cDisciplina;
     ControladorEstudante cEstudante;
-    LeitorAtividade lAtividade = LeitorAtividade::obterInstancia();
-    LeitorAvaliacao lAvaliacao = LeitorAvaliacao::obterInstancia();
+    LeitorAtividade* lAtividade = LeitorAtividade::obterInstancia();
+    LeitorAvaliacao* lAvaliacao = LeitorAvaliacao::obterInstancia();
 
     while(!scan->eof()){
         string codigoDisc;
@@ -40,8 +39,7 @@ void ControladorAtividade :: lerAvaliacao(ifstream*scan){
         *scan >>matricula;
         Disciplina* disciplina;
         try{
-            Disciplina disc = cDisciplina.busca(codigoDisc);
-            disciplina = &disc;
+            disciplina= cDisciplina.busca(codigoDisc);
 
         }
         catch(...){
@@ -49,8 +47,7 @@ void ControladorAtividade :: lerAvaliacao(ifstream*scan){
         }
         Estudante* estudante;
         try{
-            Estudante estu = cEstudante.busca(matricula);
-            estudante = &estu;
+            estudante = cEstudante.busca(matricula);
 
         }
         catch(...){
@@ -59,12 +56,12 @@ void ControladorAtividade :: lerAvaliacao(ifstream*scan){
         
         char codigoAtiv;
         cin >>codigoAtiv;
-        Atividade atividade = lAtividade.busca(codigoAtiv-1, disciplina->obterAtividades());
-        Avaliacao avaliacao = lAvaliacao.ler(scan, *estudante);
+        Atividade* atividade = lAtividade->busca(codigoAtiv-1, disciplina->obterAtividades());
+        Avaliacao* avaliacao = lAvaliacao->ler(scan, *estudante);
         if(verificaCadastroAvaliacao(atividade, *estudante))
             throw ExcecaoAval("Avaliação repetida: estudante "+estudante->obterMatricula()+ 
                                 " para atividade " +codigoAtiv +" de "+disciplina->obterCodigo()+"-"+
                                 disciplina->obterPeriodo()->obterCodigo()+".");
-        atividade.anexaAvaliacao(avaliacao);
+        atividade->anexaAvaliacao(avaliacao);
     }
 }

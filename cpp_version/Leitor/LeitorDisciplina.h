@@ -6,26 +6,26 @@
 using namespace std;
 
 class LeitorDisciplina{
-    map<string,Disciplina> mapa;
-    static LeitorDisciplina leitor;
+    map<string,Disciplina*> mapa;
+    static LeitorDisciplina* leitor;
 
     LeitorDisciplina();
 
     public:
 
-    static LeitorDisciplina obterInstancia();
+    static LeitorDisciplina* obterInstancia();
 
-    vector<Disciplina> busca(Periodo periodo);
+    vector<Disciplina*> busca(Periodo periodo);
 
-    vector<Disciplina> busca(Docente docente);
+    vector<Disciplina*> busca(Docente docente);
 
-    Disciplina busca(string codigo);
+    Disciplina* busca(string codigo);
 
-    Disciplina ler(ifstream* scan,Periodo periodo);
+    Disciplina* ler(ifstream* scan,Periodo periodo);
 
     void anexaHash(Disciplina disciplina);
 
-    vector<Disciplina> retornaDisciplinas();
+    vector<Disciplina*> retornaDisciplinas();
 
 };
 #endif

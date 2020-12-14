@@ -10,6 +10,6 @@ class ControladorEstudante{
 
     void ler(ifstream* scan);
 
-    Estudante busca(string codigo);
+    Estudante* busca(string codigo);
 };
 #endif

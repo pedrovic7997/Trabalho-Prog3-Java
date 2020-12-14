@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class CotroladorDisciplina{
+class ControladorDisciplina{
     public:
 
     void ler(ifstream scan);

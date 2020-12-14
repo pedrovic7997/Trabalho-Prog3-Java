@@ -38,11 +38,14 @@ class LeitorDisciplinaEstudante;
 class LeitorDocente;
 class LeitorEstudante;
 class LeitorPeriodo;
+class ControladorAtividade;
 class ControladorDisciplina;
 class ControladorDocente;
 class ControladorEstudante;
 class ControladorPeriodo;
 
+#include "Excecoes/Excecao.h"
+#include "Excecoes/Excecoes.h"
 #include "Modelo/Atividade.h"
 #include "Modelo/Avaliacao.h"
 #include "Modelo/Disciplina.h"

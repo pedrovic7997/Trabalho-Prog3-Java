@@ -1,62 +1,70 @@
 #include "ControladorAtividade.h"
 
-bool ControladorAtividade :: verificaCadastroAvaliacao(Atividade atividade,Estudante estudante){
+bool verificaCadastroAvaliacao(Atividade atividade,Estudante estudante){
     for(Avaliacao avaliacao : atividade.obterAvaliacoes())
-        if(avaliacao.obterAluno()->obterMatricula == estudante.obterMatricula())
+        if(avaliacao.obterAluno()->obterMatricula() == estudante.obterMatricula())
             return true;
     return false;
 }
 
-void ControladorAtividade :: ler(ifstream scan){
-    LeitorAtividade leitor = LeitorAtividade.obterInstancia();
-    ControladorDisciplina controlador = new ControladorDisciplina();
+void ControladorAtividade :: ler(ifstream &scan){
+    LeitorAtividade leitor = LeitorAtividade::obterInstancia();
+    ControladorDisciplina controlador;
 		
     while(!scan.eof()){
         string codigoDisc;
         scan >>codigoDisc;
+        Disciplina *disciplina;
         try{
-            Disciplina disciplina = controlador.busca(codigoDisc);
+            Disciplina disc = controlador.busca(codigoDisc);
+            disciplina = &disc;
         }
-        catch{
-            throw bad_typeid("Referência inválida: "+codigoDisc+".");
+        catch(...){
+            throw ExcecaoRef("Referência inválida: "+codigoDisc+".");
         }
         Atividade atividade = leitor.ler(scan);
-        disciplina.anexaAtividade(atividade);
+        disciplina->anexaAtividade(atividade);
     }
 }
 
-void ControladorAtividade :: lerAvaliacao(ifstream scan){
-    ControladorDisciplina cDisciplina = new ControladorDisciplina();
-    ControladorEstudante cEstudante = new ControladorEstudante();
-    LeitorAtividade lAtividade = LeitorAtividade.obterInstancia();
-    LeitorAvaliacao lAvaliacao = LeitorAvaliacao.obterInstancia();
+void ControladorAtividade :: lerAvaliacao(ifstream &scan){
+    ControladorDisciplina cDisciplina;
+    ControladorEstudante cEstudante;
+    LeitorAtividade lAtividade = LeitorAtividade::obterInstancia();
+    LeitorAvaliacao lAvaliacao = LeitorAvaliacao::obterInstancia();
 
-    while(scan.hasNext()){
+    while(!scan.eof()){
         string codigoDisc;
         scan >>codigoDisc;
-        String matricula = scan.next().trim();
+        string matricula;
+        scan >>matricula;
+        Disciplina* disciplina;
         try{
-            Disciplina disciplina = cDisciplina.busca(codigoDisc);
+            Disciplina disc = cDisciplina.busca(codigoDisc);
+            disciplina = &disc;
 
         }
-        catch{
-            throw bad_typeid("Referência inválida: "+codigoDisc+".");
+        catch(...){
+            throw ExcecaoRef("Referência inválida: "+codigoDisc+".");
         }
+        Estudante* estudante;
         try{
-            Estudante estudante = cEstudante.busca(matricula);
+            Estudante estu = cEstudante.busca(matricula);
+            estudante = &estu;
 
         }
-        catch{
-            throw bad_typeid("Referência inválida: "+matricula+".");
+        catch(...){
+            throw ExcecaoRef("Referência inválida: "+codigoDisc+".");
         }
         
-        int codigoAtiv = scan.nextInt();
-        Atividade atividade = lAtividade.busca(codigoAtiv-1, disciplina.obterAtividades());
-        Avaliacao avaliacao = lAvaliacao.ler(scan, estudante);
-        if(verificaCadastroAvaliacao(atividade, estudante))
-            throw exception("Avaliação repetida: estudante "+estudante.obterMatricula()+ 
-                                " para atividade " +codigoAtiv +" de "+disciplina.obterCodigo()+"-"+
-                                disciplina.obterPeriodo().obterCodigo()+".");
+        char codigoAtiv;
+        cin >>codigoAtiv;
+        Atividade atividade = lAtividade.busca(codigoAtiv-1, disciplina->obterAtividades());
+        Avaliacao avaliacao = lAvaliacao.ler(scan, *estudante);
+        if(verificaCadastroAvaliacao(atividade, *estudante))
+            throw ExcecaoAval("Avaliação repetida: estudante "+estudante->obterMatricula()+ 
+                                " para atividade " +codigoAtiv +" de "+disciplina->obterCodigo()+"-"+
+                                disciplina->obterPeriodo()->obterCodigo()+".");
         atividade.anexaAvaliacao(avaliacao);
     }
 }

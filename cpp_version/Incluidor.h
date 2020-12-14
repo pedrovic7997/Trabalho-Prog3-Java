@@ -38,9 +38,7 @@ class LeitorDisciplinaEstudante;
 class LeitorDocente;
 class LeitorEstudante;
 class LeitorPeriodo;
-class ControladorAvalicao;
 class ControladorDisciplina;
-class ControladorDisciplinaEstudante;
 class ControladorDocente;
 class ControladorEstudante;
 class ControladorPeriodo;
@@ -56,10 +54,11 @@ class ControladorPeriodo;
 #include "Leitor/LeitorAtividade.h"
 #include "Leitor/LeitorAvaliacao.h"
 #include "Leitor/LeitorDisciplina.h"
+#include "Leitor/LeitorDisciplinaEstudante.h"
 #include "Leitor/LeitorDocente.h"
 #include "Leitor/LeitorEstudante.h"
 #include "Leitor/LeitorPeriodo.h"
-#include "Controlador/ControladorAvaliacao.h"
+#include "Controlador/ControladorAtividade.h"
 #include "Controlador/ControladorDisciplina.h"
 #include "Controlador/ControladorDocente.h"
 #include "Controlador/ControladorEstudante.h"

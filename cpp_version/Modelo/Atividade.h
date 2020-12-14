@@ -28,6 +28,8 @@ class Atividade {
 
         virtual bool ehAvaliativa();
 
+        bool compara(const Atividade* esq, const Atividade* dir);
+
         friend ostream& operator<<(ostream& os, Atividade &atividade); 
 };
 

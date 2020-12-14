@@ -41,6 +41,12 @@ int Atividade :: obterQtdAvaliacoes(){
     return avaliacoes.size();
 }
 
+bool compara(const Atividade* esq, const Atividade* dir){
+    if(esq->data > dir->data) return 1;
+    if(esq->data < dir->data) return -1;
+    if(esq->data == dir->data) return 0;
+}
+
 ostream& operator<< (ostream& os, Atividade &atividade){
     if(atividade.obterSincrona()){
         os << "Nome: " << atividade.nome << " - Sincrona" << endl;

@@ -5,19 +5,25 @@
 
 using namespace std;
 
-class CotroladorDisciplina{
+class ControladorDisciplina{
     public:
 
-    void ler(ifstream scan);
+    void ler(ifstream* scan);
 
-    Disciplina busca(string codigo);
+    Disciplina* busca(string codigo);
 
-    Estudante busca(Disciplina disciplina, string matricula);
+    Estudante* busca(Disciplina* disciplina, string matricula);
 
-    bool verificaMatriculaEstudante(Disciplina disciplina, string matricula);
+    bool verificaMatriculaEstudante(Disciplina* disciplina, string matricula);
 
-    vector<Disciplina> busca(Docente docente);
+    vector<Disciplina*> busca(Docente* docente);
 
-    void lerMatricula(ifstream scan);
+    void lerMatricula(ifstream* scan);
+
+    vector<Disciplina*> lista();
+
+    vector<Disciplina*> lista(Periodo* periodo);
+
+    vector<Estudante*> lista(Disciplina* disciplina);
 };
 #endif

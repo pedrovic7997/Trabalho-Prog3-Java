@@ -5,11 +5,13 @@
 
 using namespace std;
 
-class CotroladorEstudante{
+class ControladorEstudante{
     public:
 
-    void ler(ifstream scan);
+    void ler(ifstream* scan);
 
-    Estudante busca(string codigo);
+    Estudante* busca(string codigo);
+
+    vector<Estudante*> lista();
 };
 #endif

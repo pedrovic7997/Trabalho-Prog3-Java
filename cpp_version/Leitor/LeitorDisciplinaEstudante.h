@@ -6,23 +6,23 @@
 using namespace std;
 
 class LeitorDisciplinaEstudante{
-    map<string,vector<Estudante>> mapDisciplina;
-    map<string,vector<Disciplina>> mapEstudante;
-    static LeitorDisciplinaEstudante leitor;
+    map<string,vector<Estudante*>> mapDisciplina;
+    map<string,vector<Disciplina*>> mapEstudante;
+    static LeitorDisciplinaEstudante* leitor;
     
     LeitorDisciplinaEstudante();
 
     public:
 
-    static LeitorDisciplinaEstudante obterInstancia();
+    static LeitorDisciplinaEstudante* obterInstancia();
 
-    void adiciona(Disciplina disciplina, Estudante estdante);
+    void adiciona(Disciplina* disciplina, Estudante* estdante);
 
-    Estudante busca(Disciplina disciplina,string matricula);
+    Estudante* busca(Disciplina* disciplina,string matricula);
 
-    vector<Estudante> busca(Disciplina diciplina);
+    vector<Estudante*> busca(Disciplina* diciplina);
 
-    vector<Disciplina> busca(Estudante estudante);
+    vector<Disciplina*> busca(Estudante* estudante);
 
 };
 #endif

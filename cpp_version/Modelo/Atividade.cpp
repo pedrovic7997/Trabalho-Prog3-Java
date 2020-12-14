@@ -17,7 +17,7 @@ int Atividade :: obterCargaHoraria() const{
     return 2;
 }
 
-vector<Avaliacao> Atividade :: obterAvaliacoes(){
+vector<Avaliacao*> Atividade :: obterAvaliacoes(){
     return avaliacoes;
 }
 
@@ -25,20 +25,26 @@ time_t Atividade :: obterData(){
     return data;
 }
 
-void Atividade :: anexaAvaliacao(Avaliacao avaliacao){    
+void Atividade :: anexaAvaliacao(Avaliacao* avaliacao){    
     avaliacoes.push_back(avaliacao);
 }
 
 double Atividade :: calculaNotaTotal(){
     double notaTotal = 0;
-    for(Avaliacao a : avaliacoes){
-        notaTotal += a.obterNota();
+    for(Avaliacao* a : avaliacoes){
+        notaTotal += a->obterNota();
     }
     return notaTotal;
 }
 
 int Atividade :: obterQtdAvaliacoes(){
     return avaliacoes.size();
+}
+
+bool Atividade :: compara(const Atividade* esq, const Atividade* dir){
+    if(esq->data > dir->data) return 1;
+    if(esq->data < dir->data) return -1;
+    if(esq->data == dir->data) return 0;
 }
 
 ostream& operator<< (ostream& os, Atividade &atividade){

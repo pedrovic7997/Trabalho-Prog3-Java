@@ -9,7 +9,7 @@ class Estudo : public Atividade{
     vector<Material> materiais;
 
     public:
-        Estudo (string nome, bool sincrona, vector<Material> materiais, time_t data);
+        Estudo (string nome, bool sincrona, vector<Material> materiais);
 
         vector<Material> getMateriais();
         bool ehAvaliativa();

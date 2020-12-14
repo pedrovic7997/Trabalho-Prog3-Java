@@ -28,34 +28,34 @@ Docente* Disciplina :: obterDocente() const{
     return professor;
 }
 
-vector<Atividade> Disciplina :: obterAtividades(){
+vector<Atividade*> Disciplina :: obterAtividades(){
     return atividades;
 }
 
-void Disciplina :: anexaAtividade(Atividade atividade){
+void Disciplina :: anexaAtividade(Atividade* atividade){
     atividades.push_back(atividade);
 }
 
 double Disciplina :: obterNotaTotal(){
     double notaTotal = 0;
-    for(Atividade ativ : atividades){
-        notaTotal += ativ.obterAvaliacoes().size();
+    for(Atividade* ativ : atividades){
+        notaTotal += ativ->obterAvaliacoes().size();
     }
     return notaTotal;
 }
 
 int Disciplina :: obterAvaliacoesTotal(){
     int qtdAvaliacao = 0;
-    for(Atividade ativ : atividades){
-        qtdAvaliacao += ativ.obterAvaliacoes().size();
+    for(Atividade* ativ : atividades){
+        qtdAvaliacao += ativ->obterAvaliacoes().size();
     }
     return qtdAvaliacao;
 }
 
 int Disciplina :: obterSincronas(){
     int qtdSinc = 0;
-    for(Atividade a : obterAtividades()){
-        if(a.obterSincrona()){
+    for(Atividade* a : obterAtividades()){
+        if(a->obterSincrona()){
             qtdSinc++;
         }
     }
@@ -64,8 +64,8 @@ int Disciplina :: obterSincronas(){
 
 int Disciplina :: obterAvalitiva(){
     int qtdAvaliativas = 0;
-    for(Atividade a : obterAtividades()){
-        if(a.ehAvaliativa()) {
+    for(Atividade* a : obterAtividades()){
+        if(a->ehAvaliativa()) {
             qtdAvaliativas++;
         }
     }
@@ -74,8 +74,8 @@ int Disciplina :: obterAvalitiva(){
 
 int Disciplina :: obterCargaHoraria(){
     int cargaHoraria = 0;
-    for(Atividade a : obterAtividades()){
-        cargaHoraria += a.obterCargaHoraria();
+    for(Atividade* a : obterAtividades()){
+        cargaHoraria += a->obterCargaHoraria();
     }
     return cargaHoraria;
 }
@@ -85,9 +85,9 @@ double Disciplina :: percentualAtividadesSincronas(){
 
     if(atividades.size() == 0) return 0;
 
-    for(Atividade a : obterAtividades()){
+    for(Atividade* a : obterAtividades()){
         cont2++;
-        if(a.obterSincrona())
+        if(a->obterSincrona())
             cont ++;
     }
 
@@ -99,9 +99,9 @@ double Disciplina :: percentualAtividadesAssincronas(){
 
     if(atividades.size() == 0) return 0;
 
-    for(Atividade a : obterAtividades()){
+    for(Atividade* a : obterAtividades()){
         cont2++;
-        if(!a.obterSincrona())
+        if(!a->obterSincrona())
             cont ++;
     }
 
@@ -111,8 +111,8 @@ double Disciplina :: percentualAtividadesAssincronas(){
 int Disciplina :: calculaCargaHorariaTotal(){
     double cont=0;
 
-    for(Atividade a : obterAtividades()){
-        cont += a.obterCargaHoraria();
+    for(Atividade* a : obterAtividades()){
+        cont += a->obterCargaHoraria();
     }
 
     return cont;
@@ -121,11 +121,21 @@ int Disciplina :: calculaCargaHorariaTotal(){
 int Disciplina :: obterQtdAvaliacoesTotal(){
     int cont=0;
 
-    for(Atividade a : obterAtividades()){
-        cont += a.obterQtdAvaliacoes();
+    for(Atividade* a : obterAtividades()){
+        cont += a->obterQtdAvaliacoes();
     }
 
     return cont;
+}
+
+bool comparaNome(const Disciplina* esq, const Disciplina* dir){
+    return stringCompare(esq->obterNome(), dir->obterNome());
+}
+
+bool compara(const Disciplina* esq, const Disciplina* dir){
+    int cmp = stringCompare(esq->obterPeriodo()->obterCodigo(), dir->obterPeriodo()->obterCodigo());
+    if(cmp != 0) return cmp;
+    return stringCompare(esq->obterCodigo(), dir->obterCodigo());
 }
 
 ostream& operator<<(ostream& os, Disciplina &disciplina){

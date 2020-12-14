@@ -6,22 +6,22 @@
 using namespace std;
 
 class LeitorDocente{
-    map<string,Docente> mapDocente;
-    static LeitorDocente leitor;
+    map<string,Docente*> mapDocente;
+    static LeitorDocente* leitor;
     
     LeitorDocente();
 
     public:
 
-    static LeitorDocente obterInstancia();
+    static LeitorDocente* obterInstancia();
 
-    vector<Docente> obterDocentes();
+    vector<Docente*> obterDocentes();
 
-    Docente ler(ifstream scanner);
+    Docente* ler(ifstream* scanner);
 
-    void anexaHash(Docente docente);
+    void anexaHash(Docente* docente);
 
-    Docente busca(string codigo);
+    Docente* busca(string codigo);
 
 };
 #endif

@@ -5,11 +5,13 @@
 
 using namespace std;
 
-class CotroladorPeriodo{
+class ControladorPeriodo{
     public:
 
-    void ler(ifstream scan);
+    void ler(ifstream* scan);
 
-    Periodo busca(string codigo);
+    Periodo* busca(string codigo);
+
+    vector<Periodo*> lista();
 };
 #endif

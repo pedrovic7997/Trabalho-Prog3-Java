@@ -5,12 +5,12 @@
 
 using namespace std;
 
-class CotroladorAtividade{
-    bool verificaCadastroAvaliacao(Atividade atividade,Estudante estudante);
+class ControladorAtividade{
     public:
 
-    void ler(ifstream scan);
+    void ler(ifstream*scan);
 
-    void lerAvaliacao(ifstream scan);
+    void lerAvaliacao(ifstream*scan);
 };
+
 #endif

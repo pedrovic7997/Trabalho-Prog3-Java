@@ -4,13 +4,14 @@
 #include "../Incluidor.h"
 
 using namespace std;
+using namespace cpp_util;
 
 class Disciplina{
     string codigo;
     string nome;
     Periodo *periodo;
     Docente *professor;
-    vector<Atividade> atividades;
+    vector<Atividade*> atividades;
 
     public:
         Disciplina(string codigo, string nome, Periodo *periodo, Docente *professor);
@@ -20,9 +21,9 @@ class Disciplina{
         string obterNome() const;
         Periodo* obterPeriodo() const;
         Docente* obterDocente() const;
-        vector<Atividade> obterAtividades();
+        vector<Atividade*> obterAtividades();
 
-        void anexaAtividade(Atividade atividade);
+        void anexaAtividade(Atividade* atividade);
         double obterNotaTotal();
         int obterAvaliacoesTotal();
 
@@ -34,6 +35,9 @@ class Disciplina{
         double percentualAtividadesAssincronas();
         int calculaCargaHorariaTotal();
         int obterQtdAvaliacoesTotal();
+
+        bool comparaNome(const Disciplina* esq, const Disciplina* dir);
+        bool compara(const Disciplina* esq, const Disciplina* dir);
 
         friend ostream& operator<<(ostream& os, Disciplina &disciplina); 
 };

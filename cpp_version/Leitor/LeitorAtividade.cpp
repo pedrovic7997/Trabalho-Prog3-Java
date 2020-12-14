@@ -6,7 +6,7 @@ Atividade LeitorAtividade :: busca(int posicao, vector<Atividade> atividades){
     }
 }
 
-Atividade LeitorAtividade :: ler(ifstream scan){
+Atividade LeitorAtividade :: ler(ifstream* scan){
     string nome, tipo;
     
     getline(scan, nome, ';');
@@ -26,7 +26,7 @@ Atividade LeitorAtividade :: ler(ifstream scan){
 
 }
 
-Trabalho LeitorAtividade :: criaTrabalho(string nome, ifstream scan){
+Trabalho LeitorAtividade :: criaTrabalho(string nome, ifstream* scan){
     string dataString, trash;
     time_t data;
 
@@ -62,13 +62,13 @@ Trabalho LeitorAtividade :: criaTrabalho(string nome, ifstream scan){
         throw ExcecaoDado("Dado inválido: " + aux + ".");
     }
 
-    if(!scan.eof())
+    if(!scan->eof())
         getline(scan, trash, '\n');
     
     return new Trabalho(nome, false, data, numAlunos, cargaHoraria);
 }
 
-Aula LeitorAtividade :: criaAula(string nome, ifstream scan){
+Aula LeitorAtividade :: criaAula(string nome, ifstream* scan){
     string dataString, aux, trash;
     time_t data;
 
@@ -85,13 +85,13 @@ Aula LeitorAtividade :: criaAula(string nome, ifstream scan){
         throw ExcecaoDado("Dado inválido: " + dataString + ".");
     }
 
-    if(!scan.eof())
+    if(!scan->eof())
         getline(scan, trash, '\n');
 
     return Aula(nome, true, data);
 }
 
-Estudo LeitorAtividade :: criaEstudo(string nome, ifstream scan){
+Estudo LeitorAtividade :: criaEstudo(string nome, ifstream* scan){
     string trash;
     
     getline(scan, trash, ';');
@@ -130,7 +130,7 @@ Prova LeitorAtividade :: criaProva(string nome, ifstream scan){
     return Prova(nome, true, conteudos, data);
 }
 
-vector<Material> LeitorAtividade :: lerMateriais(ifstream scan){
+vector<Material> LeitorAtividade :: lerMateriais(ifstream* scan){
     string nome, url;
     string materialString;
     vector<Material> lista;

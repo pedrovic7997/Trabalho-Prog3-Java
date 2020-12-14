@@ -6,7 +6,7 @@ Avaliacao :: Avaliacao (Estudante aluno, double nota){
 }
 
 Avaliacao :: ~Avaliacao(){
-    delete this->aluno;
+    delete aluno;
 }
 
 Estudante* Avaliacao :: obterAluno(){
@@ -20,4 +20,4 @@ double Avaliacao :: obterNota(){
 ostream& operator<< (ostream& os, Avaliacao &avaliacao){
     os << "Aluno: " << avaliacao.aluno->obterMatricula() << " - Nota: " << avaliacao.nota << endl;
     return os;
-}   
+}

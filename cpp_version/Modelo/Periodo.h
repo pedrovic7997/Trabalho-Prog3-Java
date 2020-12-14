@@ -4,6 +4,7 @@
 #include "../Incluidor.h"
 
 using namespace std;
+using namespace cpp_util;
 
 class Periodo {
     int ano;
@@ -16,6 +17,8 @@ class Periodo {
         int obeterAno() const;
         char obterSemestre() const;
         string obterCodigo() const;
+
+        bool compara(const Periodo* esq, const Periodo* dir);
 
         friend ostream& operator<<(ostream& os, Periodo &periodo); 
 };

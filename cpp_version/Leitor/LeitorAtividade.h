@@ -7,28 +7,29 @@ using namespace std;
 using namespace cpp_util;
 
 class LeitorAtividade{
-    static LeitorAtividade leitor;
+    static LeitorAtividade* leitor;
     
     LeitorAtividade();
 
-    Trabalho criaTrabalho(string nome, ifstream scan);
+    Trabalho* criaTrabalho(string nome, ifstream* scan);
 
-    Aula criaAula(string nome, ifstream scan);
+    Aula* criaAula(string nome, ifstream* scan);
 
-    Estudo criaEstudo(string nome, ifstream scan);
+    Estudo* criaEstudo(string nome, ifstream* scan);
 
-    Prova criaProva(string nome, ifstream scan);
+    Prova* criaProva(string nome, ifstream* scan);
 
-    vector<Material> lerMateriais(ifstream scan);
+    vector<Material*> lerMateriais(ifstream* scan);
 
-    vector<string> lerConteudos(ifstream scan);
+    vector<string> lerConteudos(ifstream* scan);
     
     public:
 
-    Atividade busca(int posicao, vector<Atividade> atividades);
+    Atividade* busca(int posicao, vector<Atividade*> atividades);
 
-    Atividade ler(ifstream scan);
+    Atividade* ler(ifstream* scan);
 
-    static LeitorAtividade obterInstancia();
+    static LeitorAtividade* obterInstancia();
 };
+
 #endif

@@ -6,23 +6,23 @@
 using namespace std;
 
 class LeitorEstudante{
-    map<string,Estudante> mapEstudante;
+    map<string,Estudante*> mapEstudante;
 
-    static LeitorEstudante leitor;
+    static LeitorEstudante* leitor;
     
     LeitorEstudante();
 
     public:
 
-    static LeitorEstudante obterInstancia();
+    static LeitorEstudante* obterInstancia();
 
-    vector<Estudante> obterEstudantes();
+    vector<Estudante*> obterEstudantes();
 
-    Estudante ler(ifstream scanner);
+    Estudante* ler(ifstream* scanner);
 
-    void anexaHash(Estudante estudante);
+    void anexaHash(Estudante* estudante);
 
-    Estudante busca(string codigo);
+    Estudante* busca(string codigo);
 
 };
 #endif

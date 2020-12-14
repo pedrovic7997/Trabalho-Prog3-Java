@@ -11,6 +11,8 @@
 #include <ctime>
 #include <cstdlib>
 #include <typeinfo>
+#include <stdexcept>
+#include <exception>
 #include "util/DateUtils.h"
 #include "util/NumberUtils.h"
 #include "util/NumPunctPTBR.h"

@@ -25,7 +25,7 @@ class LeitorDisciplina{
 
     void anexaHash(Disciplina* disciplina);
 
-    vector<Disciplina*> retornaDisciplinas();
+    vector<Disciplina*> obterDisciplinas();
 
 };
 #endif

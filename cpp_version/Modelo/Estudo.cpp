@@ -1,8 +1,9 @@
 #include "Estudo.h"
 
-Estudo :: Estudo (string nome, bool sincrona, vector<Material> materiais, time_t data) : Atividade(nome, sincrona){
+Estudo :: Estudo (string nome, bool sincrona, vector<Material> materiais) : Atividade(nome, sincrona){
     this->materiais = materiais;
-    this->data = data;
+    this->data = time(NULL);
+    
 }
 
 bool Estudo :: ehAvaliativa(){

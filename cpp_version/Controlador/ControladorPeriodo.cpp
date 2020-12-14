@@ -5,6 +5,11 @@ Periodo* ControladorPeriodo :: busca(string codigo){
     return leitor->busca(codigo);
 }
 
+vector<Periodo*> ControladorPeriodo :: lista(){
+    LeitorPeriodo *leitor= LeitorPeriodo :: obterInstancia();
+    return leitor->obterPeriodos();
+}
+
 void ler(ifstream* scan){
     LeitorPeriodo* leitor = LeitorPeriodo::obterInstancia();
     while(scan->eof()){

@@ -12,3 +12,8 @@ void ler(ifstream* scan){
         leitor->anexaHash(estudante);
     }
 }
+
+vector<Estudante*> ControladorEstudante :: lista(){
+    LeitorEstudante* leitor = LeitorEstudante::obterInstancia();
+    return leitor->obterEstudantes();
+}

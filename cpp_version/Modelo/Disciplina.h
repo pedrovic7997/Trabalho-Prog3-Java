@@ -4,6 +4,7 @@
 #include "../Incluidor.h"
 
 using namespace std;
+using namespace cpp_util;
 
 class Disciplina{
     string codigo;
@@ -34,6 +35,8 @@ class Disciplina{
         double percentualAtividadesAssincronas();
         int calculaCargaHorariaTotal();
         int obterQtdAvaliacoesTotal();
+
+        bool comparaDisciplinasNome(const Disciplina* esq, const Disciplina* dir);
 
         friend ostream& operator<<(ostream& os, Disciplina &disciplina); 
 };

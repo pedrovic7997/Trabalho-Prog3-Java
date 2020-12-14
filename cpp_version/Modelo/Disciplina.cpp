@@ -128,6 +128,10 @@ int Disciplina :: obterQtdAvaliacoesTotal(){
     return cont;
 }
 
+bool comparaDisciplinasNome(const Disciplina* esq, const Disciplina* dir){
+    return stringCompare(esq->obterNome(), dir->obterNome());
+}
+
 ostream& operator<<(ostream& os, Disciplina &disciplina){
     os << "Codigo: " << disciplina.codigo << "-" << disciplina.periodo->obeterAno() << "/" << disciplina.periodo->obterSemestre() << " - Nome: " << disciplina.nome << " - Professor: " << disciplina.professor->obterNome() << endl;
     return os;

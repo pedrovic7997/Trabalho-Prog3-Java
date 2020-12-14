@@ -18,6 +18,10 @@ string Periodo :: obterCodigo() const{
     return codigo;
 }
 
+bool comparaPeriodo(const Periodo* esq, const Periodo* dir){
+    return stringCompare(esq->obterCodigo(), dir->obterCodigo());
+}
+
 ostream& operator<<(ostream& os, Periodo &periodo){
     os << "Periodo: " << periodo.codigo << endl;
     return os;

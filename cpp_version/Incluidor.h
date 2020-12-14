@@ -13,6 +13,7 @@
 #include <typeinfo>
 #include <stdexcept>
 #include <exception>
+#include "Excecoes/Excecoes.h"
 #include "util/DateUtils.h"
 #include "util/NumberUtils.h"
 #include "util/NumPunctPTBR.h"

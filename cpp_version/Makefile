@@ -26,18 +26,18 @@ BIN:
 	@mkdir -p bin/Leitor
 	@mkdir -p bin/Modelo
 
-$(EXEC): $(OBJ) $(OBJM) $(OBJU) $(OBJC) $(OBJCE)
+$(EXEC): $(OBJ) $(OBJM) $(OBJU) $(OBJC) $(OBJCE) $(OBJCL)
 	@$(CC) $^ -o $@ $(CFLAGS)
 
 %.o: %.cpp
-	@$(CC) -o $@ -c $< $(CFLAGS)
+	$(CC) -o $@ -c $< $(CFLAGS)
 	
 
 clean: 
-	@rm -f util/*.o Controlador/*.o Leitor/*.o Modelo/*.o Excecoes/*.o main.o
+	@rm -f util/*.o Controlador/*.o Leitor/*.o Modelo/*.o Excecoes/*.o main.o $(EXEC)
 	@rm -r -f bin/Controlador
 	@rm -r -f bin/Leitor
 	@rm -r -f bin/Modelo
 	@rm -r -f bin/util
 	@rm -r -f bin
-#	@rm -f $(bindir)util/*.o $(bindir)Controlador/*.o $(bindir)Leitor/*.o $(bindir)Modelo/*.o $(bindir)main.o
+	@rm -f $(bindir)util/*.o $(bindir)Controlador/*.o $(bindir)Leitor/*.o $(bindir)Modelo/*.o $(bindir)main.o

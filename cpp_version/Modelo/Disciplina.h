@@ -37,6 +37,7 @@ class Disciplina{
         int obterQtdAvaliacoesTotal();
 
         bool comparaNome(const Disciplina* esq, const Disciplina* dir);
+        bool compara(const Disciplina* esq, const Disciplina* dir);
 
         friend ostream& operator<<(ostream& os, Disciplina &disciplina); 
 };

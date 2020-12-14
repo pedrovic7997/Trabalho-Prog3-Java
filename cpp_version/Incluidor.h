@@ -13,6 +13,7 @@
 #include <typeinfo>
 #include <stdexcept>
 #include <exception>
+#include <regex>
 #include "Excecoes/Excecoes.h"
 #include "util/DateUtils.h"
 #include "util/NumberUtils.h"

@@ -35,7 +35,7 @@ Trabalho LeitorAtividade :: criaTrabalho(string nome, ifstream scan){
     if(validDate(dataString, DATE_FORMAT_PT_BR_SHORT))
         data = parseDate(dataString, DATE_FORMAT_PT_BR_SHORT);
     else{
-        throw invalid_argument("Dado inválido: " + dataString + ".");
+        throw ExcecaoDado("Dado inválido: " + dataString + ".");
     }
     
     getline(scan, trash, ';');
@@ -44,35 +44,71 @@ Trabalho LeitorAtividade :: criaTrabalho(string nome, ifstream scan){
     int numAlunos = 0, cargaHoraria = 0;
     string aux;
     
+    getline(scan, aux, ';');
+    trim(aux);
     try{
-        getline(scan, aux, ';');
-        trim(aux);
         numAlunos = stoi(aux);
     } 
-    // catch () {
-    //     // throw exception another = exception(e.what());
-    // }
+    catch (...) {
+        throw ExcecaoDado("Dado inválido: " + aux + ".");
+    }
 
+    getline(scan, aux, ';');
+    trim(aux);
     try{
-        getline(scan, aux, ';');
-        trim(aux);
         cargaHoraria = stoi(aux);
     } 
-    // catch () {
-    //     // throw exception another = exception(e.what());
-    // }
-    if(scan.eof)
+    catch (...) {
+        throw ExcecaoDado("Dado inválido: " + aux + ".");
+    }
 
+    if(!scan.eof())
+        getline(scan, trash, '\n');
+    
+    return new Trabalho(nome, false, data, numAlunos, cargaHoraria);
 }
 
 Aula LeitorAtividade :: criaAula(string nome, ifstream scan){
+    string dataString, aux, trash;
+    time_t data;
 
+    getline(scan, dataString, ';');
+    trim(dataString);
+    
+    getline(scan, aux, ';');
+    trim(aux);
+    dataString += ';' + aux;
+
+    if(validDate(dataString, DATE_FORMAT_PT_BR))
+        data = parseDate(dataString, DATE_FORMAT_PT_BR);
+    else{
+        throw ExcecaoDado("Dado inválido: " + dataString + ".");
+    }
+
+    if(!scan.eof())
+        getline(scan, trash, '\n');
+
+    return new Aula(nome, true, data);
 }
 
-Estudo LeitorAtividade :: criaEstudo(string nome, ifstream scan);
+Estudo LeitorAtividade :: criaEstudo(string nome, ifstream scan){
+    string trash;
+    
+    getline(scan, trash, ';');
+    getline(scan, trash, ';');
+
+    vector<Material> materiais = 
+}
 
 Prova LeitorAtividade :: criaProva(string nome, ifstream scan);
 
-vector<Material> LeitorAtividade :: lerMateriais(ifstream scan);
+vector<Material> LeitorAtividade :: lerMateriais(ifstream scan){
+    string nome, url;
+    string materialString;
+
+    getline(scan, materialString);
+
+    string 
+}
 
 vector<string> LeitorAtividade :: lerConteudos(ifstream scan);

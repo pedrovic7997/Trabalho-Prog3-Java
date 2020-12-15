@@ -37,33 +37,23 @@ Disciplina* LeitorDisciplina::busca(string codigo){
     return nullptr;
 }
 
-Disciplina* LeitorDisciplina::ler(ifstream* scan, Periodo* periodo){
+Disciplina* LeitorDisciplina::ler(vector<string> vec, Periodo* periodo){
     ControladorDocente cDocente;
     string trash;
     
-    string codigo;
-    getline(*scan, codigo, ';');
-    codigo = trim(codigo);
+    string codigo = vec[1];
 
     if(busca(codigo + "-" + periodo->obterCodigo()) != NULL){
         throw ExcecaoCad("Cadastro repetido: "+codigo+"-"+periodo->obterCodigo()+".");
     }
 
-    string nome;
-    getline(*scan, nome, ';');
-    nome = trim(nome);
-
-    string login;
-    getline(*scan, login, ';');
-    login = trim(login);
+    string nome = vec[2];
+    string login = vec[3];
 
     Docente* docente = cDocente.busca(login);
     if(docente == NULL){
         throw ExcecaoRef("Referência inválida: " + login + ".");
     }
-
-    if(!scan->eof())
-        getline(*scan, trash, '\n');
 
     Disciplina* disciplina = new Disciplina(codigo, nome, periodo, docente);
     return disciplina;

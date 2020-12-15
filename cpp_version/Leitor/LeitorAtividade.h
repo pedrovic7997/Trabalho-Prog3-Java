@@ -15,7 +15,7 @@ class LeitorAtividade{
 
     Atividade* busca(int posicao, vector<Atividade*> atividades);
 
-    Atividade* ler(ifstream* scan);
+    Atividade* ler(vector<string> vec);
 
     static LeitorAtividade* obterInstancia();
 };

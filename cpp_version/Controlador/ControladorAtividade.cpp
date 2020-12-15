@@ -10,10 +10,16 @@ bool verificaCadastroAvaliacao(Atividade* atividade,Estudante* estudante){
 void ControladorAtividade :: ler(ifstream*scan){
     LeitorAtividade* leitor = LeitorAtividade::obterInstancia();
     ControladorDisciplina controlador;
-		
-    while(!scan->eof()){
-        string codigoDisc;
-        *scan >>codigoDisc;
+
+    string linha;
+    getline(*scan, linha);
+    while (getline(*scan, linha)) {
+        Tokenizer tok(linha, ';');
+        vector<string> vec = tok.remaining();
+        for (int i = 0; i < vec.size(); i++){
+            vec[i] = trim(vec[i]);
+        }
+        string codigoDisc = vec[0];
         Disciplina *disciplina;
         try{
             disciplina = controlador.busca(codigoDisc);
@@ -21,7 +27,7 @@ void ControladorAtividade :: ler(ifstream*scan){
         catch(...){
             throw ExcecaoRef("Referência inválida: "+codigoDisc+".");
         }
-        Atividade* atividade = leitor->ler(scan);
+        Atividade* atividade = leitor->ler(vec);
         disciplina->anexaAtividade(atividade);
     }
 }
@@ -32,11 +38,16 @@ void ControladorAtividade :: lerAvaliacao(ifstream*scan){
     LeitorAtividade* lAtividade = LeitorAtividade::obterInstancia();
     LeitorAvaliacao* lAvaliacao = LeitorAvaliacao::obterInstancia();
 
-    while(!scan->eof()){
-        string codigoDisc;
-        *scan >>codigoDisc;
-        string matricula;
-        *scan >>matricula;
+    string linha;
+    getline(*scan, linha);
+    while (getline(*scan, linha)) {
+        Tokenizer tok(linha, ';');
+        vector<string> vec = tok.remaining();
+        for (int i = 0; i < vec.size(); i++){
+            vec[i] = trim(vec[i]);
+        }
+        string codigoDisc = vec[0];
+        string matricula = vec[1];
         Disciplina* disciplina;
         try{
             disciplina= cDisciplina.busca(codigoDisc);
@@ -48,16 +59,14 @@ void ControladorAtividade :: lerAvaliacao(ifstream*scan){
         Estudante* estudante;
         try{
             estudante = cEstudante.busca(matricula);
-
         }
         catch(...){
             throw ExcecaoRef("Referência inválida: "+codigoDisc+".");
         }
         
-        char codigoAtiv;
-        cin >>codigoAtiv;
+        char codigoAtiv = vec[2];
         Atividade* atividade = lAtividade->busca(codigoAtiv-1, disciplina->obterAtividades());
-        Avaliacao* avaliacao = lAvaliacao->ler(scan, *estudante);
+        Avaliacao* avaliacao = lAvaliacao->ler(vec, *estudante);
         if(verificaCadastroAvaliacao(atividade, estudante))
             throw ExcecaoAval("Avaliação repetida: estudante "+estudante->obterMatricula()+ 
                                 " para atividade " +codigoAtiv +" de "+disciplina->obterCodigo()+"-"+

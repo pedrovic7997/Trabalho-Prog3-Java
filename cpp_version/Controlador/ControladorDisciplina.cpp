@@ -4,18 +4,24 @@ void ControladorDisciplina :: ler(ifstream* scan){
     LeitorDisciplina* leitor = LeitorDisciplina::obterInstancia();
     ControladorDocente cDocente;
     ControladorPeriodo cPeriodo;
-    while(!scan->eof()){
-        string codigo;
-        *scan >>codigo;
+
+    string linha;
+    getline(*scan, linha);
+    while (getline(*scan, linha)) {
+        Tokenizer tok(linha, ';');
+        vector<string> vec = tok.remaining();
+        for (int i = 0; i < vec.size(); i++){
+            vec[i] = trim(vec[i]);
+        }
+        string codigo = vec[0];
         Periodo* periodo;
         try{
             periodo = cPeriodo.busca(codigo);
-
         }
         catch(...){
             throw ExcecaoRef("Referência inválida: "+codigo+".");
         }
-        Disciplina *disciplina = leitor->ler(scan, periodo);
+        Disciplina *disciplina = leitor->ler(vec, periodo);
         leitor->anexaHash(disciplina);
     }
 }
@@ -42,19 +48,24 @@ vector<Disciplina*> ControladorDisciplina :: busca(Docente* docente){
 void ControladorDisciplina :: lerMatricula(ifstream* scan){
     ControladorEstudante cEstudante;
     LeitorDisciplinaEstudante *lDisciplinaEstudante = LeitorDisciplinaEstudante::obterInstancia();
-    while(scan->eof()){
-        string codigo;
-        *scan >>codigo;
+
+    string linha;
+    getline(*scan, linha);
+    while (getline(*scan, linha)) {
+        Tokenizer tok(linha, ';');
+        vector<string> vec = tok.remaining();
+        for (int i = 0; i < vec.size(); i++){
+            vec[i] = trim(vec[i]);
+        }
+        string codigo = vec[0];
         Disciplina* disciplina;
         try{
-            disciplina= busca(codigo);
-
+            disciplina = busca(codigo);
         }
         catch(...){
             throw ExcecaoRef("Referência inválida: "+codigo+".");
         }
-        string matricula;
-        *scan >>matricula;
+        string matricula = vec[1];
         Estudante* estudante;
         try{
             estudante = cEstudante.busca(matricula);
@@ -67,8 +78,6 @@ void ControladorDisciplina :: lerMatricula(ifstream* scan){
                         " em "+disciplina->obterCodigo()+"-"+disciplina->obterPeriodo()->obterCodigo()+
                         ".");
         lDisciplinaEstudante->adiciona(disciplina, estudante);
-        // if(scan->haseof())
-        //     scan->nextLine();
     }
 
 }

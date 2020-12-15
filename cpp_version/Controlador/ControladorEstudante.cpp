@@ -7,8 +7,16 @@ Estudante* ControladorEstudante :: busca(string codigo){
 
 void ControladorEstudante :: ler(ifstream* scan){
     LeitorEstudante* leitor = LeitorEstudante::obterInstancia();
-    while(scan->eof()){
-        Estudante* estudante = leitor->ler(scan);
+    
+    string linha;
+    getline(*scan, linha);
+    while (getline(*scan, linha)) {
+        Tokenizer tok(linha, ';');
+        vector<string> vec = tok.remaining();
+        for (int i = 0; i < vec.size(); i++){
+            vec[i] = trim(vec[i]);
+        }
+        Estudante* estudante = leitor->ler(vec);
         leitor->anexaHash(estudante);
     }
 }

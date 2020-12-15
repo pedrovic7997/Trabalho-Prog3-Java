@@ -21,19 +21,15 @@ vector<Avaliacao*> LeitorAvaliacao::busca(vector<Avaliacao*> avaliacoes, Estudan
     return lista;
 }
 
-Avaliacao* LeitorAvaliacao::ler(ifstream* scan,Estudante aluno){
+Avaliacao* LeitorAvaliacao::ler(vector<string> vec,Estudante aluno){
     float nota;
-    string aux, trash;
+    string trash;
 
     try{
-        getline(*scan, aux, ';');
-        nota = stof(aux);
+        nota = stof(vec[3]);
     } catch (...) {
-        throw ExcecaoDado("Dado inválido: " + aux + ".");
+        throw ExcecaoDado("Dado inválido: " + vec[3] + ".");
     }
-
-    if(!scan->eof())
-        getline(*scan, trash, '\n');
 
     return new Avaliacao(aluno, nota);
 }

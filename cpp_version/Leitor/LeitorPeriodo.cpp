@@ -20,21 +20,15 @@ vector<Periodo*> LeitorPeriodo::obterPeriodos(){
     return lista;
 }
 
-Periodo* LeitorPeriodo::ler(ifstream* scanner){
-    string aux;
-    getline(*scanner, aux, ';');
-    aux = trim(aux);
-
+Periodo* LeitorPeriodo::ler(vector<string> vec){
     int ano;
     try{
-        ano = stoi(aux);
+        ano = stoi(vec[0]);
     } catch (...){
-        throw ExcecaoCad("\nDado inválido: "+ aux +".\n");
+        throw ExcecaoCad("\nDado inválido: "+ vec[0] +".\n");
     }
 
-    string semestre;
-    getline(*scanner, semestre, ';');
-    trim(semestre);
+    string semestre = vec[1];
 
     regex rgx("^[0-9A-Za-z]$");
     smatch match;

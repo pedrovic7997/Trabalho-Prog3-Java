@@ -11,9 +11,18 @@ vector<Periodo*> ControladorPeriodo :: lista(){
 }
 
 void ControladorPeriodo ::ler(ifstream* scan){
+    
     LeitorPeriodo* leitor = LeitorPeriodo::obterInstancia();
-    while(scan->eof()){
-        Periodo* periodo = leitor->ler(scan);
+
+    string linha;
+    getline(*scan, linha);
+    while (getline(*scan, linha)) {
+        Tokenizer tok(linha, ';');
+        vector<string> vec = tok.remaining();
+        for (int i = 0; i < vec.size(); i++){
+            vec[i] = trim(vec[i]);
+        }
+        Periodo* periodo = leitor->ler(vec);
         leitor->anexaHash(periodo);
     }
 }

@@ -19,26 +19,19 @@ Atividade* LeitorAtividade :: busca(int posicao, vector<Atividade*> atividades){
     return nullptr;
 }
 
-vector<string> lerConteudos(ifstream* scan){
+vector<string> lerConteudos(string conteudos){
     string nome;
     vector<string> lista;
 
-    while(!scan->eof()){
-        getline(*scan, nome, '.');
-        nome = trim(nome);
-        if(!nome.empty())
-            lista.push_back(nome);
-    }
+    Tokenizer* tok = new Tokenizer(conteudos, '.');
 
-    return lista;
+    return tok->remaining();
 }
 
-vector<Material> lerMateriais(ifstream* scan){
+vector<Material> lerMateriais(vector<string> vec){
     string nome, url;
-    string materialString;
+    string materialString = vec[5];
     vector<Material> lista;
-
-    getline(*scan, materialString);
 
     regex re("\\[([^\\]]*)\\]\\(([^\\)]*)\\)");
     sregex_iterator next(materialString.begin(), materialString.end(), re);
@@ -55,129 +48,91 @@ vector<Material> lerMateriais(ifstream* scan){
     return lista;
 }
 
-Estudo* criaEstudo(string nome, ifstream* scan){
-    string trash;
-    
-    getline(*scan, trash, ';');
-    getline(*scan, trash, ';');
-
-    vector<Material> materiais = lerMateriais(scan);
-
-    if(!scan->eof())
-        getline(*scan, trash, '\n');
+Estudo* criaEstudo(string nome, vector<string> vec){
+    vector<Material> materiais = lerMateriais(vec);
 
     return new Estudo(nome, false, materiais);
 }
 
 
-Aula* criaAula(string nome, ifstream* scan){
+Aula* criaAula(string nome, vector<string> vec){
     string dataString, aux, trash;
     time_t data;
 
-    getline(*scan, dataString, ';');
-    dataString = trim(dataString);
+    dataString = vec[3] + ";" + vec[4];
     
-    getline(*scan, aux, ';');
-    aux = trim(aux);
-    dataString += ';' + aux;
-
     if(validDate(dataString, DATE_FORMAT_PT_BR))
         data = parseDate(dataString, DATE_FORMAT_PT_BR);
     else{
         throw ExcecaoDado("Dado inválido: " + dataString + ".");
     }
-
-    if(!scan->eof())
-        getline(*scan, trash, '\n');
 
     return new Aula(nome, true, data);
 }
 
-Prova* criaProva(string nome, ifstream *scan){
+Prova* criaProva(string nome, vector<string> vec){
     string dataString, aux, trash;
     time_t data;
 
-    getline(*scan, dataString, ';');
-    dataString = trim(dataString);
+    dataString = vec[3] + ";" + vec[4];
     
-    getline(*scan, aux, ';');
-    aux = trim(aux);
-    dataString += ';' + aux;
-
     if(validDate(dataString, DATE_FORMAT_PT_BR))
         data = parseDate(dataString, DATE_FORMAT_PT_BR);
     else{
         throw ExcecaoDado("Dado inválido: " + dataString + ".");
     }
 
-    vector<string> conteudos = lerConteudos(scan);
-
-    if(!scan->eof())
-        getline(*scan, trash, '\n');
+    vector<string> conteudos = lerConteudos(vec[5]);
 
     return new Prova(nome, true, conteudos, data);
 }
 
 
-Trabalho* criaTrabalho(string nome, ifstream* scan){
+Trabalho* criaTrabalho(string nome, vector<string> vec){
     string dataString, trash;
     time_t data;
 
-    getline(*scan, dataString, ';');
-    dataString = trim(dataString);
+    
+    dataString = vec[3];
     if(validDate(dataString, DATE_FORMAT_PT_BR_SHORT))
         data = parseDate(dataString, DATE_FORMAT_PT_BR_SHORT);
     else{
         throw ExcecaoDado("Dado inválido: " + dataString + ".");
     }
     
-    getline(*scan, trash, ';');
-    getline(*scan, trash, ';');
-
     int numAlunos = 0, cargaHoraria = 0;
-    string aux;
     
-    getline(*scan, aux, ';');
-    aux = trim(aux);
     try{
-        numAlunos = stoi(aux);
+        numAlunos = stoi(vec[6]);
     } 
     catch (...) {
-        throw ExcecaoDado("Dado inválido: " + aux + ".");
+        throw ExcecaoDado("Dado inválido: " + vec[6] + ".");
     }
 
-    getline(*scan, aux, ';');
-    aux = trim(aux);
     try{
-        cargaHoraria = stoi(aux);
+        cargaHoraria = stoi(vec[7]);
     } 
     catch (...) {
-        throw ExcecaoDado("Dado inválido: " + aux + ".");
+        throw ExcecaoDado("Dado inválido: " + vec[7] + ".");
     }
-
-    if(!scan->eof())
-        getline(*scan, trash, '\n');
     
     return new Trabalho(nome, false, data, numAlunos, cargaHoraria);
 }
 
-Atividade* LeitorAtividade :: ler(ifstream* scan){
+Atividade* LeitorAtividade :: ler(vector<string> vec){
     string nome, tipo;
     
-    getline(*scan, nome, ';');
-    nome = trim(nome);
-
-    getline(*scan, tipo, ';');
-    tipo = trim(tipo);
+    nome = vec[1];
+    tipo = vec[2];
 
     if(tipo == "a" || tipo == "A")
-        return criaAula(nome, scan);
+        return criaAula(nome, vec);
     if(tipo == "t" || tipo == "T")
-        return criaTrabalho(nome, scan);
+        return criaTrabalho(nome, vec);
     if(tipo == "p" || tipo == "P")
-        return criaProva(nome, scan);
+        return criaProva(nome, vec);
     if(tipo == "e" || tipo == "E")
-        return criaEstudo(nome, scan);
+        return criaEstudo(nome, vec);
     throw ExcecaoDado("Dado inválido: "+tipo);
     return nullptr;
 }

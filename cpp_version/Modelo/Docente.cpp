@@ -34,8 +34,8 @@ int Docente :: contaDisciplinas(){
 }
 
 int Docente :: contaPeriodos(){
-    LeitorPeriodo* lPeriodo = LeitorPeriodo :: obterInstancia();
-    vector<Periodo*> periodo = lPeriodo->busca(this);
+    LeitorDocente* lDocente = LeitorDocente :: obterInstancia();
+    vector<Periodo*> periodo = lDocente->busca(this);
 
     return periodo.size();
 }

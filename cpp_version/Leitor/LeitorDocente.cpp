@@ -53,3 +53,24 @@ Docente* LeitorDocente::busca(string login){
     }
     return NULL;
 }
+
+vector<Periodo*> busca(Docente* docente){
+    ControladorDisciplina cDisciplina;
+
+    vector<Disciplina*> disciplinas = cDisciplina.busca(docente);
+    vector<Periodo*> periodos;
+
+    bool possui = false;
+    for(Disciplina* disciplina : disciplinas){
+        possui = false;
+        for(Periodo* periodo: periodos){
+            if(disciplina->obterPeriodo() == periodo){
+                possui=true;
+            }
+        }
+        if(!possui){
+            periodos.push_back(disciplina->obterPeriodo());
+        }
+    }
+    return periodos;
+}

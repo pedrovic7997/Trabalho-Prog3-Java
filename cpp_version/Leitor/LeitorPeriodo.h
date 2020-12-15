@@ -23,7 +23,5 @@ class LeitorPeriodo{
 
     Periodo* busca(string codigo);
 
-    vector<Periodo*> busca(Docente* docente);
-
 };
 #endif

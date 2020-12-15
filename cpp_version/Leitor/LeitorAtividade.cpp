@@ -146,8 +146,8 @@ Trabalho* criaTrabalho(string nome, ifstream* scan){
         throw ExcecaoDado("Dado inválido: " + aux + ".");
     }
 
-    getLineTeste(scan,&aux,";\n");
-    trim(aux);
+    getline(*scan, aux, ';');
+    aux = trim(aux);
     try{
         cargaHoraria = stoi(aux);
     } 

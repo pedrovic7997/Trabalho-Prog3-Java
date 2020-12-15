@@ -28,7 +28,7 @@ BIN:
 	@mkdir -p bin/Excecoes
 
 $(EXEC): $(OBJ) $(OBJC) $(OBJU) $(OBJE) $(OBJL) $(OBJM)
-	@$(CC) $^ -o $(bindir)$@ $(CFLAGS)
+	@$(CC) $^ -o $@ $(CFLAGS)
 
 teste: 
 	@cd bin

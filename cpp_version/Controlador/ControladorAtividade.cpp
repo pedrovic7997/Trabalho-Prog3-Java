@@ -64,7 +64,7 @@ void ControladorAtividade :: lerAvaliacao(ifstream*scan){
             throw ExcecaoRef("Referência inválida: "+codigoDisc+".");
         }
         
-        char codigoAtiv = vec[2];
+        char codigoAtiv = vec[2].at(0);
         Atividade* atividade = lAtividade->busca(codigoAtiv-1, disciplina->obterAtividades());
         Avaliacao* avaliacao = lAvaliacao->ler(vec, *estudante);
         if(verificaCadastroAvaliacao(atividade, estudante))

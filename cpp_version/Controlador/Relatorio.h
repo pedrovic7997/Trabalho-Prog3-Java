@@ -8,6 +8,6 @@ using namespace std;
 class Relatorio{
 
     public:
-    void escreveRelatorios();
+    static void escreveRelatorios();
 };
 #endif

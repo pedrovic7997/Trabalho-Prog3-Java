@@ -1,4 +1,5 @@
 #include "Carregar.h"
+#include "Relatorio.h"
 
 void carregaPeriodo(string nArq){
     ControladorPeriodo controlador;
@@ -69,7 +70,7 @@ void carregaDados(vector<string> arquivos){
 }
 
 void executa(char* args[],int argc){
-    string arqPeriodo=NULL, arqDocente=NULL, arqDisciplina=NULL, arqEstudantes=NULL, arqMatriculas=NULL, arqAtividades=NULL, arqAvaliacoes=NULL;
+    string arqPeriodo, arqDocente, arqDisciplina, arqEstudantes, arqMatriculas, arqAtividades, arqAvaliacoes;
     vector<string> arquivos;
             
     for (int i = 0; i < argc; i++){
@@ -110,6 +111,7 @@ void Carregar :: lansaABraba(char* argv[],int argc){
     try
     {
         executa(argv,argc);
+        Relatorio::escreveRelatorios();
     }
     catch(const Excecao e)
     {

@@ -10,17 +10,17 @@ class LeitorDisciplinaEstudante{
     map<string,vector<Disciplina*>> mapEstudante;
     static LeitorDisciplinaEstudante* leitor;
     
-    LeitorDisciplinaEstudante();
+    LeitorDisciplinaEstudante(){};
 
     public:
 
     static LeitorDisciplinaEstudante* obterInstancia();
 
-    void adiciona(Disciplina* disciplina, Estudante* estdante);
+    void adiciona(Disciplina* disciplina, Estudante* estudante);
 
     Estudante* busca(Disciplina* disciplina,string matricula);
 
-    vector<Estudante*> busca(Disciplina* diciplina);
+    vector<Estudante*> busca(Disciplina* disciplina);
 
     vector<Disciplina*> busca(Estudante* estudante);
 

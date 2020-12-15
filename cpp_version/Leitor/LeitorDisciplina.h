@@ -21,7 +21,7 @@ class LeitorDisciplina{
 
     Disciplina* busca(string codigo);
 
-    Disciplina* ler(ifstream* scan,Periodo periodo);
+    Disciplina* ler(ifstream* scan,Periodo* periodo);
 
     void anexaHash(Disciplina* disciplina);
 

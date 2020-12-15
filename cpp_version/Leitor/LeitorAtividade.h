@@ -19,7 +19,7 @@ class LeitorAtividade{
 
     Prova* criaProva(string nome, ifstream* scan);
 
-    vector<Material*> lerMateriais(ifstream* scan);
+    vector<Material> lerMateriais(ifstream* scan);
 
     vector<string> lerConteudos(ifstream* scan);
     

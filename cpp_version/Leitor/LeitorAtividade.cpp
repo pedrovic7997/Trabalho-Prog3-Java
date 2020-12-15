@@ -25,7 +25,7 @@ vector<string> lerConteudos(ifstream* scan){
 
     while(!scan->eof()){
         getline(*scan, nome, '.');
-        trim(nome);
+        nome = trim(nome);
         if(!nome.empty())
             lista.push_back(nome);
     }
@@ -75,10 +75,10 @@ Aula* criaAula(string nome, ifstream* scan){
     time_t data;
 
     getline(*scan, dataString, ';');
-    trim(dataString);
+    dataString = trim(dataString);
     
     getline(*scan, aux, ';');
-    trim(aux);
+    aux = trim(aux);
     dataString += ';' + aux;
 
     if(validDate(dataString, DATE_FORMAT_PT_BR))
@@ -98,10 +98,10 @@ Prova* criaProva(string nome, ifstream *scan){
     time_t data;
 
     getline(*scan, dataString, ';');
-    trim(dataString);
+    dataString = trim(dataString);
     
     getline(*scan, aux, ';');
-    trim(aux);
+    aux = trim(aux);
     dataString += ';' + aux;
 
     if(validDate(dataString, DATE_FORMAT_PT_BR))
@@ -124,7 +124,7 @@ Trabalho* criaTrabalho(string nome, ifstream* scan){
     time_t data;
 
     getline(*scan, dataString, ';');
-    trim(dataString);
+    dataString = trim(dataString);
     if(validDate(dataString, DATE_FORMAT_PT_BR_SHORT))
         data = parseDate(dataString, DATE_FORMAT_PT_BR_SHORT);
     else{
@@ -138,7 +138,7 @@ Trabalho* criaTrabalho(string nome, ifstream* scan){
     string aux;
     
     getline(*scan, aux, ';');
-    trim(aux);
+    aux = trim(aux);
     try{
         numAlunos = stoi(aux);
     } 
@@ -147,7 +147,7 @@ Trabalho* criaTrabalho(string nome, ifstream* scan){
     }
 
     getline(*scan, aux, ';');
-    trim(aux);
+    aux = trim(aux);
     try{
         cargaHoraria = stoi(aux);
     } 
@@ -165,10 +165,10 @@ Atividade* LeitorAtividade :: ler(ifstream* scan){
     string nome, tipo;
     
     getline(*scan, nome, ';');
-    trim(nome);
+    nome = trim(nome);
 
     getline(*scan, tipo, ';');
-    trim(tipo);
+    tipo = trim(tipo);
 
     if(tipo == "a" || tipo == "A")
         return criaAula(nome, scan);

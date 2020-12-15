@@ -43,7 +43,7 @@ Disciplina* LeitorDisciplina::ler(ifstream* scan, Periodo* periodo){
     
     string codigo;
     getline(*scan, codigo, ';');
-    trim(codigo);
+    codigo = trim(codigo);
 
     if(busca(codigo + "-" + periodo->obterCodigo()) != NULL){
         throw ExcecaoCad("Cadastro repetido: "+codigo+"-"+periodo->obterCodigo()+".");
@@ -51,11 +51,11 @@ Disciplina* LeitorDisciplina::ler(ifstream* scan, Periodo* periodo){
 
     string nome;
     getline(*scan, nome, ';');
-    trim(nome);
+    nome = trim(nome);
 
     string login;
     getline(*scan, login, ';');
-    trim(login);
+    login = trim(login);
 
     Docente* docente = cDocente.busca(login);
     if(docente == NULL){

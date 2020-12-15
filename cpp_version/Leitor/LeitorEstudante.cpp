@@ -23,7 +23,7 @@ vector<Estudante*> LeitorEstudante::obterEstudantes(){
 Estudante* LeitorEstudante::ler(ifstream* scanner){
     string matricula;
     getline(*scanner, matricula, ';');
-    trim(matricula);
+    matricula = trim(matricula);
 
     regex rgx("[^0-9]");
     smatch match;
@@ -35,7 +35,7 @@ Estudante* LeitorEstudante::ler(ifstream* scanner){
     
     string aux;
     getline(*scanner, aux, ';');
-    trim(aux);
+    aux = trim(aux);
 
     regex rgx2(" +");
     string nome = regex_replace(aux, rgx2, " ");

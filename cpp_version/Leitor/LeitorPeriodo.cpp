@@ -23,7 +23,7 @@ vector<Periodo*> LeitorPeriodo::obterPeriodos(){
 Periodo* LeitorPeriodo::ler(ifstream* scanner){
     string aux;
     getline(*scanner, aux, ';');
-    trim(aux);
+    aux = trim(aux);
 
     int ano;
     try{

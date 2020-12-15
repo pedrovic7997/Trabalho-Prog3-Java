@@ -1,10 +1,18 @@
 #ifndef DISCIPLINA_H
 #define DISCIPLINA_H
 
-#include "../Incluidor.h"
+// #include "../Incluidor.h"
+#include <vector>
+
+#include "../util/StringUtils.h"
+#include "../Leitor/LeitorDisciplina.h"
+#include "Atividade.h"
+#include "Periodo.h"
 
 using namespace std;
 using namespace cpp_util;
+
+class Docente;
 
 class Disciplina{
     string codigo;
@@ -39,7 +47,7 @@ class Disciplina{
         bool comparaNome(const Disciplina* esq, const Disciplina* dir);
         bool compara(const Disciplina* esq, const Disciplina* dir);
 
-        friend ostream& operator<<(ostream& os, Disciplina &disciplina); 
+        // friend ostream& operator<<(ostream& os, Disciplina &disciplina); 
 };
 
 #endif

@@ -1,7 +1,8 @@
 #ifndef AULA_H
 #define AULA_H
 
-#include "../Incluidor.h"
+// #include "../Incluidor.h"
+#include "Atividade.h"
 
 using namespace std;
 

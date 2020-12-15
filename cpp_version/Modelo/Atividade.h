@@ -1,7 +1,11 @@
 #ifndef ATIVIDADE_H
 #define ATIVIDADE_H
 
-#include "../Incluidor.h"
+// #include "../Incluidor.h"
+#include <string>
+#include <vector>
+
+#include "Avaliacao.h"
 
 using namespace std;
 

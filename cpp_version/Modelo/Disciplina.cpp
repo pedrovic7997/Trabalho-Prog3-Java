@@ -138,7 +138,7 @@ bool compara(const Disciplina* esq, const Disciplina* dir){
     return stringCompare(esq->obterCodigo(), dir->obterCodigo());
 }
 
-ostream& operator<<(ostream& os, Disciplina &disciplina){
-    os << "Codigo: " << disciplina.codigo << "-" << disciplina.periodo->obeterAno() << "/" << disciplina.periodo->obterSemestre() << " - Nome: " << disciplina.nome << " - Professor: " << disciplina.professor->obterNome() << endl;
-    return os;
-}
+// ostream& operator<<(ostream& os, Disciplina &disciplina){
+//     os << "Codigo: " << disciplina.codigo << "-" << disciplina.periodo->obeterAno() << "/" << disciplina.periodo->obterSemestre() << " - Nome: " << disciplina.nome << " - Professor: " << disciplina.professor->obterNome() << endl;
+//     return os;
+// }

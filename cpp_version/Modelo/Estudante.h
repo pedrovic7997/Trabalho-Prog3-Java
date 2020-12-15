@@ -1,7 +1,8 @@
 #ifndef ESTUDANTE_H
 #define ESTUDANTE_H
 
-#include "../Incluidor.h"
+// #include "../Incluidor.h"
+#include "Avaliacao.h"
 
 using namespace std;
 using namespace cpp_util;

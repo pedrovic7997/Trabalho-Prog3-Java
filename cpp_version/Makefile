@@ -26,7 +26,7 @@ BIN:
 	@mkdir -p bin/Leitor
 	@mkdir -p bin/Modelo
 
-$(EXEC): $(OBJ) $(OBJC) $(OBJM) $(OBJU) $(OBJCE) 
+$(EXEC): $(OBJ) $(OBJC) $(OBJU) $(OBJCE)  $(OBJM)
 	@$(CC) $^ -o $@ $(CFLAGS)
 
 %.o: %.cpp

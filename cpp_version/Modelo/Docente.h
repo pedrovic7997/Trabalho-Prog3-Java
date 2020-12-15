@@ -1,7 +1,14 @@
 #ifndef DOCENTE_H
 #define DOCENTE_H
 
-#include "../Incluidor.h"
+// #include "../Incluidor.h"
+#include <string>
+
+#include "../util/StringUtils.h"
+#include "../Leitor/LeitorDisciplina.h"
+#include "../Leitor/LeitorDocente.h"
+#include "Atividade.h"
+#include "Disciplina.h"
 
 using namespace std;
 

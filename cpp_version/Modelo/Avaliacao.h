@@ -1,7 +1,12 @@
 #ifndef AVALIACAO_H
 #define AVALIACAO_H
 
-#include "../Incluidor.h"
+// #include "../Incluidor.h"
+#include <iostream>
+
+#include "Estudante.h"
+
+class Atividade;
 
 using namespace std;
 
@@ -10,7 +15,7 @@ class Avaliacao {
     double nota;
 
     public:
-        Avaliacao (Estudante aluno, double nota);
+        Avaliacao (Estudante* aluno, double nota);
         ~Avaliacao();
 
         Estudante* obterAluno();

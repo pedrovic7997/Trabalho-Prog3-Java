@@ -42,7 +42,7 @@ Disciplina* LeitorDisciplina::ler(ifstream* scan, Periodo* periodo){
     string trash;
     
     string codigo;
-    getline(*scan, codigo, ';');
+    getLineTeste(scan,&codigo,";\n");
     trim(codigo);
 
     if(busca(codigo + "-" + periodo->obterCodigo()) != NULL){
@@ -50,11 +50,11 @@ Disciplina* LeitorDisciplina::ler(ifstream* scan, Periodo* periodo){
     }
 
     string nome;
-    getline(*scan, nome, ';');
+    getLineTeste(scan,&nome,";\n");
     trim(nome);
 
     string login;
-    getline(*scan, login, ';');
+    getLineTeste(scan,&login,";\n");
     trim(login);
 
     Docente* docente = cDocente.busca(login);
@@ -63,7 +63,7 @@ Disciplina* LeitorDisciplina::ler(ifstream* scan, Periodo* periodo){
     }
 
     if(!scan->eof())
-        getline(*scan, trash, '\n');
+        getLineTeste(scan,&trash,";\n");
 
     Disciplina* disciplina = new Disciplina(codigo, nome, periodo, docente);
     return disciplina;

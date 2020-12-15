@@ -20,9 +20,9 @@ vector<Periodo*> LeitorPeriodo::obterPeriodos(){
     return lista;
 }
 
-Periodo* LeitorPeriodo::ler(ifstream* scanner){
+Periodo* LeitorPeriodo::ler(ifstream* scan){
     string aux;
-    getline(*scanner, aux, ';');
+    getLineTeste(scan,&aux,";\n");
     trim(aux);
 
     int ano;
@@ -33,7 +33,7 @@ Periodo* LeitorPeriodo::ler(ifstream* scanner){
     }
 
     string semestre;
-    getline(*scanner, semestre, ';');
+    getLineTeste(scan,&semestre,";\n");
     trim(semestre);
 
     regex rgx("^[0-9A-Za-z]$");
@@ -54,14 +54,6 @@ void LeitorPeriodo::anexaHash(Periodo* periodo){
 }
 
 Periodo* LeitorPeriodo::busca(string codigo){
-    bool contains = false;
-    for(map<string,Periodo*>::iterator it = mapPeriodo.begin(); it != mapPeriodo.end(); ++it){
-        if(it->first == codigo){
-            contains = true;
-        }
-    }
-    if(contains){
-        return mapPeriodo[codigo];
-    }
-    return NULL;
+
+    return mapPeriodo[codigo];
 }

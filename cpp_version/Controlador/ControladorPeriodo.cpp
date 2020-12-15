@@ -12,7 +12,7 @@ vector<Periodo*> ControladorPeriodo :: lista(){
 
 void ControladorPeriodo ::ler(ifstream* scan){
     LeitorPeriodo* leitor = LeitorPeriodo::obterInstancia();
-    while(scan->eof()){
+    while(!scan->eof()){
         Periodo* periodo = leitor->ler(scan);
         leitor->anexaHash(periodo);
     }

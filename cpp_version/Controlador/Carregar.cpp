@@ -3,6 +3,8 @@
 void carregaPeriodo(string nArq){
     ControladorPeriodo controlador;
     ifstream* arq = new ifstream(nArq);
+    string lixo;
+    getline(*arq,lixo);
     controlador.ler(arq);
     arq->close();
 }
@@ -10,36 +12,48 @@ void carregaPeriodo(string nArq){
 void carregaDocente(string nArq){
     ControladorDocente controlador;
     ifstream* arq = new ifstream(nArq);
+    string lixo;
+    getline(*arq,lixo);
     controlador.ler(arq);
     arq->close();
 }
 void carregaDisciplina(string nArq){
     ControladorDisciplina controlador;
     ifstream* arq = new ifstream(nArq);
+    string lixo;
+    getline(*arq,lixo);
     controlador.ler(arq);
     arq->close();
 }
 void carregaEstudante(string nArq){
     ControladorEstudante controlador;
     ifstream* arq = new ifstream(nArq);
+    string lixo;
+    getline(*arq,lixo);
     controlador.ler(arq);
     arq->close();
 }
 void carregaDisciplinaEstudante(string nArq){
     ControladorDisciplina controlador;
     ifstream* arq = new ifstream(nArq);
+    string lixo;
+    getline(*arq,lixo);
     controlador.lerMatricula(arq);
     arq->close();
 }
 void carregaAtividade(string nArq){
     ControladorAtividade controlador;
     ifstream* arq = new ifstream(nArq);
+    string lixo;
+    getline(*arq,lixo);
     controlador.ler(arq);
     arq->close();
 }
 void carregaAvaliacao(string nArq){
     ControladorAtividade controlador;
     ifstream* arq = new ifstream(nArq);
+    string lixo;
+    getline(*arq,lixo);
     controlador.lerAvaliacao(arq);
     arq->close();
 }
@@ -69,30 +83,30 @@ void carregaDados(vector<string> arquivos){
 }
 
 void executa(char* args[],int argc){
-    string arqPeriodo=NULL, arqDocente=NULL, arqDisciplina=NULL, arqEstudantes=NULL, arqMatriculas=NULL, arqAtividades=NULL, arqAvaliacoes=NULL;
+    string arqPeriodo, arqDocente, arqDisciplina, arqEstudantes, arqMatriculas, arqAtividades, arqAvaliacoes;
     vector<string> arquivos;
             
-    for (int i = 0; i < argc; i++){
+    for (int i = 1; i < argc; i++){
         
-        if(args[i]== "-p" && i+1 < argc)
+        if(strcmp (args[i],"-p")==0 && i+1 < argc + 1)
             arqPeriodo = args[++i];
 
-        else if(args[i]== "-d" && i+1 < argc)
+        else if(strcmp (args[i],"-d")==0 && i+1 < argc + 1)
             arqDocente = args[++i];
 
-        else if(args[i]== "-o" && i+1 < argc)
+        else if(strcmp (args[i],"-o")==0 && i+1 < argc + 1)
             arqDisciplina = args[++i];
 
-        else if(args[i]== "-e" && i+1 < argc)
+        else if(strcmp (args[i],"-e")==0 && i+1 < argc + 1)
             arqEstudantes = args[++i];
 
-        else if(args[i]== "-m" && i+1 < argc)
+        else if(strcmp (args[i],"-m")==0 && i+1 < argc + 1)
             arqMatriculas = args[++i];
 
-        else if(args[i]== "-a" && i+1 < argc)
+        else if(strcmp (args[i],"-a")==0 && i+1 < argc + 1)
             arqAtividades = args[++i];
 
-        else if(args[i]== "-n" && i+1 < argc)
+        else if(strcmp (args[i],"-n")==0 && i+1 < argc + 1)
             arqAvaliacoes = args[++i];
     }
 
@@ -113,7 +127,7 @@ void Carregar :: lansaABraba(char* argv[],int argc){
     }
     catch(const Excecao e)
     {
-        // cout << e.motivo;/*
+         cout << e.motivo<< endl;/*
         throw e;//*/
     }
     

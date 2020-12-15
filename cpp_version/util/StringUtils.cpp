@@ -45,4 +45,31 @@ bool isNumber(string& s) {
 	return true;
 }
 
+bool verificaDelim(char letra,string delims){
+	for(auto delim : delims){
+		if(letra == delim)
+			return false;
+	}
+	return true;
+}
+
+void getLineTeste(ifstream* scan,string* teste, string delim){
+	char letra;
+	string teste2;
+	getline(*scan,teste2);
+	int tam = teste2.size();
+	delim+=EOF;
+	letra = teste2.at(0);
+	int i;
+	for(i=1; verificaDelim(letra,delim) && i<tam ;i++){
+		*teste += letra;
+		letra = teste2.at(i);
+	}
+	tam -=i;
+	if(tam) tam++;
+	else *teste += letra;
+	scan->seekg(scan->tellg()-tam ,scan->beg);
+
+}
+
 }

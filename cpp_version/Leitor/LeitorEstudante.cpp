@@ -20,9 +20,9 @@ vector<Estudante*> LeitorEstudante::obterEstudantes(){
     return lista;
 }
 
-Estudante* LeitorEstudante::ler(ifstream* scanner){
+Estudante* LeitorEstudante::ler(ifstream* scan){
     string matricula;
-    getline(*scanner, matricula, ';');
+    getLineTeste(scan,&matricula,";\n");
     trim(matricula);
 
     regex rgx("[^0-9]");
@@ -34,15 +34,15 @@ Estudante* LeitorEstudante::ler(ifstream* scanner){
         throw ExcecaoCad("Cadastro repetido: "+matricula+".");
     
     string aux;
-    getline(*scanner, aux, ';');
+    getLineTeste(scan,&aux,";\n");
     trim(aux);
 
     regex rgx2(" +");
     string nome = regex_replace(aux, rgx2, " ");
 
     string trash;
-    if(!scanner->eof())
-        getline(*scanner, trash, '\n');
+    if(!scan->eof())
+        getLineTeste(scan,&trash,";\n");
 
     return new Estudante(matricula, nome);
 }

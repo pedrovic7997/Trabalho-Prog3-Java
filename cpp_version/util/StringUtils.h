@@ -15,6 +15,8 @@
 #include <functional>
 #include <locale>
 #include <string>
+#include <fstream>
+
 
 namespace cpp_util {
 
@@ -29,6 +31,8 @@ string& trim(string& s);
 bool stringCompare(string s1, string s2);
 
 bool isNumber(string& s);
+
+void getLineTeste(ifstream* scan,string* teste, string delim);
 
 }
 #endif

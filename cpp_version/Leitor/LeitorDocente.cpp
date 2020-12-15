@@ -20,20 +20,20 @@ vector<Docente*> LeitorDocente::obterDocentes(){
     return lista;
 }
 
-Docente* LeitorDocente::ler(ifstream* scanner){
+Docente* LeitorDocente::ler(ifstream* scan){
     string login;
-    getline(*scanner, login, ';');
+    getLineTeste(scan,&login,";\n");
     trim(login);
     
     if(leitor->busca(login) != NULL)
         throw ExcecaoCad("Cadastro repetido: " + login + ".");
 
     string nome;
-    getline(*scanner, nome, ';');
+    getLineTeste(scan,&nome,";\n");
     trim(nome);
 
     string site;
-    getline(*scanner, site, ';');
+    getLineTeste(scan,&site,";\n");
     trim(site);
 
     return new Docente(login, nome, site);

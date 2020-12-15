@@ -28,7 +28,7 @@ BIN:
 	@mkdir -p bin/Excecoes
 
 $(EXEC): $(OBJ) $(OBJC) $(OBJU) $(OBJE) $(OBJL) $(OBJM)
-	@$(CC) $^ -o $(bindir)$@ $(CFLAGS)
+	@$(CC) $^ -o $@ $(FLAGS)
 
 teste: 
 	@cd bin
@@ -38,7 +38,7 @@ run:
 
 
 %.o: %.cpp
-	@$(CC) -o $@ -c $< $(CFLAGS)
+	@$(CC) -o $@ -c $< $(FLAGS)
 	
 clean: rmproper
 	@rm -f $(EXEC)

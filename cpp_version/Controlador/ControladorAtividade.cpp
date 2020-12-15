@@ -13,14 +13,12 @@ void ControladorAtividade :: ler(ifstream*scan){
 		
     while(!scan->eof()){
         string codigoDisc;
+        
         *scan >>codigoDisc;
         Disciplina *disciplina;
-        try{
-            disciplina = controlador.busca(codigoDisc);
-        }
-        catch(...){
+        disciplina = controlador.busca(codigoDisc);
+        if( disciplina== NULL)
             throw ExcecaoRef("Referência inválida: "+codigoDisc+".");
-        }
         Atividade* atividade = leitor->ler(scan);
         disciplina->anexaAtividade(atividade);
     }
@@ -38,21 +36,14 @@ void ControladorAtividade :: lerAvaliacao(ifstream*scan){
         string matricula;
         *scan >>matricula;
         Disciplina* disciplina;
-        try{
-            disciplina= cDisciplina.busca(codigoDisc);
-
-        }
-        catch(...){
+        disciplina= cDisciplina.busca(codigoDisc);
+        if(disciplina == NULL)
             throw ExcecaoRef("Referência inválida: "+codigoDisc+".");
-        }
         Estudante* estudante;
-        try{
-            estudante = cEstudante.busca(matricula);
+        estudante = cEstudante.busca(matricula);
 
-        }
-        catch(...){
-            throw ExcecaoRef("Referência inválida: "+codigoDisc+".");
-        }
+        if(estudante == NULL)
+            throw ExcecaoRef("Referência inválida: "+matricula+".");
         
         char codigoAtiv;
         cin >>codigoAtiv;

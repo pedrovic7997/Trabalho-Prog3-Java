@@ -26,14 +26,14 @@ Avaliacao* LeitorAvaliacao::ler(ifstream* scan,Estudante aluno){
     string aux, trash;
 
     try{
-        getline(*scan, aux, ';');
+        getLineTeste(scan,&aux,";\n");
         nota = stof(aux);
     } catch (...) {
         throw ExcecaoDado("Dado inválido: " + aux + ".");
     }
 
     if(!scan->eof())
-        getline(*scan, trash, '\n');
+        getLineTeste(scan,&trash,";\n");
 
     return new Avaliacao(aluno, nota);
 }

@@ -7,7 +7,7 @@ Docente* ControladorDocente :: busca(string codigo){
 
 void ControladorDocente :: ler(ifstream* scan){
     LeitorDocente *leitor = LeitorDocente::obterInstancia();
-    while(scan->eof()){
+    while(!scan->eof()){
         Docente* docente = leitor->ler(scan);
         leitor->anexaHash(docente);
     }

@@ -28,17 +28,17 @@ BIN:
 	@mkdir -p bin/Excecoes
 
 $(EXEC): $(OBJ) $(OBJC) $(OBJU) $(OBJE) $(OBJL) $(OBJM)
-	@$(CC) $^ -o $@ $(CFLAGS)
+	@$(CC) $^ -o $@ $(FLAGS)
 
 teste: 
 	@cd bin
 
 run:
-	@./$(EXEC) -p periodos.csv -d docentes.csv -o disciplinas.csv -e estudantes.csv -m matriculas.csv -a atividades.csv -n avaliacoes.csv
+	./$(EXEC) -p periodos.csv -d docentes.csv -o disciplinas.csv -e estudantes.csv -m matriculas.csv -a atividades.csv -n avaliacoes.csv
 
 
 %.o: %.cpp
-	@$(CC) -o $@ -c $< $(CFLAGS)
+	@$(CC) -o $@ -c $< $(FLAGS)
 	
 clean: rmproper
 	@rm -f $(EXEC)

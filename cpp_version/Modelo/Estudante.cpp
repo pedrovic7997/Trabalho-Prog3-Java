@@ -108,7 +108,7 @@ bool Estudante :: compara(Estudante* esq, Estudante* dir){
     if(esq->contaAvaliacoes() < esq->contaAvaliacoes())
         cmp = -1;
 
-    if(cmp =! 0) return cmp;
+    if(cmp != 0) return cmp;
 
     return stringCompare(esq->obterNome(), dir->obterNome());
 }

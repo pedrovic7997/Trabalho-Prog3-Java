@@ -3,7 +3,7 @@
 Periodo :: Periodo(int ano, char semestre){
     this->ano = ano;
     this->semestre = semestre;
-    this->codigo = ano + "/" + semestre;
+    this->codigo = to_string(ano) + "/" + semestre;
 }
 
 int Periodo :: obeterAno() const{

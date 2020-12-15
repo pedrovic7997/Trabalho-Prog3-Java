@@ -20,7 +20,7 @@ void panoramaPeriodo(){
             out << periodo->obterCodigo() <<";" <<disciplina->obterCodigo() <<";"; 
             out << disciplina->obterNome() <<";"<<disciplina->obterDocente()->obterNome(); 
             out <<";" << disciplina->obterDocente()->obterLogin() <<"@ufes.br;" <<qtdEstudante;
-            out << disciplina->obterAtividades().size()<< endl;
+            out << ";" << disciplina->obterAtividades().size()<< endl;
         }
     }
 }
@@ -31,11 +31,12 @@ void estatisticaDocentes(){
     sort(docentes.begin(),docentes.end(),Docente :: compara);
 
     FILE* file = fopen("2-docentes.csv","w");
-    fprintf(file,"Docente;Qtd. Disciplinas;Qtd. Períodos;Média Atividades/Disciplina;%% Síncronas;%% Assíncronas;Média de Notas");
+    fprintf(file,"Docente;Qtd. Disciplinas;Qtd. Períodos;Média Atividades/Disciplina;%% Síncronas;%% Assíncronas;Média de Notas\n");
     for(Docente* docente : docentes){
         fprintf(file,"%s;%d;%d;%.1f;%.0f%%;%.0f%%;%.1f\n",docente->obterNome().c_str(),docente->contaDisciplinas(),docente->contaPeriodos(),docente->mediaAtividadesPorDiciplina(),
                                                     docente->percentualAtividadesSincronas(),docente->percentualAtividadesAssincronas(),docente->mediaNotasRecebidas());
     }
+    fclose(file);
 }
 
 void estatisticaEstudantes(){
@@ -44,11 +45,12 @@ void estatisticaEstudantes(){
     sort(estudantes.begin(),estudantes.end(),Estudante::compara);
 
     FILE* file = fopen("3-estudantes.csv","w");
-    fprintf(file,"Matrícula;Nome;Média Disciplinas/Período;Média Avaliações/Disciplina;Média Notas Avaliações");
+    fprintf(file,"Matrícula;Nome;Média Disciplinas/Período;Média Avaliações/Disciplina;Média Notas Avaliações\n");
     for(Estudante *estudante: estudantes){
         fprintf(file,"%s;%s;%.1f;%.1f;%.1f\n",estudante->obterMatricula().c_str(),estudante->obterNome().c_str(),estudante->mediaDiciplinasPorPeriodo(),
                                             estudante->mediaAvaliacoes(),estudante->mediaNotas());
     }
+    fclose(file);
 }
 
 void estatisticaDisciplinasDocente(){
@@ -56,14 +58,16 @@ void estatisticaDisciplinasDocente(){
     vector<Disciplina*> disciplinas = cDisciplina.lista();
     sort(disciplinas.begin(),disciplinas.end(),Disciplina::compara);
     FILE* file = fopen("4-disciplinas.csv","w");
-    fprintf(file,"Docente;Período;Código;Nome;Qtd. Atividades;%% Síncronas;%% Assíncronas;CH;Datas Avaliações");
+    fprintf(file,"Docente;Período;Código;Nome;Qtd. Atividades;%% Síncronas;%% Assíncronas;CH;Datas Avaliações\n");
     for(Disciplina *disciplina : disciplinas){
         string datas ="";
         vector<Atividade*> atividades = disciplina->obterAtividades();
         sort(atividades.begin(),atividades.end(),Atividade :: compara);
         for(Atividade *atividade : atividades){
-            datas+=formatDate(atividade->obterData(),DATE_FORMAT_PT_BR_SHORT);
-            datas+=" ";
+            if(atividade->ehAvaliativa()){
+                datas+=formatDate(atividade->obterData(),DATE_FORMAT_PT_BR_SHORT);
+                datas+=" ";
+            }
         }
         datas = trim(datas);
         fprintf(file,"%s;%s;%s;%s;%ld;%.0f%%;%.0f%%;%d;%s\n",disciplina->obterDocente()->obterLogin().c_str(),disciplina->obterPeriodo()->obterCodigo().c_str(),

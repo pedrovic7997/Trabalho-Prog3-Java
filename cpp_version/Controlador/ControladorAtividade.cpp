@@ -65,7 +65,7 @@ void ControladorAtividade :: lerAvaliacao(ifstream*scan){
         }
         
         char codigoAtiv = vec[2].at(0);
-        Atividade* atividade = lAtividade->busca(codigoAtiv-1, disciplina->obterAtividades());
+        Atividade* atividade = lAtividade->busca(codigoAtiv-'0'-1, disciplina->obterAtividades());
         Avaliacao* avaliacao = lAvaliacao->ler(vec, *estudante);
         if(verificaCadastroAvaliacao(atividade, estudante))
             throw ExcecaoAval("Avaliação repetida: estudante "+estudante->obterMatricula()+ 

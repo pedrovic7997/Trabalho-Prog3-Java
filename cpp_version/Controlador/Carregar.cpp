@@ -73,27 +73,27 @@ void executa(char* args[],int argc){
     string arqPeriodo, arqDocente, arqDisciplina, arqEstudantes, arqMatriculas, arqAtividades, arqAvaliacoes;
     vector<string> arquivos;
             
-    for (int i = 0; i < argc; i++){
+    for (int i = 1; i < argc; i++){
         
-        if(args[i]== "-p" && i+1 < argc)
+        if(strcmp(args[i],"-p")==0 && i+1 < argc)
             arqPeriodo = args[++i];
 
-        else if(args[i]== "-d" && i+1 < argc)
+        else if(strcmp(args[i],"-d")==0 && i+1 < argc)
             arqDocente = args[++i];
 
-        else if(args[i]== "-o" && i+1 < argc)
+        else if(strcmp(args[i],"-o")==0 && i+1 < argc)
             arqDisciplina = args[++i];
 
-        else if(args[i]== "-e" && i+1 < argc)
+        else if(strcmp(args[i],"-e")==0 && i+1 < argc)
             arqEstudantes = args[++i];
 
-        else if(args[i]== "-m" && i+1 < argc)
+        else if(strcmp(args[i],"-m")==0 && i+1 < argc)
             arqMatriculas = args[++i];
 
-        else if(args[i]== "-a" && i+1 < argc)
+        else if(strcmp(args[i],"-a")==0 && i+1 < argc)
             arqAtividades = args[++i];
 
-        else if(args[i]== "-n" && i+1 < argc)
+        else if(strcmp(args[i],"-n")==0 && i+1 < argc)
             arqAvaliacoes = args[++i];
     }
 

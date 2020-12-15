@@ -10,9 +10,9 @@ LeitorAtividade* LeitorAtividade::obterInstancia(){
     else return leitor;
 }
 
-Atividade* LeitorAtividade :: busca(int posicao, vector<Atividade> atividades){
+Atividade* LeitorAtividade :: busca(int posicao, vector<Atividade*> atividades){
     if(atividades.size() >= posicao && posicao >= 0){
-        return &atividades.at(posicao);
+        return atividades.at(posicao);
     }
     return NULL;
 }
@@ -27,13 +27,13 @@ Atividade* LeitorAtividade :: ler(ifstream* scan){
     trim(tipo);
 
     if(tipo == "a" || tipo == "A")
-        return &criaAula(nome, scan);
+        return criaAula(nome, scan);
     if(tipo == "t" || tipo == "T")
-        return &criaTrabalho(nome, scan);
+        return criaTrabalho(nome, scan);
     if(tipo == "p" || tipo == "P")
-        return &criaProva(nome, scan);
+        return criaProva(nome, scan);
     if(tipo == "e" || tipo == "E")
-        return &criaEstudo(nome, scan);
+        return criaEstudo(nome, scan);
 
 }
 
@@ -76,10 +76,10 @@ Trabalho* LeitorAtividade :: criaTrabalho(string nome, ifstream* scan){
     if(!scan->eof())
         getline(*scan, trash, '\n');
     
-    return Trabalho(nome, false, data, numAlunos, cargaHoraria);
+    return new Trabalho(nome, false, data, numAlunos, cargaHoraria);
 }
 
-Aula LeitorAtividade :: criaAula(string nome, ifstream* scan){
+Aula* LeitorAtividade :: criaAula(string nome, ifstream* scan){
     string dataString, aux, trash;
     time_t data;
 
@@ -99,7 +99,7 @@ Aula LeitorAtividade :: criaAula(string nome, ifstream* scan){
     if(!scan->eof())
         getline(*scan, trash, '\n');
 
-    return Aula(nome, true, data);
+    return new Aula(nome, true, data);
 }
 
 Estudo* LeitorAtividade :: criaEstudo(string nome, ifstream* scan){
@@ -113,7 +113,7 @@ Estudo* LeitorAtividade :: criaEstudo(string nome, ifstream* scan){
     if(!scan->eof())
         getline(*scan, trash, '\n');
 
-    return Estudo(nome, false, materiais);
+    return new Estudo(nome, false, materiais);
 }
 
 Prova* LeitorAtividade :: criaProva(string nome, ifstream *scan){
@@ -138,7 +138,7 @@ Prova* LeitorAtividade :: criaProva(string nome, ifstream *scan){
     if(!scan->eof())
         getline(*scan, trash, '\n');
 
-    return Prova(nome, true, conteudos, data);
+    return new Prova(nome, true, conteudos, data);
 }
 
 vector<Material> LeitorAtividade :: lerMateriais(ifstream* scan){

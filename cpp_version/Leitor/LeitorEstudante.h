@@ -22,7 +22,7 @@ class LeitorEstudante{
 
     void anexaHash(Estudante* estudante);
 
-    Estudante* busca(string codigo);
+    Estudante* busca(string matricula);
 
 };
 #endif

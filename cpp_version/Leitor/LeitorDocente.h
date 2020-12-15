@@ -21,7 +21,7 @@ class LeitorDocente{
 
     void anexaHash(Docente* docente);
 
-    Docente* busca(string codigo);
+    Docente* busca(string login);
 
 };
 #endif

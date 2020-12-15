@@ -27,7 +27,7 @@ class Avaliacao;
 class Disciplina;
 class Docente;
 class Estudante;
-class Estudante;
+class Estudo;
 class Estudo;
 class Material;
 class Periodo;
@@ -50,12 +50,15 @@ class ControladorPeriodo;
 #include "Excecoes/Excecoes.h"
 #include "Modelo/Atividade.h"
 #include "Modelo/Avaliacao.h"
+#include "Modelo/Aula.h"
 #include "Modelo/Disciplina.h"
 #include "Modelo/Docente.h"
 #include "Modelo/Estudante.h"
-#include "Modelo/Estudante.h"
+#include "Modelo/Estudo.h"
 #include "Modelo/Material.h"
 #include "Modelo/Periodo.h"
+#include "Modelo/Prova.h"
+#include "Modelo/Trabalho.h"
 #include "Leitor/LeitorAtividade.h"
 #include "Leitor/LeitorAvaliacao.h"
 #include "Leitor/LeitorDisciplina.h"

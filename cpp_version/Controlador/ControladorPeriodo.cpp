@@ -10,7 +10,7 @@ vector<Periodo*> ControladorPeriodo :: lista(){
     return leitor->obterPeriodos();
 }
 
-void ler(ifstream* scan){
+void ControladorPeriodo ::ler(ifstream* scan){
     LeitorPeriodo* leitor = LeitorPeriodo::obterInstancia();
     while(scan->eof()){
         Periodo* periodo = leitor->ler(scan);

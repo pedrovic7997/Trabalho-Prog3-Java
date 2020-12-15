@@ -2,6 +2,8 @@
 
 LeitorPeriodo* LeitorPeriodo::leitor = NULL;
 
+LeitorPeriodo::LeitorPeriodo(){}
+
 LeitorPeriodo* LeitorPeriodo::obterInstancia(){
     if (leitor == NULL){
         leitor = new LeitorPeriodo();

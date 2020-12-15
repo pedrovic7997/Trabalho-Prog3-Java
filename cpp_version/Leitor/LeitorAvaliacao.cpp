@@ -1,6 +1,8 @@
 #include "LeitorAvaliacao.h"
 
-LeitorAvaliacao* LeitorAvaliacao::leitor = NULL;
+LeitorAvaliacao* LeitorAvaliacao::leitor = nullptr;
+
+LeitorAvaliacao::LeitorAvaliacao(){}
 
 LeitorAvaliacao* LeitorAvaliacao::obterInstancia(){
     if (leitor == NULL){
@@ -10,7 +12,7 @@ LeitorAvaliacao* LeitorAvaliacao::obterInstancia(){
     else return leitor;
 }
 
-vector<Avaliacao*> busca(vector<Avaliacao*> avaliacoes, Estudante* estudante){
+vector<Avaliacao*> LeitorAvaliacao::busca(vector<Avaliacao*> avaliacoes, Estudante* estudante){
     vector<Avaliacao*> lista;
     for(auto a : avaliacoes){
         if(a->obterAluno() == estudante)
@@ -19,7 +21,7 @@ vector<Avaliacao*> busca(vector<Avaliacao*> avaliacoes, Estudante* estudante){
     return lista;
 }
 
-Avaliacao* ler(ifstream* scan,Estudante aluno){
+Avaliacao* LeitorAvaliacao::ler(ifstream* scan,Estudante aluno){
     float nota;
     string aux, trash;
 
@@ -33,5 +35,5 @@ Avaliacao* ler(ifstream* scan,Estudante aluno){
     if(!scan->eof())
         getline(*scan, trash, '\n');
 
-    return &Avaliacao(aluno, nota);
+    return new Avaliacao(aluno, nota);
 }

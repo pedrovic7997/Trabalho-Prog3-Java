@@ -10,7 +10,7 @@ Docente :: Docente(string login, string nome, string paginaWeb){
 Docente :: Docente(string login, string nome){
     this->login = login;
     this->nome = nome;
-    // this->paginaWeb = NULL;
+    // this->paginaWeb = nullptr
     this->paginaWeb = "";
 }
 
@@ -115,7 +115,7 @@ double Docente :: mediaNotasRecebidas(){
     return notas/cont;
 }
 
-bool compara(const Docente* esq, const Docente* dir){
+bool Docente :: compara(const Docente* esq, const Docente* dir){
     return !stringCompare(esq->obterNome(), dir->obterNome());
 }
 

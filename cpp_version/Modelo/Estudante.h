@@ -22,7 +22,7 @@ class Estudante {
         double mediaAvaliacoes();
         double mediaNotas();
 
-        bool compara(Estudante* esq, Estudante* dir);
+        static bool compara(Estudante* esq, Estudante* dir);
 
         friend ostream& operator<<(ostream& os, Estudante &estudante);
 };

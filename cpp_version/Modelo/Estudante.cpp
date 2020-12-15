@@ -101,7 +101,7 @@ double Estudante :: mediaNotas(){
     return notas/avaliacoes.size();
 }
 
-bool compara(Estudante* esq, Estudante* dir){
+bool Estudante :: compara(Estudante* esq, Estudante* dir){
     int cmp = 0;
     if(esq->contaAvaliacoes() > esq->contaAvaliacoes())
         cmp = 1;

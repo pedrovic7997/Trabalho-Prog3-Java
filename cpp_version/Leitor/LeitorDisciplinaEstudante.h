@@ -10,7 +10,7 @@ class LeitorDisciplinaEstudante{
     map<string,vector<Disciplina*>> mapEstudante;
     static LeitorDisciplinaEstudante* leitor;
     
-    LeitorDisciplinaEstudante(){};
+    LeitorDisciplinaEstudante();
 
     public:
 

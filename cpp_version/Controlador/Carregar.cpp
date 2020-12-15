@@ -68,7 +68,7 @@ void carregaDados(vector<string> arquivos){
     }
 }
 
-void Carregar :: executa(string args[], int argc){
+void executa(char* args[],int argc){
     string arqPeriodo=NULL, arqDocente=NULL, arqDisciplina=NULL, arqEstudantes=NULL, arqMatriculas=NULL, arqAtividades=NULL, arqAvaliacoes=NULL;
     vector<string> arquivos;
             
@@ -104,4 +104,17 @@ void Carregar :: executa(string args[], int argc){
     arquivos.push_back(arqAtividades);
     arquivos.push_back(arqAvaliacoes);
     carregaDados(arquivos);
+}
+
+void Carregar :: lansaABraba(char* argv[],int argc){
+    try
+    {
+        executa(argv,argc);
+    }
+    catch(const Excecao e)
+    {
+        // cout << e.motivo;/*
+        throw e;//*/
+    }
+    
 }

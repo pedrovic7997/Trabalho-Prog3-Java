@@ -8,7 +8,7 @@ using namespace std;
 class LeitorAvaliacao{
     static LeitorAvaliacao* leitor;
 
-    LeitorAvaliacao(){};
+    LeitorAvaliacao();
 
     public:
 

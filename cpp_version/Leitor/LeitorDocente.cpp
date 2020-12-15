@@ -1,6 +1,8 @@
 #include "LeitorDocente.h"
 
-LeitorDocente* LeitorDocente::leitor = NULL;
+LeitorDocente* LeitorDocente::leitor = nullptr;
+
+LeitorDocente::LeitorDocente(){}
 
 LeitorDocente* LeitorDocente::obterInstancia(){
     if (leitor == NULL){
@@ -51,10 +53,10 @@ Docente* LeitorDocente::busca(string login){
     if(contains){
         return mapDocente[login];
     }
-    return NULL;
+    return nullptr;
 }
 
-vector<Periodo*> busca(Docente* docente){
+vector<Periodo*> LeitorDocente::busca(Docente* docente){
     ControladorDisciplina cDisciplina;
 
     vector<Disciplina*> disciplinas = cDisciplina.busca(docente);

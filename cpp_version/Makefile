@@ -7,7 +7,7 @@ SRC= main.cpp
 SRCM= $(wildcard Modelo/*.cpp)
 SRCL= $(wildcard Leitor/*.cpp)
 SRCC= $(wildcard Controlador/*.cpp)
-SRCC= $(wildcard Excecoes/*.cpp)
+SRCE= $(wildcard Excecoes/*.cpp)
 SRCU= $(wildcard util/*.cpp)
 OBJ= $(SRC:.cpp=.o)
 OBJM= $(SRCM:.cpp=.o)
@@ -17,7 +17,7 @@ OBJU= $(SRCU:.cpp=.o)
 OBJE= $(SRCE:.cpp=.o)
 
 
-all: $(EXEC)
+all: $(EXEC) run
 
 BIN:
 	@mkdir -p bin
@@ -25,15 +25,23 @@ BIN:
 	@mkdir -p bin/Controlador
 	@mkdir -p bin/Leitor
 	@mkdir -p bin/Modelo
+	@mkdir -p bin/Excecoes
 
-$(EXEC): $(OBJ) $(OBJC) $(OBJM) $(OBJU) $(OBJCE) 
-	@$(CC) $^ -o $@ $(CFLAGS)
+$(EXEC): $(OBJ) $(OBJC) $(OBJU) $(OBJE) $(OBJL) $(OBJM)
+	@$(CC) $^ -o $(bindir)$@ $(CFLAGS)
+
+teste: 
+	@cd bin
+
+run:
+	@./$(EXEC) -p periodos.csv -d docentes.csv -o disciplinas.csv -e estudantes.csv -m matriculas.csv -a atividades.csv -n avaliacoes.csv
+
 
 %.o: %.cpp
 	@$(CC) -o $@ -c $< $(CFLAGS)
 	
 clean: rmproper
-	@rm $(EXEC)
+	@rm -f $(EXEC)
 
 rmproper: 
 	@rm -f util/*.o Controlador/*.o Leitor/*.o Modelo/*.o Excecoes/*.o main.o 

@@ -10,18 +10,6 @@ class LeitorAtividade{
     static LeitorAtividade* leitor;
     
     LeitorAtividade();
-
-    Trabalho* criaTrabalho(string nome, ifstream* scan);
-
-    Aula* criaAula(string nome, ifstream* scan);
-
-    Estudo* criaEstudo(string nome, ifstream* scan);
-
-    Prova* criaProva(string nome, ifstream* scan);
-
-    vector<Material> lerMateriais(ifstream* scan);
-
-    vector<string> lerConteudos(ifstream* scan);
     
     public:
 

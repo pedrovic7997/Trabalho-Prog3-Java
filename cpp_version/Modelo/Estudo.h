@@ -1,7 +1,7 @@
 #ifndef ESTUDO_H
 #define ESTUDO_H
 
-#include "../Incluidor.h"
+#include "Atividade.h"
 
 using namespace std;
 
@@ -12,7 +12,7 @@ class Estudo : public Atividade{
         Estudo (string nome, bool sincrona, vector<Material> materiais);
 
         vector<Material> getMateriais();
-        bool ehAvaliativa();
+        bool ehAvaliativa() override;
 
         friend ostream& operator<<(ostream& os, Estudo &Estudo); 
 };

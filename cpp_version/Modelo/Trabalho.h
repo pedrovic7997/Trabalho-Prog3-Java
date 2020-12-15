@@ -1,7 +1,7 @@
 #ifndef TRABALHO_H
 #define TRABALHO_H
 
-#include "../Incluidor.h"
+#include "Atividade.h"
 
 using namespace std;
 
@@ -12,7 +12,7 @@ class Trabalho : public Atividade {
     public:
         Trabalho (string nome, bool sincrona, time_t prazo, int numMaxPorGrupo, int cargaHoraria);
 
-        bool ehAvaliativa();
+        bool ehAvaliativa() override;
 };
 
 #endif

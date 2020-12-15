@@ -1,6 +1,8 @@
 #include "LeitorDisciplina.h"
 
-LeitorDisciplina* LeitorDisciplina::leitor = NULL;
+LeitorDisciplina* LeitorDisciplina::leitor = nullptr;
+
+LeitorDisciplina::LeitorDisciplina(){}
 
 LeitorDisciplina* LeitorDisciplina::obterInstancia(){
     if (leitor == NULL){
@@ -32,7 +34,7 @@ Disciplina* LeitorDisciplina::busca(string codigo){
     for(map<string,Disciplina*>::iterator it = mapa.begin(); it != mapa.end(); ++it)
         if(it->first == codigo)
             return it->second;
-    return NULL;
+    return nullptr;
 }
 
 Disciplina* LeitorDisciplina::ler(ifstream* scan, Periodo* periodo){

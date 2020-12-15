@@ -1,7 +1,11 @@
 #ifndef ATIVIDADE_H
 #define ATIVIDADE_H
 
-#include "../Incluidor.h"
+#include <string>
+#include <vector>
+#include <iostream>
+
+class Avaliacao;
 
 using namespace std;
 
@@ -26,11 +30,13 @@ class Atividade {
         
         int obterQtdAvaliacoes();
 
-        virtual bool ehAvaliativa();
+        virtual bool ehAvaliativa() = 0;
 
-        bool compara(const Atividade* esq, const Atividade* dir);
+        static bool compara(const Atividade* esq, const Atividade* dir);
 
-        friend ostream& operator<<(ostream& os, Atividade &atividade); 
+        friend ostream& operator<<(ostream& os, Atividade &atividade);
+
+        ~Atividade();
 };
-
+#include "../Incluidor.h"
 #endif

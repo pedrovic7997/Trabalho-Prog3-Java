@@ -6,6 +6,6 @@
 class Carregar{
 
     public:
-    void executa(string args[], int argc);
+    static void lansaABraba(char* agrv[],int argc);
 };
 #endif

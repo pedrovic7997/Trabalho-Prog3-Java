@@ -5,7 +5,7 @@ Estudante* ControladorEstudante :: busca(string codigo){
     return leitor->busca(codigo);
 }
 
-void ler(ifstream* scan){
+void ControladorEstudante :: ler(ifstream* scan){
     LeitorEstudante* leitor = LeitorEstudante::obterInstancia();
     while(scan->eof()){
         Estudante* estudante = leitor->ler(scan);

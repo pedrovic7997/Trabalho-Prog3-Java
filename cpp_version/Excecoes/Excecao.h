@@ -7,8 +7,9 @@
 using namespace std;
 
 class Excecao {
-    string motivo;
+    
 public:
+    string motivo;
     Excecao(const string& motivo);
 
     friend ostream& operator<< (ostream &out, const Excecao& excecao);

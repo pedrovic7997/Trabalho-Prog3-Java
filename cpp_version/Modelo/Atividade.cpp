@@ -44,7 +44,7 @@ int Atividade :: obterQtdAvaliacoes(){
 bool Atividade :: compara(const Atividade* esq, const Atividade* dir){
     if(esq->data > dir->data) return 1;
     if(esq->data < dir->data) return -1;
-    if(esq->data == dir->data) return 0;
+    return 0;
 }
 
 ostream& operator<< (ostream& os, Atividade &atividade){
@@ -57,3 +57,5 @@ ostream& operator<< (ostream& os, Atividade &atividade){
         return os;
     }
 }
+
+Atividade :: ~Atividade(){}

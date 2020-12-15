@@ -1,7 +1,7 @@
 #ifndef AULA_H
 #define AULA_H
 
-#include "../Incluidor.h"
+#include "Atividade.h"
 
 using namespace std;
 
@@ -10,7 +10,7 @@ class Aula : public Atividade {
     public:
         Aula (string nome, bool sincrona, time_t data);
 
-        bool ehAvaliativa();
+        bool ehAvaliativa() override;
 };
 
 #endif

@@ -1,6 +1,8 @@
 #include "LeitorDisciplinaEstudante.h"
 
-LeitorDisciplinaEstudante* LeitorDisciplinaEstudante::leitor = NULL;
+LeitorDisciplinaEstudante* LeitorDisciplinaEstudante::leitor = nullptr;
+
+LeitorDisciplinaEstudante::LeitorDisciplinaEstudante(){}
 
 LeitorDisciplinaEstudante* LeitorDisciplinaEstudante::obterInstancia(){
     if (leitor == NULL){
@@ -44,13 +46,13 @@ Estudante* LeitorDisciplinaEstudante::busca(Disciplina* disciplina,string matric
         }
     }
     if(!contains){
-        return NULL;
+        return nullptr;
     }
     for(auto e : mapDisciplina[disciplina->obterCodigo() + disciplina->obterPeriodo()->obterCodigo()]){
         if(e->obterMatricula() == matricula)
             return e;
     }
-    return NULL;
+    return nullptr;
 }
 
 vector<Estudante*> LeitorDisciplinaEstudante::busca(Disciplina* disciplina){

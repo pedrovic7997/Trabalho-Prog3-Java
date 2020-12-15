@@ -25,7 +25,7 @@ class Docente {
         double percentualAtividadesAssincronas();
         double mediaNotasRecebidas();
 
-        bool compara(const Docente* esq, const Docente* dir);
+        static bool compara(const Docente* esq, const Docente* dir);
 
         friend ostream& operator<<(ostream& os, Docente &docente);
 };

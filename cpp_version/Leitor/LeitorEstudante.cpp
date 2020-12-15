@@ -2,6 +2,8 @@
 
 LeitorEstudante* LeitorEstudante::leitor = NULL;
 
+LeitorEstudante::LeitorEstudante(){}
+
 LeitorEstudante* LeitorEstudante::obterInstancia(){
     if (leitor == NULL){
         leitor = new LeitorEstudante();
@@ -35,8 +37,8 @@ Estudante* LeitorEstudante::ler(ifstream* scanner){
     getline(*scanner, aux, ';');
     trim(aux);
 
-    regex rgx(" +");
-    string nome = regex_replace(aux, rgx, " ");
+    regex rgx2(" +");
+    string nome = regex_replace(aux, rgx2, " ");
 
     string trash;
     if(!scanner->eof())

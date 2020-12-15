@@ -128,11 +128,11 @@ int Disciplina :: obterQtdAvaliacoesTotal(){
     return cont;
 }
 
-bool comparaNome(const Disciplina* esq, const Disciplina* dir){
+bool Disciplina :: comparaNome(const Disciplina* esq, const Disciplina* dir){
     return stringCompare(esq->obterNome(), dir->obterNome());
 }
 
-bool compara(const Disciplina* esq, const Disciplina* dir){
+bool Disciplina :: compara(const Disciplina* esq, const Disciplina* dir){
     int cmp = stringCompare(esq->obterPeriodo()->obterCodigo(), dir->obterPeriodo()->obterCodigo());
     if(cmp != 0) return cmp;
     return stringCompare(esq->obterCodigo(), dir->obterCodigo());

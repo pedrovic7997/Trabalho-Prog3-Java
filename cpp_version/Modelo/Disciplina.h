@@ -36,8 +36,8 @@ class Disciplina{
         int calculaCargaHorariaTotal();
         int obterQtdAvaliacoesTotal();
 
-        bool comparaNome(const Disciplina* esq, const Disciplina* dir);
-        bool compara(const Disciplina* esq, const Disciplina* dir);
+        static bool comparaNome(const Disciplina* esq, const Disciplina* dir);
+        static bool compara(const Disciplina* esq, const Disciplina* dir);
 
         friend ostream& operator<<(ostream& os, Disciplina &disciplina); 
 };

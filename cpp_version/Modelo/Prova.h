@@ -1,7 +1,7 @@
 #ifndef PROVA_H
 #define PROVA_H
 
-#include "../Incluidor.h"
+#include "Atividade.h"
 
 using namespace std;
 
@@ -11,7 +11,7 @@ class Prova : public Atividade {
     public:
         Prova (string nome, bool sincrona, vector<string> conteudo, time_t data);
 
-        bool ehAvaliativa();
+        bool ehAvaliativa() override;
 };
 
 #endif

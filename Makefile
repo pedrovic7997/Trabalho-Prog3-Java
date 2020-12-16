@@ -4,11 +4,11 @@ CC = g++
 FLAGS = -lm -g
 EXEC = main
 SRC= main.cpp
-SRCM= $(wildcard Modelo/*.cpp)
-SRCL= $(wildcard Leitor/*.cpp)
-SRCC= $(wildcard Controlador/*.cpp)
-SRCE= $(wildcard Excecoes/*.cpp)
-SRCU= $(wildcard util/*.cpp)
+SRCM= $(wildcard cpp_version/Modelo/*.cpp)
+SRCL= $(wildcard cpp_version/Leitor/*.cpp)
+SRCC= $(wildcard cpp_version/Controlador/*.cpp)
+SRCE= $(wildcard cpp_version/Excecoes/*.cpp)
+SRCU= $(wildcard cpp_version/util/*.cpp)
 OBJ= $(SRC:.cpp=.o)
 OBJM= $(SRCM:.cpp=.o)
 OBJL= $(SRCL:.cpp=.o)
@@ -18,14 +18,6 @@ OBJE= $(SRCE:.cpp=.o)
 
 
 all: $(EXEC) run
-
-BIN:
-	@mkdir -p bin
-	@mkdir -p bin/util
-	@mkdir -p bin/Controlador
-	@mkdir -p bin/Leitor
-	@mkdir -p bin/Modelo
-	@mkdir -p bin/Excecoes
 
 $(EXEC): $(OBJ) $(OBJC) $(OBJU) $(OBJE) $(OBJL) $(OBJM)
 	@$(CC) $^ -o $@ $(FLAGS)
@@ -44,10 +36,4 @@ clean: rmproper
 	@rm -f $(EXEC)
 
 rmproper: 
-	@rm -f util/*.o Controlador/*.o Leitor/*.o Modelo/*.o Excecoes/*.o main.o 
-	@rm -r -f bin/Controlador
-	@rm -r -f bin/Leitor
-	@rm -r -f bin/Modelo
-	@rm -r -f bin/util
-	@rm -r -f bin
-	@rm -f $(bindir)util/*.o $(bindir)Controlador/*.o $(bindir)Leitor/*.o $(bindir)Modelo/*.o $(bindir)main.o
+	@rm -f cpp_version/util/*.o cpp_version/Controlador/*.o cpp_version/Leitor/*.o cpp_version/Modelo/*.o cpp_version/Excecoes/*.o cpp_version/main.o 

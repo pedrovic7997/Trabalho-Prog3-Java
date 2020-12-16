@@ -17,7 +17,7 @@ OBJU= $(SRCU:.cpp=.o)
 OBJE= $(SRCE:.cpp=.o)
 
 
-all: $(EXEC) run
+all: $(EXEC)
 
 $(EXEC): $(OBJ) $(OBJC) $(OBJU) $(OBJE) $(OBJL) $(OBJM)
 	@$(CC) $^ -o $@ $(FLAGS)

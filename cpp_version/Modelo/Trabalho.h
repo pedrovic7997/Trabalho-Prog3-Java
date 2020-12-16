@@ -13,6 +13,7 @@ class Trabalho : public Atividade {
         Trabalho (string nome, bool sincrona, time_t prazo, int numMaxPorGrupo, int cargaHoraria);
 
         bool ehAvaliativa() override;
+        int obterCargaHoraria() override;
 };
 
 #endif

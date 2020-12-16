@@ -16,7 +16,8 @@ Atividade* LeitorAtividade :: busca(int posicao, vector<Atividade*> atividades){
     if(atividades.size() >= posicao && posicao >= 0){
         return atividades.at(posicao);
     }
-    return nullptr;
+    posicao++;
+    throw ExcecaoRef("Referência inválida: "+to_string(posicao)+".");
 }
 
 vector<string> lerConteudos(string conteudos){

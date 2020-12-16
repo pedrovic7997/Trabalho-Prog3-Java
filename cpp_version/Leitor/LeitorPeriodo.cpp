@@ -25,7 +25,7 @@ Periodo* LeitorPeriodo::ler(vector<string> vec){
     try{
         ano = stoi(vec[0]);
     } catch (...){
-        throw ExcecaoCad("\nDado inválido: "+ vec[0] +".\n");
+        throw ExcecaoCad("Dado inválido: "+ vec[0] +".");
     }
 
     string semestre = vec[1];

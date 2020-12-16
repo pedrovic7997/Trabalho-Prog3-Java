@@ -13,7 +13,7 @@ bool Atividade :: obterSincrona() const{
     return sincrona;
 }
 
-int Atividade :: obterCargaHoraria() const{
+int Atividade :: obterCargaHoraria(){
     return 2;
 }
 
@@ -42,9 +42,9 @@ int Atividade :: obterQtdAvaliacoes(){
 }
 
 bool Atividade :: compara(const Atividade* esq, const Atividade* dir){
-    if(esq->data > dir->data) return 1;
-    if(esq->data < dir->data) return -1;
-    return 0;
+    if(esq->data > dir->data) return false;
+    if(esq->data < dir->data) return true;
+    return false;
 }
 
 ostream& operator<< (ostream& os, Atividade &atividade){

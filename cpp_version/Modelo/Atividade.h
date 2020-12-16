@@ -21,7 +21,7 @@ class Atividade {
         
         string obterNome() const;
         bool obterSincrona() const;
-        int obterCargaHoraria() const;
+        virtual int obterCargaHoraria();
         vector<Avaliacao*> obterAvaliacoes();
         time_t obterData();
 

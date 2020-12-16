@@ -16,7 +16,7 @@ namespace cpp_util {
 using namespace std;
 
 /* Converts decimal numbers from textual format to double, following a locale configuration. */
-double parseDouble(const string& str, const locale& loc) {
+double parsedouble(const string& str, const locale& loc) {
 	double num;
 
 	// Creates a stream with the given string and applies the specified locale to it.
@@ -29,7 +29,7 @@ double parseDouble(const string& str, const locale& loc) {
 }
 
 /* Converts decimal numbers from double format to text, following a locale configuration. */
-string formatDouble(const double num, const locale& loc) {
+string formatdouble(const double num, const locale& loc) {
 	// Creates an empty string stream and applies the specified locale to it.
 	stringstream stream;
 	stream.imbue(loc);
@@ -40,7 +40,7 @@ string formatDouble(const double num, const locale& loc) {
 }
 
 /* Converts decimal numbers from double format to currency, following a locale configuration. */
-string formatDoubleCurrency(const double num, const locale& loc) {
+string formatdoubleCurrency(const double num, const locale& loc) {
 	// Creates an empty string stream and applies the specified locale to it.
 	stringstream stream;
 	stream.imbue(loc);

@@ -2,7 +2,7 @@
 
 bool verificaCadastroAvaliacao(Atividade* atividade,Estudante* estudante){
     for(Avaliacao* avaliacao : atividade->obterAvaliacoes())
-        if(avaliacao->obterAluno() == estudante)
+        if(avaliacao->obterAluno()->obterNome() == estudante->obterNome())
             return true;
     return false;
 }
@@ -21,10 +21,10 @@ void ControladorAtividade :: ler(ifstream*scan){
         }
         string codigoDisc = vec[0];
         Disciplina *disciplina;
-        try{
-            disciplina = controlador.busca(codigoDisc);
-        }
-        catch(...){
+
+        disciplina = controlador.busca(codigoDisc);
+
+        if(disciplina == NULL){
             throw ExcecaoRef("Referência inválida: "+codigoDisc+".");
         }
         Atividade* atividade = leitor->ler(vec);
@@ -49,27 +49,24 @@ void ControladorAtividade :: lerAvaliacao(ifstream*scan){
         string codigoDisc = vec[0];
         string matricula = vec[1];
         Disciplina* disciplina;
-        try{
-            disciplina= cDisciplina.busca(codigoDisc);
+        disciplina= cDisciplina.busca(codigoDisc);
 
-        }
-        catch(...){
+
+        if(disciplina == NULL){
             throw ExcecaoRef("Referência inválida: "+codigoDisc+".");
         }
         Estudante* estudante;
-        try{
-            estudante = cEstudante.busca(matricula);
+        estudante = cEstudante.busca(matricula);
+
+        if(estudante == NULL){
+            throw ExcecaoRef("Referência inválida: "+matricula+".");
         }
-        catch(...){
-            throw ExcecaoRef("Referência inválida: "+codigoDisc+".");
-        }
-        
-        char codigoAtiv = vec[2].at(0);
-        Atividade* atividade = lAtividade->busca(codigoAtiv-'0'-1, disciplina->obterAtividades());
+        int codigoAtiv = atoi(vec[2].c_str());
+        Atividade* atividade = lAtividade->busca(codigoAtiv-1, disciplina->obterAtividades());
         Avaliacao* avaliacao = lAvaliacao->ler(vec, *estudante);
         if(verificaCadastroAvaliacao(atividade, estudante))
             throw ExcecaoAval("Avaliação repetida: estudante "+estudante->obterMatricula()+ 
-                                " para atividade " +codigoAtiv +" de "+disciplina->obterCodigo()+"-"+
+                                " para atividade " +to_string(codigoAtiv) +" de "+disciplina->obterCodigo()+"-"+
                                 disciplina->obterPeriodo()->obterCodigo()+".");
         atividade->anexaAvaliacao(avaliacao);
     }

@@ -34,6 +34,7 @@ double Estudante :: mediaDiciplinasPorPeriodo(){
         if(ant->obterCodigo().compare(atu->obterCodigo()) != 0){
             cont++;
         }
+        ant = atu;
     }
 
     return disciplinas.size()/cont;
@@ -76,7 +77,7 @@ double Estudante :: mediaNotas(){
     LeitorDisciplinaEstudante* lDisciplinas = LeitorDisciplinaEstudante :: obterInstancia();
     vector<Disciplina*> disciplinas = lDisciplinas->busca(this);
 
-    if(disciplinas.size() == 0) return 0;
+    if(disciplinas.size() == 0)return 0;
 
     int cont=0;
     vector<Avaliacao*> avaliacoes;
@@ -97,18 +98,14 @@ double Estudante :: mediaNotas(){
     for(Avaliacao* a : avaliacoes){
         notas += a->obterNota();
     }
-
     return notas/avaliacoes.size();
 }
 
 bool Estudante :: compara(Estudante* esq, Estudante* dir){
-    int cmp = 0;
-    if(esq->contaAvaliacoes() > esq->contaAvaliacoes())
-        cmp = 1;
-    if(esq->contaAvaliacoes() < esq->contaAvaliacoes())
-        cmp = -1;
-
-    if(cmp != 0) return cmp;
+    if(esq->contaAvaliacoes() > dir->contaAvaliacoes())
+        return true;
+    if(esq->contaAvaliacoes() < dir->contaAvaliacoes())
+        return false;
 
     return stringCompare(esq->obterNome(), dir->obterNome());
 }

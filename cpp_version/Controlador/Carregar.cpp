@@ -1,9 +1,13 @@
+#include <clocale>
+
 #include "Carregar.h"
 #include "Relatorio.h"
 
 void carregaPeriodo(string nArq){
     ControladorPeriodo controlador;
     ifstream* arq = new ifstream(nArq);
+    if(arq->fail())
+        throw ExcecaoIO("Erro de I/O.");
     controlador.ler(arq);
     arq->close();
 }
@@ -11,36 +15,48 @@ void carregaPeriodo(string nArq){
 void carregaDocente(string nArq){
     ControladorDocente controlador;
     ifstream* arq = new ifstream(nArq);
+    if(arq->fail())
+        throw ExcecaoIO("Erro de I/O.");
     controlador.ler(arq);
     arq->close();
 }
 void carregaDisciplina(string nArq){
     ControladorDisciplina controlador;
     ifstream* arq = new ifstream(nArq);
+    if(arq->fail())
+        throw ExcecaoIO("Erro de I/O.");
     controlador.ler(arq);
     arq->close();
 }
 void carregaEstudante(string nArq){
     ControladorEstudante controlador;
     ifstream* arq = new ifstream(nArq);
+    if(arq->fail())
+        throw ExcecaoIO("Erro de I/O.");
     controlador.ler(arq);
     arq->close();
 }
 void carregaDisciplinaEstudante(string nArq){
     ControladorDisciplina controlador;
     ifstream* arq = new ifstream(nArq);
+    if(arq->fail())
+        throw ExcecaoIO("Erro de I/O.");
     controlador.lerMatricula(arq);
     arq->close();
 }
 void carregaAtividade(string nArq){
     ControladorAtividade controlador;
     ifstream* arq = new ifstream(nArq);
+    if(arq->fail())
+        throw ExcecaoIO("Erro de I/O.");
     controlador.ler(arq);
     arq->close();
 }
 void carregaAvaliacao(string nArq){
     ControladorAtividade controlador;
     ifstream* arq = new ifstream(nArq);
+    if(arq->fail())
+        throw ExcecaoIO("Erro de I/O.");
     controlador.lerAvaliacao(arq);
     arq->close();
 }
@@ -108,6 +124,7 @@ void executa(char* args[],int argc){
 }
 
 void Carregar :: lansaABraba(char* argv[],int argc){
+    locale::global(locale(""));
     try
     {
         executa(argv,argc);
@@ -115,7 +132,7 @@ void Carregar :: lansaABraba(char* argv[],int argc){
     }
     catch(const Excecao e)
     {
-        // cout << e.motivo;/*
+         cout << e.motivo<<endl;/*
         throw e;//*/
     }
     

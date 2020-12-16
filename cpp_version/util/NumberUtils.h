@@ -22,13 +22,13 @@ using namespace std;
 static const locale LOCALE_PT_BR(locale(), new NumPunctPTBR());
 
 /* Converts decimal numbers from textual format to double, following a locale configuration. */
-double parseDouble(const string&, const locale&);
+double parsedouble(const string&, const locale&);
 
 /* Converts decimal numbers from double format to text, following a locale configuration. */
-string formatDouble(const double, const locale&);
+string formatdouble(const double, const locale&);
 
 /* Converts decimal numbers from double format to currency, following a locale configuration. */
-string formatDoubleCurrency(const double, const locale&);
+string formatdoubleCurrency(const double, const locale&);
 
 }
 #endif

@@ -15,10 +15,8 @@ void ControladorDisciplina :: ler(ifstream* scan){
         }
         string codigo = vec[0];
         Periodo* periodo;
-        try{
-            periodo = cPeriodo.busca(codigo);
-        }
-        catch(...){
+        periodo = cPeriodo.busca(codigo);
+        if(periodo == NULL){
             throw ExcecaoRef("Referência inválida: "+codigo+".");
         }
         Disciplina *disciplina = leitor->ler(vec, periodo);
@@ -59,19 +57,16 @@ void ControladorDisciplina :: lerMatricula(ifstream* scan){
         }
         string codigo = vec[0];
         Disciplina* disciplina;
-        try{
-            disciplina = busca(codigo);
-        }
-        catch(...){
+        disciplina = busca(codigo);
+        if(disciplina == NULL){
             throw ExcecaoRef("Referência inválida: "+codigo+".");
         }
         string matricula = vec[1];
         Estudante* estudante;
-        try{
-            estudante = cEstudante.busca(matricula);
-        }
-        catch(...){
-            throw ExcecaoRef("Referência inválida: "+codigo+".");
+        estudante = cEstudante.busca(matricula);
+
+        if(estudante == NULL){
+            throw ExcecaoRef("Referência inválida: "+matricula+".");
         }
         if(verificaMatriculaEstudante(disciplina, estudante->obterMatricula()))
             throw ExcecaoMat("Matrícula repetida: "+estudante->obterMatricula()+

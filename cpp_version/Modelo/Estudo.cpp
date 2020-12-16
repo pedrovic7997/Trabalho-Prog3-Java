@@ -7,7 +7,7 @@ Estudo :: Estudo (string nome, bool sincrona, vector<Material> materiais) : Ativ
 }
 
 bool Estudo :: ehAvaliativa(){
-    return true;
+    return false;
 }
 
 vector<Material> Estudo :: getMateriais(){
